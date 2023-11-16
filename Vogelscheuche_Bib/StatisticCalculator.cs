@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vogelscheuche_Bib
 {
-    internal class SatistikCalculator
+    internal class StatisticCalculator
     {
     }
 }
