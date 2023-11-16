@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vogelscheuche_Bib", "Vogelscheuche_Bib\Vogelscheuche_Bib.csproj", "{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogelscheuche_Bib", "Vogelscheuche_Bib\Vogelscheuche_Bib.csproj", "{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{EF06F219-A739-4A1D-9511-6FAC948B67BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF06F219-A739-4A1D-9511-6FAC948B67BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF06F219-A739-4A1D-9511-6FAC948B67BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF06F219-A739-4A1D-9511-6FAC948B67BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF06F219-A739-4A1D-9511-6FAC948B67BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
