@@ -28,7 +28,7 @@ namespace Vogelscheuche_Bib
         {
             SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;Trust Server Certificate=False");
             Connection.Open();
-            string query = "Delete Vogelsammlung Where Bird");
+            string query = "Delete Vogelsammlung Where Bird";
             SqlCommand command = new SqlCommand(query, Connection);
         }
         public static string Get (string Bird) 
