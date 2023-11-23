@@ -18,6 +18,8 @@ namespace Database
         {
             //Add("Taube");
             Delete("TAube");
+            Select("Taube");
+            Console.ReadLine();
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
         {
@@ -45,19 +47,20 @@ namespace Database
             command.ExecuteNonQuery ();
             Connection.Close();
         }
-        public static string Get(string Bird)
+        public static void Select(string Bird)
         {
             SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
             SqlDataReader reader = null;
             reader = command.ExecuteReader();
-            string s="";
             while (reader.Read())
             {
-                s = reader["Art"].ToString();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.WriteLine(reader.GetValue(i));
+                }
             }
-            return s;
         }
         public static void Override (string Bird) 
         {
@@ -74,5 +77,11 @@ namespace Database
             adapter.Fill(dt);
             //dataGridView1.DataSource = dt;   //Data grid view 1 ist ein Feld in Forms
         }
+        //public static void Select(string Bird)
+        //{
+        //    SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+        //    Connection.Open();
+        //    SqlCommand command = new SqlCommand()
+        //}
     }
 }
