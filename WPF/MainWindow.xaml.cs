@@ -24,8 +24,8 @@ namespace WPF
         {
             InitializeComponent();
 
-            menuToggleButton.Checked += menuToggleButton_Checked;
-            menuToggleButton.Unchecked += menuToggleButton_Unchecked;
+            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,14 +38,30 @@ namespace WPF
 
         }
 
-        private void menuToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            menuPanel.Visibility = Visibility.Visible;
+
         }
 
-        private void menuToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
-            menuPanel.Visibility = Visibility.Collapsed;
+            Button button = sender as Button;
+            if (button != null)
+            {
+                button.BorderThickness = new Thickness (5);
+                button.BorderBrush = Brushes.Black;
+            }
+
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                button.BorderThickness = new Thickness(1);
+                button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
+            }
         }
     }
 }
