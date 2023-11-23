@@ -10,6 +10,14 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <!-- Grid Hintergrundbild -->
         <Grid.Background>
@@ -17,37 +25,23 @@
         </Grid.Background>
 
         <!--Bild hochladen Button-->
-        <!-- Button 1 -->
-        <Button HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
-                Click="Button_Click" 
-                RenderTransformOrigin="0.514,0.757" 
-                Height="181" 
-                Width="412" 
-                BorderThickness="5" 
-                BorderBrush="#786442">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
+        <Button Click="Button_Click" 
+                    Height="181" 
+                    Width="412" 
+                    MouseEnter="Button_MouseEnter"
+                    BorderBrush="#786442" 
+                    MouseLeave="Button_MouseLeave">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
             <Button.Background>
                 <ImageBrush ImageSource="Bilder/blauerVogelButton.png"/>
             </Button.Background>
         </Button>
-
-        <!-- ToggleButton für das Menü -->
-        <ToggleButton x:Name="menuToggleButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Checked="menuToggleButton_Checked">
-            <Image Source="Bilder/Logo.png" Width="54" Height="50"/>
-        </ToggleButton>
 
         <!--Menü Panel-->
         <StackPanel x:Name="menuPanel" Background="#786442" Width="100" Orientation="Vertical" HorizontalAlignment="Left" Opacity="0.8">
@@ -66,6 +60,8 @@
                 <Image Source="Bilder/Logo.png" Width="54" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-8,-33,0,0"/>
 
             </Grid>
+            
+            
 
             <!--Main Menü-->
             <Menu Height="408"
@@ -90,8 +86,8 @@
                 <MenuItem Header="Favoriten" Click="MenuItem_Click">
                     <MenuItem.Icon>
                         <Image Source="Bilder/mogen.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" Height="13" Margin="-5,-1,-13,0">
+                            Stretch="Uniform"
+                            VerticalAlignment="Top" Height="13" Margin="-5,-1,-13,0">    
                         </Image>
                     </MenuItem.Icon>
                 </MenuItem>
@@ -99,8 +95,8 @@
                 <MenuItem Header="Statistiken" Click="MenuItem_Click">
                     <MenuItem.Icon>
                         <Image Source="Bilder/img_Statistik.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" Height="16" Margin="-5,-3,-15,0">
+                            Stretch="Uniform"
+                            VerticalAlignment="Top" Height="16" Margin="-5,-3,-15,0">
                         </Image>
                     </MenuItem.Icon>
                 </MenuItem>
@@ -113,10 +109,6 @@
                         </Image>
                     </MenuItem.Icon>
                 </MenuItem>
-
-
-
-
             </Menu>
 
         </StackPanel>
