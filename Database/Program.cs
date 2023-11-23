@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
 using System.Data;
+using System.IO;
 
 namespace Database
 {
@@ -16,24 +17,23 @@ namespace Database
 
         static void Main(string[] args)
         {
-            //Add("Taube");
-            Delete("TAube");
-            Select("Taube");
+            Delete("S");
             Console.ReadLine();
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
         {
-            //SqlConnection Connection = new SqlConnection(@"Server=RANGORX\SQLEXPRESS01;Database=Vogelsammlung;User Id=RangoRX\morit;Password=gfb;");
             SqlConnection Connection = new SqlConnection("Data Source=RANGORX\\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
             Connection.Open();
-            string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort) values (@Id,@Vogel,@Art,@Datum,@Ort)";
+            string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "6");
-            command.Parameters.AddWithValue("@Vogel", "Vogel");
-            command.Parameters.AddWithValue("@Art", "Art");
-            command.Parameters.AddWithValue("@Datum", "Datum");
-            command.Parameters.AddWithValue("@Ort", "Ort");
-            command.Parameters.AddWithValue("@Favorit", "1");
+            command.Parameters.AddWithValue("@Id", "7");
+            command.Parameters.AddWithValue("@Vogel", "Ara");
+            command.Parameters.AddWithValue("@Art", "Papagei");
+            command.Parameters.AddWithValue("@Datum", "heute");
+            command.Parameters.AddWithValue("@Ort", "hier");
+            byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
+            command.Parameters.AddWithValue("@Bild", bytes);
+            command.Parameters.AddWithValue("@Favorit", "ja");
             command.ExecuteNonQuery();
             Connection.Close();
         }
@@ -43,7 +43,7 @@ namespace Database
             Connection.Open();
             string query = "Delete Vogelsammlung where Id=@Id";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "7");
+            command.Parameters.AddWithValue("@Id", "8");
             command.ExecuteNonQuery ();
             Connection.Close();
         }
@@ -64,8 +64,18 @@ namespace Database
         }
         public static void Override (string Bird) 
         {
-            Delete(Bird);
-            Add(Bird);
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            Connection.Open();
+            string query = "Update Vogelsammlung SET Id = @Id, Vogel=@Vogel, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@Id", "6");
+            command.Parameters.AddWithValue("@Vogel", "Ara");
+            command.Parameters.AddWithValue("@Art", "Papagei");
+            command.Parameters.AddWithValue("@Datum", "heute");
+            command.Parameters.AddWithValue("@Ort", "hier");
+            command.Parameters.AddWithValue("@Favorit", "ja");
+            command.ExecuteNonQuery ();
+            Connection.Close();
         }
         public static void Show (string Bird)
         {
