@@ -4,14 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
+using System.ComponentModel.Design;
+using System.Data;
 
 namespace Database
 {
     internal class Program
     {
+        
+
         static void Main(string[] args)
         {
-            Add("Taube");
+            //Add("Taube");
+            Delete("TAube");
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
         {
@@ -20,13 +26,53 @@ namespace Database
             Connection.Open();
             string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort) values (@Id,@Vogel,@Art,@Datum,@Ort)";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "");
-            command.Parameters.AddWithValue("@Vogel", "Bird.Vogel");
-            command.Parameters.AddWithValue("@Art", "Bird.Art");
-            command.Parameters.AddWithValue("@Datum", "Bird.Datum");
-            command.Parameters.AddWithValue("@Ort", "Bird.Ort");
+            command.Parameters.AddWithValue("@Id", "6");
+            command.Parameters.AddWithValue("@Vogel", "Vogel");
+            command.Parameters.AddWithValue("@Art", "Art");
+            command.Parameters.AddWithValue("@Datum", "Datum");
+            command.Parameters.AddWithValue("@Ort", "Ort");
+            command.Parameters.AddWithValue("@Favorit", "1");
             command.ExecuteNonQuery();
             Connection.Close();
+        }
+        public static void Delete(string Bird)
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            Connection.Open();
+            string query = "Delete Vogelsammlung where Id=@Id";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@Id", "7");
+            command.ExecuteNonQuery ();
+            Connection.Close();
+        }
+        public static string Get(string Bird)
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
+            SqlDataReader reader = null;
+            reader = command.ExecuteReader();
+            string s="";
+            while (reader.Read())
+            {
+                s = reader["Art"].ToString();
+            }
+            return s;
+        }
+        public static void Override (string Bird) 
+        {
+            Delete(Bird);
+            Add(Bird);
+        }
+        public static void Show (string Bird)
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("Select * from Vogelsammlung", Connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();  
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            //dataGridView1.DataSource = dt;   //Data grid view 1 ist ein Feld in Forms
         }
     }
 }

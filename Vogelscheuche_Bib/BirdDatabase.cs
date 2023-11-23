@@ -27,14 +27,14 @@ namespace Vogelscheuche_Bib
         }
         public static void Delete (string Bird) 
         {
-            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;Trust Server Certificate=False");
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
             Connection.Open();
             string query = "Delete Vogelsammlung Where Bird";
             SqlCommand command = new SqlCommand(query, Connection);
         }
         public static string Get (string Bird) 
         {
-            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;Trust Server Certificate=False");
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
             SqlDataReader reader = null;
