@@ -1,0 +1,9 @@
+version: '3'
+services:
+  anaconda:
+    build: .
+    volumes:
+      - ./src:/usr/src/app
+    ports:
+      - "8888:8888"
+    restart: always

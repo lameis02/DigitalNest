@@ -8,5 +8,6 @@ namespace Vogelscheuche_Bib
 {
     internal interface Clip_Service
     {
+
     }
 }
