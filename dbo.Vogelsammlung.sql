@@ -1,10 +1,11 @@
 ﻿CREATE TABLE [dbo].[Vogelsammlung] (
-    [Id]    INT        NOT NULL IDENTITY,
-    [Vogel] NCHAR (10) NULL,
-    [Art]   NCHAR (10) NOT NULL,
-    [Datum] NCHAR (10) NOT NULL,
-    [Ort]   NCHAR (10) NOT NULL,
-    [Bild] IMAGE NOT NULL, 
+    [Id]      INT        NOT NULL,
+    [Vogel]   NCHAR (10) NULL,
+    [Art]     NCHAR (10) NULL,
+    [Datum]   NCHAR (10) NULL,
+    [Ort]     NCHAR (10) NULL,
+    [Bild]    IMAGE      NULL,
+    [Favorit] CHAR (10)  NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
