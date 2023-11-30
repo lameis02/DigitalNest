@@ -17,7 +17,7 @@ namespace Database
 
         static void Main(string[] args)
         {
-            Delete("S");
+            Delete("Test");
             Console.ReadLine();
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
