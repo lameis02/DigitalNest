@@ -1,1 +1,13 @@
 jupyter
+torch==2.1  # Specify the version used in your project
+torchvision==0.16  # Match the version with PyTorch
+
+# For image processing
+Pillow
+
+numpy
+opencv-python-headless
+tqdm
+matplotlib
+seaborn
+timm
