@@ -14,11 +14,11 @@ namespace Database
 {
     internal class Program
     {
-        
+
 
         static void Main(string[] args)
         {
-            Select(");");
+            Select2(");");
             Console.ReadLine();
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
@@ -45,7 +45,7 @@ namespace Database
             string query = "Delete Vogelsammlung where Id=@Id";
             SqlCommand command = new SqlCommand(query, Connection);
             command.Parameters.AddWithValue("@Id", "8");
-            command.ExecuteNonQuery ();
+            command.ExecuteNonQuery();
             Connection.Close();
         }
         public static void Select(string Bird)
@@ -59,7 +59,23 @@ namespace Database
             {
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    Console.WriteLine(reader.GetValue(i));          
+                    Console.WriteLine(reader.GetValue(i));
+                }
+            }
+            Connection.Close();
+        }
+        public static void Select2(string Bird)
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=192.168.86.36,0001;Initial Catalog=Table;User id=RANGORX;Password=VGS;");
+            Connection.Open();
+            SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
+            SqlDataReader reader = null;
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Console.WriteLine(reader.GetValue(i));
                 }
             }
             Connection.Close();
@@ -71,15 +87,15 @@ namespace Database
             SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
             DataSet dSet = new DataSet();
             dAdapter.Fill(dSet);
-            if (dSet.Tables.Count>0)
+            if (dSet.Tables.Count > 0)
             { }
             Byte[] data = new Byte[0];
             data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
             MemoryStream mem = new MemoryStream(data);
-            yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
+            //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
             Connection.Close();
         }
-        public static void Override (string Bird) 
+        public static void Override(string Bird)
         {
             SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
             Connection.Open();
@@ -91,7 +107,7 @@ namespace Database
             command.Parameters.AddWithValue("@Datum", "heute");
             command.Parameters.AddWithValue("@Ort", "hier");
             command.Parameters.AddWithValue("@Favorit", "ja");
-            command.ExecuteNonQuery ();
+            command.ExecuteNonQuery();
             Connection.Close();
         }
         public static void Show(string Bird)
@@ -107,11 +123,12 @@ namespace Database
         }
 
     }
-        //public static void Select(string Bird)
-        //{
-        //    SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
-        //    Connection.Open();
-        //    SqlCommand command = new SqlCommand()
-        //}
-    }
+}
+    //public static void Select(string Bird)
+    //{
+    //    SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+    //    Connection.Open();
+    //    SqlCommand command = new SqlCommand()
+    //}
+    //@"Data Source=192.168.86.36,0001;Initial Catalog=Vogelsammlung;User id=RANGORX;Password=VGS
 
