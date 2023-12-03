@@ -18,12 +18,29 @@ namespace Database
 
         static void Main(string[] args)
         {
-            Select2(");");
+            Add2(");");
             Console.ReadLine();
         }
         public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
         {
-            SqlConnection Connection = new SqlConnection("Data Source=RANGORX\\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
+            Connection.Open();
+            string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@Id", "7");
+            command.Parameters.AddWithValue("@Vogel", "Ara");
+            command.Parameters.AddWithValue("@Art", "Papagei");
+            command.Parameters.AddWithValue("@Datum", "heute");
+            command.Parameters.AddWithValue("@Ort", "hier");
+            byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
+            command.Parameters.AddWithValue("@Bild", bytes);
+            command.Parameters.AddWithValue("@Favorit", "ja");
+            command.ExecuteNonQuery();
+            Connection.Close();
+        }
+        public static void Add2(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
+        {
+            SqlConnection Connection = new SqlConnection(@"Data Source=192.168.86.36,0001;Initial Catalog=Vogelsammlung;User id=RANGORX;Password=VGS;");
             Connection.Open();
             string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
             SqlCommand command = new SqlCommand(query, Connection);
@@ -66,7 +83,7 @@ namespace Database
         }
         public static void Select2(string Bird)
         {
-            SqlConnection Connection = new SqlConnection(@"Data Source=192.168.86.36,0001;Initial Catalog=Table;User id=RANGORX;Password=VGS;");
+            SqlConnection Connection = new SqlConnection(@"Data Source=192.168.86.36,0001;Initial Catalog=Vogelsammlung;User id=RANGORX;Password=VGS;");
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
             SqlDataReader reader = null;
