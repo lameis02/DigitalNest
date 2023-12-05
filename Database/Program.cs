@@ -19,7 +19,7 @@ namespace Database
         static void Main(string[] args)
         {
             DeleteAll("");
-            //Add(")");
+            Add(")");
             Select(");");
             Console.ReadLine();
         }
@@ -89,6 +89,9 @@ namespace Database
             string query = "Delete FROM Vogelsammlung";
             SqlCommand command = new SqlCommand(query, Connection);
             command.ExecuteNonQuery();
+            string resetIdentity = "DBCC CHECKIDENT('Vogelsammlung', RESEED, 0)";
+            SqlCommand reset = new SqlCommand(resetIdentity, Connection);
+            reset.ExecuteNonQuery();
             Connection.Close();
         }
         public static void Select(string Bird)
