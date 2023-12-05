@@ -18,7 +18,7 @@ namespace Database
 
         static void Main(string[] args)
         {
-            DeleteAll("");
+            //Delete("");
             Add(")");
             Select(");");
             Console.ReadLine();
@@ -27,9 +27,9 @@ namespace Database
         {
             SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
             Connection.Open();
-            string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+            string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
             SqlCommand command = new SqlCommand(query, Connection);
-           command.Parameters.AddWithValue("@Id", 3);
+            //command.Parameters.AddWithValue("@Id", "6");
             command.Parameters.AddWithValue("@Vogel", "Ara");
             command.Parameters.AddWithValue("@Art", "Papagei");
             command.Parameters.AddWithValue("@Datum", "heute");
@@ -47,7 +47,7 @@ namespace Database
             Connection.Open();
             string query = "Delete Vogelsammlung where Id=@Id";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "8");
+            command.Parameters.AddWithValue("@Id", "3");
             command.ExecuteNonQuery();
             Connection.Close();
         }
