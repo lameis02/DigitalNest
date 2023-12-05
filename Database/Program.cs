@@ -18,27 +18,58 @@ namespace Database
 
         static void Main(string[] args)
         {
-            //Delete("");
-            Add(")");
+            DeleteAll("");
+            //Add(")");
             Select(");");
             Console.ReadLine();
         }
-        public static void Add(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
+        public static void Add(string Bird,int i=-1) // If a row was deleted the next 'insert' is being inserted into the previous deleted row with the remembered Id
         {
-            SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
-            Connection.Open();
-            string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
-            SqlCommand command = new SqlCommand(query, Connection);
-            //command.Parameters.AddWithValue("@Id", "6");
-            command.Parameters.AddWithValue("@Vogel", "Ara");
-            command.Parameters.AddWithValue("@Art", "Papagei");
-            command.Parameters.AddWithValue("@Datum", "heute");
-            command.Parameters.AddWithValue("@Ort", "hier");
-            byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
-            command.Parameters.AddWithValue("@Bild", bytes);
-            command.Parameters.AddWithValue("@Favorit", "ja");
-            command.ExecuteNonQuery();
-            Connection.Close();
+
+            if (i>=0)
+            {
+                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                Connection.Open();
+
+                string setIdentityInsertOn = "SET IDENTITY_INSERT Vogelsammlung ON";   
+                SqlCommand commandOn = new SqlCommand(setIdentityInsertOn, Connection);
+                commandOn.ExecuteNonQuery();
+
+                string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+                SqlCommand command = new SqlCommand(query, Connection);
+                command.Parameters.AddWithValue("@Id", i);
+                command.Parameters.AddWithValue("@Vogel", "Ara");
+                command.Parameters.AddWithValue("@Art", "Papagei");
+                command.Parameters.AddWithValue("@Datum", "heute");
+                command.Parameters.AddWithValue("@Ort", "hier");
+                byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
+                command.Parameters.AddWithValue("@Bild", bytes);
+                command.Parameters.AddWithValue("@Favorit", "ja");
+                command.ExecuteNonQuery();
+
+                string setIdentityInsertOff = "SET IDENTITY_INSERT Vogelsammlung OFF";
+                SqlCommand commandOff = new SqlCommand(setIdentityInsertOff, Connection);
+                commandOff.ExecuteNonQuery();
+
+                Connection.Close();
+            }
+            else 
+            {
+                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                Connection.Open();
+                string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+                SqlCommand command = new SqlCommand(query, Connection);
+                //command.Parameters.AddWithValue("@Id","");
+                command.Parameters.AddWithValue("@Vogel", "Ara");
+                command.Parameters.AddWithValue("@Art", "Papagei");
+                command.Parameters.AddWithValue("@Datum", "heute");
+                command.Parameters.AddWithValue("@Ort", "hier");
+                byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
+                command.Parameters.AddWithValue("@Bild", bytes);
+                command.Parameters.AddWithValue("@Favorit", "ja");
+                command.ExecuteNonQuery();
+                Connection.Close();
+            }
         }
         
         public static void Delete(string Bird)
