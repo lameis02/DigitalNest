@@ -18,6 +18,8 @@ namespace Database
 
         static void Main(string[] args)
         {
+            DeleteAll("");
+            Add(")");
             Select(");");
             Console.ReadLine();
         }
@@ -27,7 +29,7 @@ namespace Database
             Connection.Open();
             string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "3");
+           command.Parameters.AddWithValue("@Id", 3);
             command.Parameters.AddWithValue("@Vogel", "Ara");
             command.Parameters.AddWithValue("@Art", "Papagei");
             command.Parameters.AddWithValue("@Datum", "heute");
@@ -38,23 +40,7 @@ namespace Database
             command.ExecuteNonQuery();
             Connection.Close();
         }
-        public static void Add2(string Bird) //sollte vielleicht ein Objekt werden mit Eigenschaften
-        {
-            SqlConnection Connection = new SqlConnection(@"Data Source=192.168.86.36,0001;Initial Catalog=Vogelsammlung;User id=RANGORX;Password=VGS;");
-            Connection.Open();
-            string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
-            SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", "1");
-            command.Parameters.AddWithValue("@Vogel", "Ara");
-            command.Parameters.AddWithValue("@Art", "Papagei");
-            command.Parameters.AddWithValue("@Datum", "heute");
-            command.Parameters.AddWithValue("@Ort", "hier");
-            byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
-            command.Parameters.AddWithValue("@Bild", bytes);
-            command.Parameters.AddWithValue("@Favorit", "ja");
-            command.ExecuteNonQuery();
-            Connection.Close();
-        }
+        
         public static void Delete(string Bird)
         {
             SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
@@ -65,23 +51,16 @@ namespace Database
             command.ExecuteNonQuery();
             Connection.Close();
         }
-        public static void Select(string Bird)
+        public static void DeleteAll(string Bird)
         {
             SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
             Connection.Open();
-            SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
-            SqlDataReader reader = null;
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Console.Write(reader.GetValue(i));
-                }
-            }
+            string query = "Delete FROM Vogelsammlung";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.ExecuteNonQuery();
             Connection.Close();
         }
-        public static void Select2(string Bird)
+        public static void Select(string Bird)
         {
             SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
             Connection.Open();
@@ -97,6 +76,7 @@ namespace Database
             }
             Connection.Close();
         }
+       
         public static void ShowPicture()
         {
             SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
@@ -141,11 +121,5 @@ namespace Database
 
     }
 }
-    //public static void Select(string Bird)
-    //{
-    //    SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
-    //    Connection.Open();
-    //    SqlCommand command = new SqlCommand()
-    //}
-    //@"Data Source=192.168.86.36,0001;Initial Catalog=Vogelsammlung;User id=RANGORX;Password=VGS
+   
 
