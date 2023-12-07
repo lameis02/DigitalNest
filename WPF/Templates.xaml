@@ -13,11 +13,11 @@
                      TargetType="{x:Type MenuItem}">
 
         <Border x:Name="border"
-                Background="#2E333A"
-                BorderBrush="#2E333A"
+                Background="#786442"
+                BorderBrush="#786442"
                 BorderThickness="0"
                 Height="50"
-                Width="230">
+                Width="250">
 
             <Grid>
 
@@ -73,8 +73,8 @@
                        VerticalOffset="0">
 
                     <Border x:Name="SubMenuBorder"
-                            Background="#2E333A"
-                            BorderBrush="#2E333A">
+                            Background="#786442"
+                            BorderBrush="#786442">
 
                         <ScrollViewer x:Name="SubMenuScrollViewer"
                                       Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
@@ -124,10 +124,10 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
             </Trigger>
 
         </ControlTemplate.Triggers>
@@ -139,8 +139,8 @@
                      TargetType="{x:Type MenuItem}">
 
         <Border x:Name="border"
-                Background="#2E333A"
-                BorderBrush="#2E333A"
+                Background="#786442"
+                BorderBrush="#786442"
                 BorderThickness="0"
                 Height="50"
                 Width="230"
@@ -204,10 +204,10 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
             </Trigger>
 
 
@@ -220,8 +220,8 @@
                      TargetType="{x:Type MenuItem}">
 
         <Border x:Name="border"
-                Background="#2E333A"
-                BorderBrush="#2E333A"
+                Background="#786442"
+                BorderBrush="#786442"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Height="50"
                 Width="230"
@@ -286,10 +286,10 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
-                        Value="#404D5B" />
+                        Value="#786442" />
             </Trigger>
 
         </ControlTemplate.Triggers>
