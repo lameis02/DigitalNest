@@ -23,9 +23,6 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
-
-            
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,6 +59,24 @@ namespace WPF
                 button.BorderThickness = new Thickness(1);
                 button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
             }
+        }
+
+        private void MaxBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+                WindowState = WindowState.Maximized;
+            else
+            {
+                if (WindowState == WindowState.Maximized)
+                {
+                    WindowState = WindowState.Normal;
+                }
+            }
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

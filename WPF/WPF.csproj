@@ -55,6 +55,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\CompleteGallery.cs" />
+    <Compile Include="ViewModel\Favourites.cs" />
+    <Compile Include="ViewModel\Filter1.cs" />
+    <Compile Include="ViewModel\Filter2.cs" />
+    <Compile Include="ViewModel\Home.cs" />
+    <Compile Include="ViewModel\Statistics.cs" />
+    <Compile Include="Views\CompleteGallery.xaml.cs">
+      <DependentUpon>CompleteGallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Favourites.xaml.cs">
+      <DependentUpon>Favourites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter2.xaml.cs">
+      <DependentUpon>Filter2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter3.xaml.cs">
+      <DependentUpon>Filter3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,8 +95,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CompleteGallery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Favourites.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\PageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -90,6 +139,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Orbitron-Medium.ttf" />
+    <Resource Include="Fonts\Roboto-Light.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,25 +150,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\blauerVogelButton.png" />
+    <Resource Include="Assets\blauerVogelButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\WaldBild.jpg" />
+    <Resource Include="Assets\WaldBild.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\mogen.png" />
+    <Resource Include="Assets\mogen.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\Logo.png" />
+    <Resource Include="Assets\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\img_Haus.png" />
+    <Resource Include="Assets\img_Haus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\img_Statistik.png" />
+    <Resource Include="Assets\img_Statistik.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Bilder\img_Bib.png" />
+    <Resource Include="Assets\img_Bib.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\img_arrow.png" />
+    <Resource Include="Assets\max_def.png" />
+    <Resource Include="Assets\max_mo.png" />
+    <Resource Include="Assets\shutdown_def.png" />
+    <Resource Include="Assets\shutdown_mo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
