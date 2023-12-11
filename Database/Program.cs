@@ -25,7 +25,7 @@ namespace Database
 
 
 
-            Bird sparrow1 = new Bird
+            Bird sparrow1 = new Bird //keine 10 Charaktere überschreiten. Laut Moritz
             {
                 Name = "Spatz",
                 Species = "Sperling",
@@ -84,22 +84,16 @@ namespace Database
             };
 
 
-            BirdDatabase.Add(sparrow1);
-            BirdDatabase.Add(eagle1);
-            BirdDatabase.Add(owl1);
-            BirdDatabase.Add(sparrow2);
-            BirdDatabase.Add(pigeon1);
-            BirdDatabase.Add(sparrow3);
 
-            Console.WriteLine($"Der neu eingefügte Vogel hat die ID: {sparrow1.ID}");
+            //DeleteAll();
+            Add(sparrow1);
+            Add(pigeon1);
+            Console.ReadLine();
+            //Select("");
+            //Console.WriteLine($"Der neu eingefügte Vogel hat die ID: {sparrow1.ID}");
+            Console.ReadLine();
 
         }
-
-        public class BirdDatabase
-        {
-
-
-
 
             public static void Add(Bird bird, int i = -1) // If a row was deleted the next 'insert' is being inserted into the previous deleted row with the remembered Id
             {
@@ -115,12 +109,12 @@ namespace Database
 
                     string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
                     SqlCommand command = new SqlCommand(query, Connection);
-                    command.Parameters.AddWithValue("@Id", bird.ID);
+                    command.Parameters.AddWithValue("@Id", i);
                     command.Parameters.AddWithValue("@Vogel", bird.Name);
                     command.Parameters.AddWithValue("@Art", bird.Species);
                     command.Parameters.AddWithValue("@Datum", bird.Date);
                     command.Parameters.AddWithValue("@Ort", bird.Location);
-                    byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\2015-01\IMG_3821.JPG");
+                    byte[] bytes = File.ReadAllBytes(@"/Users/hilalkrtgl/Documents/WhatsApp Image 2023-12-06 at 09.44.53.jpeg");
                     command.Parameters.AddWithValue("@Bild", bytes);
                     command.Parameters.AddWithValue("@Favorit", bird.Location);
                     command.ExecuteNonQuery();
@@ -138,19 +132,19 @@ namespace Database
                     string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
                     SqlCommand command = new SqlCommand(query, Connection);
                     //command.Parameters.AddWithValue("@Id","");
-                    command.Parameters.AddWithValue("@Vogel", "Ara");
-                    command.Parameters.AddWithValue("@Art", "Papagei");
-                    command.Parameters.AddWithValue("@Datum", "heute");
-                    command.Parameters.AddWithValue("@Ort", "hier");
+                    command.Parameters.AddWithValue("@Vogel", bird.Name);
+                    command.Parameters.AddWithValue("@Art", bird.Species);
+                    command.Parameters.AddWithValue("@Datum", bird.Date);
+                    command.Parameters.AddWithValue("@Ort", bird.Location);
                     byte[] bytes = File.ReadAllBytes(@"/Users/hilalkrtgl/Documents/WhatsApp Image 2023-12-06 at 09.44.53.jpeg");
                     command.Parameters.AddWithValue("@Bild", bytes);
-                    command.Parameters.AddWithValue("@Favorit", "ja");
+                    command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
                     command.ExecuteNonQuery();
                     Connection.Close();
                 }
             }
 
-            public static void Delete(string Bird)
+            public static void Delete(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
                 Connection.Open();
@@ -160,7 +154,7 @@ namespace Database
                 command.ExecuteNonQuery();
                 Connection.Close();
             }
-            public static void DeleteAll(string Bird)
+            public static void DeleteAll(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
                 Connection.Open();
@@ -172,7 +166,7 @@ namespace Database
                 reset.ExecuteNonQuery();
                 Connection.Close();
             }
-            public static void Select(string Bird)
+            public static void Select(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
                 Connection.Open();
@@ -204,22 +198,22 @@ namespace Database
                 //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
                 Connection.Close();
             }
-            public static void Override(string Bird)
+            public static void Override(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
                 Connection.Open();
                 string query = "Update Vogelsammlung SET Id = @Id, Vogel=@Vogel, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
                 SqlCommand command = new SqlCommand(query, Connection);
-                command.Parameters.AddWithValue("@Id", "6");
-                command.Parameters.AddWithValue("@Vogel", "Ara");
-                command.Parameters.AddWithValue("@Art", "Papagei");
-                command.Parameters.AddWithValue("@Datum", "heute");
-                command.Parameters.AddWithValue("@Ort", "hier");
-                command.Parameters.AddWithValue("@Favorit", "ja");
+                command.Parameters.AddWithValue("@Id", bird.ID);
+                command.Parameters.AddWithValue("@Vogel", bird.Name);
+                command.Parameters.AddWithValue("@Art", bird.Species);
+                command.Parameters.AddWithValue("@Datum", bird.Date);
+                command.Parameters.AddWithValue("@Ort", bird.Location);
+                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
                 command.ExecuteNonQuery();
                 Connection.Close();
             }
-            public static void Show(string Bird)
+            public static void Show(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection(@"Data Source=RANGORX\SQLEXPRESS01;Initial Catalog=Vogelsammlung;Integrated Security=True;Pooling=False;Encrypt=False;");
                 Connection.Open();
@@ -233,5 +227,5 @@ namespace Database
         }
     
 
-    }
+    
 }
