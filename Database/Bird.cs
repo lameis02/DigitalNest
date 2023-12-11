@@ -9,7 +9,7 @@ namespace Database
         public DateTime Date { get; set; }
         public string Location { get; set; }
         public string ImagePath { get; set; }
-        public string IsFavorite { get; set; }
+        public bool IsFavorite { get; set; }
 
     }
 

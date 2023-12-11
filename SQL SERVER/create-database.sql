@@ -9,6 +9,6 @@ CREATE TABLE Vogelsammlung (
     Datum NCHAR(10) NULL, 
     Ort NCHAR(10) NULL, 
     Bild IMAGE NULL, 
-    Favorit NCHAR(10) NULL
+    Favorit Bit NULL
 );
 GO
