@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WPF.Views
 {
     /// <summary>
-    /// Interaktionslogik für Filter3.xaml
+    /// Interaktionslogik für Filter1.xaml
     /// </summary>
-    public partial class Filter3 : UserControl
+    public partial class Filter1 : UserControl
     {
-        public Filter3()
+        public Filter1()
         {
             InitializeComponent();
         }

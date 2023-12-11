@@ -14,7 +14,7 @@
 
         <Border x:Name="border"
                 Background="#786442"
-                BorderBrush="#786442"
+                BorderBrush="#CD853F"
                 BorderThickness="0"
                 Height="50"
                 Width="250">
@@ -73,8 +73,8 @@
                        VerticalOffset="0">
 
                     <Border x:Name="SubMenuBorder"
-                            Background="#786442"
-                            BorderBrush="#786442">
+                            Background="#CD853F"
+                            BorderBrush="#CD853F">
 
                         <ScrollViewer x:Name="SubMenuScrollViewer"
                                       Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
@@ -124,7 +124,7 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#786442" />
+                        Value="#CD853F" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
                         Value="#786442" />
@@ -140,7 +140,7 @@
 
         <Border x:Name="border"
                 Background="#786442"
-                BorderBrush="#786442"
+                BorderBrush="#CD853F"
                 BorderThickness="0"
                 Height="50"
                 Width="230"
@@ -204,7 +204,7 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#786442" />
+                        Value="#CD853F" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
                         Value="#786442" />
@@ -286,7 +286,7 @@
                      Value="True">
                 <Setter Property="Background"
                         TargetName="border"
-                        Value="#786442" />
+                        Value="#CD853F" />
                 <Setter Property="BorderBrush"
                         TargetName="border"
                         Value="#786442" />

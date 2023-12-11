@@ -55,23 +55,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\CompleteGallery.cs" />
-    <Compile Include="ViewModel\Favourites.cs" />
-    <Compile Include="ViewModel\Filter1.cs" />
-    <Compile Include="ViewModel\Filter2.cs" />
-    <Compile Include="ViewModel\Home.cs" />
-    <Compile Include="ViewModel\Statistics.cs" />
+    <Compile Include="Utilities\Button.cs" />
+    <Compile Include="Utilities\RelayCommand.cs" />
+    <Compile Include="Utilities\ViewModelBase.cs" />
+    <Compile Include="ViewModel\CompleteGalleryVM.cs" />
+    <Compile Include="ViewModel\FavouritesVM.cs" />
+    <Compile Include="ViewModel\Filter1VM.cs" />
+    <Compile Include="ViewModel\Filter2VM.cs" />
+    <Compile Include="ViewModel\HomeVM.cs" />
+    <Compile Include="ViewModel\StatisticsVM.cs" />
     <Compile Include="Views\CompleteGallery.xaml.cs">
       <DependentUpon>CompleteGallery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Favourites.xaml.cs">
-      <DependentUpon>Favourites.xaml</DependentUpon>
+    <Compile Include="Views\Favouriten.xaml.cs">
+      <DependentUpon>Favouriten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Filter1.xaml.cs">
+      <DependentUpon>Filter1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Filter2.xaml.cs">
       <DependentUpon>Filter2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Filter3.xaml.cs">
-      <DependentUpon>Filter3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -91,23 +94,43 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Image.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Text.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CompleteGallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Favourites.xaml">
+    <Page Include="Views\Favouriten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Filter1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Filter2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Filter3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
