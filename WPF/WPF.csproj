@@ -63,6 +63,7 @@
     <Compile Include="ViewModel\Filter1VM.cs" />
     <Compile Include="ViewModel\Filter2VM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
+    <Compile Include="ViewModel\NavigationVM.cs" />
     <Compile Include="ViewModel\StatisticsVM.cs" />
     <Compile Include="Views\CompleteGallery.xaml.cs">
       <DependentUpon>CompleteGallery.xaml</DependentUpon>

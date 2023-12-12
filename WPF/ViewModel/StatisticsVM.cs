@@ -7,7 +7,7 @@ using WPF.Model;
 
 namespace WPF.ViewModel
 {
-    internal class StatisticsVM
+    internal class StatisticsVM: Utilities.ViewModelBase
     {
         private readonly PageModel _pageModel;
     }

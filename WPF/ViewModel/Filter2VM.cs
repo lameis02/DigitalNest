@@ -7,7 +7,7 @@ using WPF.Model;
 
 namespace WPF.ViewModel
 {
-    internal class Filter2VM
+    internal class Filter2VM: Utilities.ViewModelBase
     {
         private readonly PageModel _pageModel;
     }
