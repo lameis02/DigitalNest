@@ -7,8 +7,8 @@ using WPF.Model;
 
 namespace WPF.ViewModel
 {
-    internal class HomeVM
+    class HomeVM
     {
-        private readonly PageModel _pageModel;
+        
     }
 }

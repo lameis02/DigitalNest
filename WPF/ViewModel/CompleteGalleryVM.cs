@@ -11,7 +11,10 @@ namespace WPF.ViewModel
     {
         private readonly PageModel _pageModel;
         
-       
-
+        public CompleteGalleryVM()
+        {
+            _pageModel = new PageModel();
+        }
     }
+
 }

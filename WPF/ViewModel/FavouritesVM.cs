@@ -11,6 +11,10 @@ namespace WPF.ViewModel
     {
         private readonly PageModel _pageModel;
 
-        //Display Favoriten
+
+        public FavouritesVM()
+        {
+            _pageModel = new PageModel();
+        }
     }
 }

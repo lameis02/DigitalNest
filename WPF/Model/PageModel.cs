@@ -8,5 +8,10 @@ namespace WPF.Model
 {
     internal class PageModel
     {
+        public int ImageID { get; set; }
+        public bool favorite { get; set; }
+        public string Location { get; set; }
+        public DateTime Date { get; set; }
+        public int StatisticNum { get; set; }
     }
 }

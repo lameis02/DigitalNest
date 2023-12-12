@@ -7,8 +7,13 @@ using WPF.Model;
 
 namespace WPF.ViewModel
 {
-    internal class Filter1VM: Utilities.ViewModelBase
+    class Filter1VM: Utilities.ViewModelBase
     {
         private readonly PageModel _pageModel;
+
+        public Filter1VM()
+        {
+            _pageModel = new PageModel();
+        }
     }
 }
