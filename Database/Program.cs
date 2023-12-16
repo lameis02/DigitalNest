@@ -78,10 +78,10 @@ namespace Database
                 IsFavorite = false
             };
 
-
-                    //Add(sparrow2);
-                    Select();
-                    Console.ReadLine();
+            DeleteAll();
+            Add(sparrow2);
+            Select();
+            Console.ReadLine();
 
         }
 
@@ -90,7 +90,7 @@ namespace Database
 
                 if (i >= 0)
                 {
-                    SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                    SqlConnection Connection = new SqlConnection(OpenConnection());
                     Connection.Open();
 
                     string setIdentityInsertOn = "SET IDENTITY_INSERT Vogelsammlung ON";
@@ -117,7 +117,7 @@ namespace Database
                 }
                 else
                 {
-                    SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                    SqlConnection Connection = new SqlConnection(OpenConnection());
                     Connection.Open();
                     string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
                     SqlCommand command = new SqlCommand(query, Connection);
@@ -136,7 +136,7 @@ namespace Database
 
             public static void Delete(int i)
             {
-                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 string query = "Delete Vogelsammlung where Id=@Id";
                 SqlCommand command = new SqlCommand(query, Connection);
@@ -146,7 +146,7 @@ namespace Database
             }
             public static void DeleteAll()
             {
-                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 string query = "Delete FROM Vogelsammlung";
                 SqlCommand command = new SqlCommand(query, Connection);
@@ -158,7 +158,7 @@ namespace Database
             }
             public static void Select()
             {
-                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
                 SqlDataReader reader = null;
@@ -175,7 +175,7 @@ namespace Database
 
             public static void ShowPicture()
             {
-                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
                 DataSet dSet = new DataSet();
@@ -190,7 +190,7 @@ namespace Database
             }
             public static void Override(Bird bird)
             {
-                SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+                SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 string query = "Update Vogelsammlung SET Id = @Id, Vogel=@Vogel, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
                 SqlCommand command = new SqlCommand(query, Connection);
@@ -205,7 +205,7 @@ namespace Database
             }
         public static void SelectPlace(string place)
         {
-            SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+            SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
             SqlDataReader reader = null;
@@ -222,7 +222,7 @@ namespace Database
         }
         public static void SelectDate(string date)
         {
-            SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+            SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
             SqlDataReader reader = null;
@@ -239,7 +239,7 @@ namespace Database
         }
         public static void SelectFavorite()
         {
-            SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;");
+            SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung where Favorit=@Favorit", Connection);
             SqlDataReader reader = null;
@@ -254,9 +254,11 @@ namespace Database
             }
             Connection.Close();
         }
-
+        public static string OpenConnection ()
+        {
+            string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;";
+            return x;
+        }
     }
-    
-
-    
+   
 }
