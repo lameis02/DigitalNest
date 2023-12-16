@@ -97,7 +97,7 @@ namespace Database
                     SqlCommand commandOn = new SqlCommand(setIdentityInsertOn, Connection);
                     commandOn.ExecuteNonQuery();
 
-                    string query = "Insert Into Vogelsammlung (Id,Vogel,Art,Datum,Ort,Bild,Favorit) values (@Id,@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+                    string query = QueryAddMethode();
                     SqlCommand command = new SqlCommand(query, Connection);
                     command.Parameters.AddWithValue("@Id", i);
                     command.Parameters.AddWithValue("@Vogel", bird.Name);
@@ -119,7 +119,7 @@ namespace Database
                 {
                     SqlConnection Connection = new SqlConnection(OpenConnection());
                     Connection.Open();
-                    string query = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
+                    string query = QueryAddMethode();
                     SqlCommand command = new SqlCommand(query, Connection);
                     //command.Parameters.AddWithValue("@Id","");
                     command.Parameters.AddWithValue("@Vogel", bird.Name);
@@ -257,6 +257,11 @@ namespace Database
         public static string OpenConnection ()
         {
             string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;";
+            return x;
+        }
+        public static string QueryAddMethode()
+        {
+            string x = "Insert Into Vogelsammlung (Vogel,Art,Datum,Ort,Bild,Favorit) values (@Vogel,@Art,@Datum,@Ort,@Bild,@Favorit)";
             return x;
         }
     }
