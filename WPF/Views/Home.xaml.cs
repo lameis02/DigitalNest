@@ -24,5 +24,25 @@ namespace WPF.Views
         {
             InitializeComponent();
         }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                button.BorderThickness = new Thickness(5);
+                button.BorderBrush = Brushes.Black;
+            }
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button != null)
+            {
+                button.BorderThickness = new Thickness(1);
+                button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
+            }
+        }
     }
 }

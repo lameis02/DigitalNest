@@ -60,8 +60,6 @@
     <Compile Include="Utilities\ViewModelBase.cs" />
     <Compile Include="ViewModel\CompleteGalleryVM.cs" />
     <Compile Include="ViewModel\FavouritesVM.cs" />
-    <Compile Include="ViewModel\Filter1VM.cs" />
-    <Compile Include="ViewModel\Filter2VM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\NavigationVM.cs" />
     <Compile Include="ViewModel\StatisticsVM.cs" />
@@ -70,12 +68,6 @@
     </Compile>
     <Compile Include="Views\Favouriten.xaml.cs">
       <DependentUpon>Favouriten.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Filter1.xaml.cs">
-      <DependentUpon>Filter1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Filter2.xaml.cs">
-      <DependentUpon>Filter2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -95,19 +87,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Styles\Button.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\Image.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\Text.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,14 +104,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Favouriten.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Filter1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Filter2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,8 +135,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Orbitron-Medium.ttf" />
-    <Resource Include="Fonts\Roboto-Light.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -195,7 +165,6 @@
     <Resource Include="Assets\img_Bib.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\img_arrow.png" />
     <Resource Include="Assets\max_def.png" />
     <Resource Include="Assets\max_mo.png" />
     <Resource Include="Assets\shutdown_def.png" />

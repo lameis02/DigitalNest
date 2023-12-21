@@ -25,17 +25,7 @@ namespace WPF
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -64,14 +54,20 @@ namespace WPF
         private void MaxBtn_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
+            {
                 WindowState = WindowState.Maximized;
+                
+            }
             else
             {
                 if (WindowState == WindowState.Maximized)
                 {
                     WindowState = WindowState.Normal;
+                     
                 }
             }
+
+            
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

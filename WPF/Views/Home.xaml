@@ -3,11 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPF.Views"
+             xmlns:vm="clr-namespace:WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
     <Grid>
-        <Border CornerRadius="0,20,20,0" Margin="0,5,5,0">
-        </Border>    
+        <Border>
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
+            </Border.Background>
+        </Border>
+
+        <!--Bild hochladen Button-->
+            <Button 
+            MouseEnter="Button_MouseEnter"
+            BorderBrush="#786442" 
+            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="122,148,122,148">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/blauerVogelButton.png"/>
+                </Button.Background>
+            </Button>
     </Grid>
 </UserControl>

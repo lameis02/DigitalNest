@@ -3,12 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF"
+        xmlns:vm="clr-namespace:WPF.ViewModel"
+        xmlns:Menu="clr-namespace:WPF.Utilities"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" 
+        Height="600" 
+        Width="850"
         WindowStyle="None"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+
+    <Window.DataContext>
+        <vm:NavigationVM/>
+    </Window.DataContext>
 
     <Window.Resources>
         <ResourceDictionary>
@@ -19,123 +27,92 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Grid Hintergrundbild -->
-        <Grid.Background>
-            <ImageBrush ImageSource="Assets/WaldBild.jpg"/>
-        </Grid.Background>
 
-        <!--Bild hochladen Button-->
-        <Button Click="Button_Click" 
-                    MouseEnter="Button_MouseEnter"
-                    BorderBrush="#786442" 
-                    MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="321,108,85,108">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-            <Button.Background>
-                <ImageBrush ImageSource="Assets/blauerVogelButton.png"/>
-            </Button.Background>
-        </Button>
 
-        <!--Menü Panel-->
-        <StackPanel x:Name="menuPanel" Background="#786442" Width="234" Orientation="Vertical" HorizontalAlignment="Left" Opacity="0.8">
+        <Border Background="#786442"/>
 
-            <!--Logo und Projektname-->
-            <Grid Height="50"
-                  VerticalAlignment="Top"
-                  Margin="0,30,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="63*"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="125*"/>
-                    <ColumnDefinition Width="41*"/>
-                </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228"/>
+                <ColumnDefinition Width="622"/>
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Text="DigitalNest"
-                           FontSize="20"
-                           FontFamily="Fonts #Britannic Bold"
+            <Grid HorizontalAlignment="Left"
+                  Width="228">
+
+
+
+                <Border Background="#786442"
+                        CornerRadius="20,0,0,20"/>
+
+                <StackPanel
+                            Width="228" Margin="0,0,0,100">
+
+                    <Image Source="Assets/Logo.png" Width="54" Height="56"
+                           HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           HorizontalAlignment="Left" Margin="39,-12,0,0" Height="37" Width="113" Grid.ColumnSpan="3"/>
+                           RenderTransformOrigin="0.572,0.584"/>
+                    <!--TextBlock Text="DigitalNest" FontSize="20" FontFamily="Fonts #Britannic Bold" Height="30" Width="112"-->
 
-                <Image Source="Assets/Logo.png" Width="54" Height="56" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-8,-31,0,0"/>
+                    <MenuItem Header="Home" 
+                              Click="MenuItem_Click"
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding HomeCommand}"
+                              IsChecked="True">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/img_Haus.png"
+                               Stretch="Uniform"
+                               VerticalAlignment="Top" Height="32" Margin="-4,-3,-21,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="Favoriten" 
+                              Click="MenuItem_Click" 
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding FavoritesCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/mogen.png"
+                            Stretch="Uniform"
+                            VerticalAlignment="Top"
+                            Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="Statistiken" 
+                              Click="MenuItem_Click" 
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding StatisticsCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/img_Statistik.png"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="Gallerie" 
+                              Template="{StaticResource Menu_Template}"
+                              Click="MenuItem_Click" 
+                              Command="{Binding CompleteGalleryCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/img_Bib.png"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </StackPanel>
 
             </Grid>
 
+            <Grid Grid.Column="1">
 
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"/>
+            </Grid>
 
-            <!--Main Menü-->
-            <Menu Height="408"
-              Background="Transparent"
-              Margin="0,40,0,0">
-
-                <Menu.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </Menu.ItemsPanel>
-
-                <MenuItem Header="Home" Click="MenuItem_Click"
-                          Template="{StaticResource Menu_Template}">
-                    <MenuItem.Icon>
-                        <Image Source="Assets/img_Haus.png"
-                               Stretch="Uniform"
-                               VerticalAlignment="Top" Height="32" Margin="-4,-3,-21,0">
-                        </Image>
-                    </MenuItem.Icon>
-                </MenuItem>
-
-                <MenuItem Header="Favoriten" Click="MenuItem_Click" Template="{StaticResource Menu_Template}">
-                    <MenuItem.Icon>
-                        <Image Source="Assets/mogen.png"
-                            Stretch="Uniform"
-                            VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0">
-                        </Image>
-                    </MenuItem.Icon>
-                </MenuItem>
-
-                <MenuItem Header="Statistiken" 
-                          Click="MenuItem_Click" 
-                          Template="{StaticResource Menu_SubMenu_Template}">
-                    <MenuItem.Icon>
-                        <Image Source="Assets/img_Statistik.png"
-                            Stretch="Uniform"
-                            VerticalAlignment="Top" Height="38" Margin="-5,-3,-27,0">
-                        </Image>
-                    </MenuItem.Icon>
-
-                    <!--Sub Menü-->
-                    <MenuItem Header="Woche"
-                              Template="{StaticResource Item_Template}" />
-                    <MenuItem Header="Monat"
-                              Template="{StaticResource Item_Template}" />
-
-                </MenuItem>
-
-                <MenuItem Header="Bibliothek" 
-                          Template="{StaticResource Menu_SubMenu_Template}"
-                          Click="MenuItem_Click">
-                    <MenuItem.Icon>
-                        <Image Source="Assets/img_Bib.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" Height="33" Margin="-5,-2,-23,0">
-                        </Image>
-                    </MenuItem.Icon>
-
-                    <!--Sub Menü-->
-                    <MenuItem Header="Alle Bilder"
-                              Template="{StaticResource Item_Template}"/>
-                    <MenuItem Header="2. Filter"
-                              Template="{StaticResource Item_Template}"/>
-                    <MenuItem Header="3. Filter"
-                              Template="{StaticResource Item_Template}"/>
-                </MenuItem>
-            </Menu>
-
-        </StackPanel>
+        </Grid>
 
         <!--Fenster erweitern-->
         <Button x:Name="MaxBtn"
