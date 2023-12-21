@@ -43,34 +43,27 @@ namespace Vogelscheuche_Bib
                     }
                 }
             }
-
-            // Gib die Statistiken aus
-            Console.WriteLine("Statistik der Vögel pro Wochentag:");
+        
+        // Gib die Statistiken aus
+        Console.WriteLine("Statistik der Vögel pro Wochentag:");
             foreach (var entry in birdCountPerDay)
             {
                 Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
-                Console.ReadKey();
             }
-        }
-        public static void Main()
-        {
-            // Gib die Statistiken aus
-            Console.WriteLine("Statistik der Vögel pro Wochentag:");
-            foreach (var entry in birdCountPerDay)
-            {
-                Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
-                Console.ReadKey();
+}
 
+public static void Main()
+{
+    // Methode für die Vogelstatistiken werden aufgerufen auf
+    PrintBirdStatistics();
 
-            }
-
-        }
-
-
+    //Warte auf Benutzereingabe, um das Konsolenfenster offen zu halten
+    Console.ReadKey();
+}
     }
- }
+}
 
-
+           
 
 
 
