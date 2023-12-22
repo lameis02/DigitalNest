@@ -12,7 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Database
 {
-    internal class Program
+    public class Program
     {
 
 
