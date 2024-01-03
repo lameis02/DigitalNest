@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Vogelscheuche_Bib
 {
-    internal class StatisticCalculator
+    public class StatisticCalculator
     {
 
         public static void PrintBirdStatistics()
