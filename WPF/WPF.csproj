@@ -66,11 +66,15 @@
     <Compile Include="Views\CompleteGallery.xaml.cs">
       <DependentUpon>CompleteGallery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DateValidationRule.cs" />
     <Compile Include="Views\Favouriten.xaml.cs">
       <DependentUpon>Favouriten.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopupForUpload.xaml.cs">
+      <DependentUpon>PopupForUpload.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
@@ -108,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopupForUpload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +177,12 @@
     <Resource Include="Assets\max_mo.png" />
     <Resource Include="Assets\shutdown_def.png" />
     <Resource Include="Assets\shutdown_mo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{8fec9b12-97f1-48f2-ba93-457ba247edb6}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

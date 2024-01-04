@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF.Views;
 
 namespace WPF
 {
@@ -23,6 +24,8 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,28 @@ namespace WPF.Views
                 button.BorderThickness = new Thickness(1);
                 button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
             }
+        }
+
+        private string selectedImagePath;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files|*.jpg;*.jpeg;*.png;*.gif;*.bmp",
+                Title = "Bild auswählen"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Der ausgewählte Bildpfad
+                string selectedImagePath = openFileDialog.FileName;
+
+                // Zeige das Popup-Fenster mit dem ausgewählten Bildpfad
+                PopupForUpload imageView = new PopupForUpload(selectedImagePath);
+                imageView.ShowDialog();
+            }
+
         }
     }
 }

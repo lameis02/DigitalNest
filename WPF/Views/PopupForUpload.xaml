@@ -1,0 +1,40 @@
+﻿<Window x:Class="WPF.Views.PopupForUpload"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:local="clr-namespace:WPF.Views"
+        mc:Ignorable="d"
+        Title="PopupForUpload" Height="400" Width="622"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True">
+
+    <Grid>
+
+        <!--Input Section-->
+        <Border Padding="20" Background="#786442">
+
+
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,46,68,-76"/>
+                <DatePicker x:Name="datePicker" Grid.Row="4" Margin="68,107,68,-129" SelectedDateFormat="Short"></DatePicker>
+                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,217,68,-248" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
+                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,154,68,-184" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
+                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,309,132,-328" Click="UploadButton_Click"/>
+                
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</Window>

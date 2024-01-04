@@ -10,6 +10,7 @@
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
     <Grid>
+        
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
@@ -20,7 +21,7 @@
             <Button 
             MouseEnter="Button_MouseEnter"
             BorderBrush="#786442" 
-            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="122,148,122,148">
+            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="122,148,122,148" Click="Button_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
