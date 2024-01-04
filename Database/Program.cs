@@ -104,7 +104,7 @@ namespace Database
                     command.Parameters.AddWithValue("@Art", bird.Species);
                     command.Parameters.AddWithValue("@Datum", bird.Date);
                     command.Parameters.AddWithValue("@Ort", bird.Location);
-                    byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\Checkii chan.png");
+                    byte[] bytes = File.ReadAllBytes(bird.ImagePath);
                     command.Parameters.AddWithValue("@Bild", bytes);
                     command.Parameters.AddWithValue("@Favorit", bird.Location);
                     command.ExecuteNonQuery();
@@ -126,7 +126,7 @@ namespace Database
                     command.Parameters.AddWithValue("@Art", bird.Species);
                     command.Parameters.AddWithValue("@Datum", bird.Date);
                     command.Parameters.AddWithValue("@Ort", bird.Location);
-                    byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\Pictures\Bilder\Checkii chan.png");
+                    byte[] bytes = File.ReadAllBytes(bird.ImagePath);
                     command.Parameters.AddWithValue("@Bild", bytes);
                     command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
                     command.ExecuteNonQuery();
