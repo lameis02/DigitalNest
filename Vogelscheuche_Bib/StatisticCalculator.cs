@@ -18,7 +18,7 @@ namespace Vogelscheuche_Bib
 
 
             //Verbindung zur Datenbank
-            using (SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;"))
+            using (SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"))
             {
                 //Verbindung zur Datenbank wird geöffnet
                 Connection.Open();
@@ -29,44 +29,50 @@ namespace Vogelscheuche_Bib
                 {
                     while (reader.Read()) //--> einmal durch die Ergbenisse
                     {
-                        DateTime date = reader.GetDateTime(0); // das aktuelle Datum des Vogels wird aus der Datenbank aufgerufen
-                        string dayOfWeek = date.ToString("dddd"); //der Wochentag-->string
-
-                        if (birdCountPerDay.ContainsKey(dayOfWeek))
+                        if (DateTime.TryParse(reader.GetString(0), out DateTime date))
                         {
-                            birdCountPerDay[dayOfWeek]++;
+                            string dayOfWeek = date.ToString("dddd");
+                            if (birdCountPerDay.ContainsKey(dayOfWeek))
+                            {
+                                birdCountPerDay[dayOfWeek]++;
+                            }
+                            else
+                            {
+                                birdCountPerDay.Add(dayOfWeek, 1);
+                            }
                         }
                         else
                         {
-                            birdCountPerDay.Add(dayOfWeek, 1);
+                            // Handle the case where the string could not be parsed as a DateTime
+                            Console.WriteLine("Invalid date format for record.");
                         }
                     }
                 }
             }
-        
-        // Gib die Statistiken aus
-        Console.WriteLine("Statistik der Vögel pro Wochentag:");
+
+            // Gib die Statistiken aus
+            Console.WriteLine("Statistik der Vögel pro Wochentag:");
             foreach (var entry in birdCountPerDay)
             {
                 Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
             }
-}
+        }
 
-public static void Main()
-{
-    // Methode für die Vogelstatistiken werden aufgerufen auf
-    PrintBirdStatistics();
+        public static void Main()
+        {
+            try
+            {
+                // Methode für die Vogelstatistiken werden aufgerufen auf
+                PrintBirdStatistics();
 
-    //Warte auf Benutzereingabe, um das Konsolenfenster offen zu halten
-    Console.ReadKey();
-}
+                //Warte auf Benutzereingabe, um das Konsolenfenster offen zu halten
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
     }
 }
-
-           
-
-
-
-
-
 
