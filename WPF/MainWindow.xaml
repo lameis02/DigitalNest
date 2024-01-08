@@ -114,14 +114,11 @@
 
         </Grid>
 
-        <!--Fenster erweitern-->
-        <Button x:Name="MaxBtn"
-                Style="{StaticResource MaxBtnStyle}" 
-                Click="MaxBtn_Click" Margin="0,3,52,0" />
+        <!--Fenster erweitern hinzufügen, wen Zeit ist-->
 
         <!--Close Button-->
         <Button x:Name="CloseBtn"
-                Style="{StaticResource CloseBtnStyle}" Click="CloseBtn_Click" Margin="0,4,15,0"/>
+                Style="{StaticResource CloseBtnStyle}" Click="CloseBtn_Click" Margin="0,9,13,0" Height="25" Width="23"/>
 
     </Grid>
 </Window>

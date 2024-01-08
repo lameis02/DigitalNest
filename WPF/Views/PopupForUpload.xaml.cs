@@ -21,6 +21,7 @@ namespace WPF.Views
     {
         public PopupForUpload(string selectedImagePath)
         {
+            //Anzeige des Bildpfades in der oberen Textbox
             InitializeComponent();
             selectedImagePathTextBlock.Text = selectedImagePath;
         }
@@ -28,9 +29,26 @@ namespace WPF.Views
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
-            string vogelart = txtVogelart.Text;
-            string ort = txtOrt.Text;
-            DateTime datum = datePicker.SelectedDate ?? DateTime.Now;
+            if (Validation.GetHasError(datePicker))
+            {
+                MessageBox.Show("Ungültiges Datumsformat. Bitte korrigiere es.");
+                //für den Fall der Fälle, aber eig nicht nötig, da kein ungültiges Datum aufgrund von datepicker eingetragen werden kann
+            }
+            else
+            {
+                DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
+                // try catch für zukünftiges Datum abfangen noch einbauen
+                // wenn kein Datum --> heutiges Datum eintragen über Add Methode von Datenbank (bearbeiten wenn gemerged ist)
+                bool isFavorite = favoriteCheckBox.IsChecked ?? false;
+                string vogelart = txtVogelart.Text;
+                string ort = txtOrt.Text;
+                DateTime datum = datePicker.SelectedDate ?? DateTime.Now;
+
+                MessageBox.Show($"Bild hochgeladen am {datum}, als Favorit markiert: {isFavorite}");
+                // Add Methode von Datenbank hochladen
+            }
+
+            
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -41,7 +59,7 @@ namespace WPF.Views
             {
                 // kein Text, wenn TextBox Fokus hat
                 textBox.Text = string.Empty;
-                textBox.Foreground = Brushes.Black; // Ändere die Schriftfarbe auf Schwarz oder eine andere Farbe nach Bedarf
+                textBox.Foreground = Brushes.Black;
             }
         }
 

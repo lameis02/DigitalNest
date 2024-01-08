@@ -365,11 +365,11 @@
     <!--// Close App Button Style //-->
 
     <ImageBrush x:Key="close_def"
-                ImageSource="Assets/shutdown_def.png"
+                ImageSource="Assets/CloseIconBlack.png"
                 Stretch="None" />
 
     <ImageBrush x:Key="close_mo"
-                ImageSource="Assets/shutdown_mo.png"
+                ImageSource="Assets/CloseIconRed.png"
                 Stretch="None" />
 
     <Style x:Key="CloseBtnStyle"

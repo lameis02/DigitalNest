@@ -175,14 +175,21 @@
   <ItemGroup>
     <Resource Include="Assets\max_def.png" />
     <Resource Include="Assets\max_mo.png" />
-    <Resource Include="Assets\shutdown_def.png" />
-    <Resource Include="Assets\shutdown_mo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{8fec9b12-97f1-48f2-ba93-457ba247edb6}</Project>
       <Name>Database</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\CloseIconRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\CloseIconBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\CloseButton\CloseIconBlack.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
