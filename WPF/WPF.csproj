@@ -188,8 +188,5 @@
   <ItemGroup>
     <Resource Include="Assets\CloseIconBlack.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\CloseButton\CloseIconBlack.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

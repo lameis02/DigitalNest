@@ -29,24 +29,19 @@ namespace WPF.Views
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Validation.GetHasError(datePicker))
-            {
-                MessageBox.Show("Ungültiges Datumsformat. Bitte korrigiere es.");
-                //für den Fall der Fälle, aber eig nicht nötig, da kein ungültiges Datum aufgrund von datepicker eingetragen werden kann
-            }
-            else
-            {
+           
                 DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
-                // try catch für zukünftiges Datum abfangen noch einbauen
-                // wenn kein Datum --> heutiges Datum eintragen über Add Methode von Datenbank (bearbeiten wenn gemerged ist)
                 bool isFavorite = favoriteCheckBox.IsChecked ?? false;
                 string vogelart = txtVogelart.Text;
                 string ort = txtOrt.Text;
-                DateTime datum = datePicker.SelectedDate ?? DateTime.Now;
+                DateTime datum = selectedDate;
 
                 MessageBox.Show($"Bild hochgeladen am {datum}, als Favorit markiert: {isFavorite}");
+                //Objekt mit Konstruktor erstellen
                 // Add Methode von Datenbank hochladen
-            }
+
+                Close();
+            
 
             
         }
@@ -72,6 +67,18 @@ namespace WPF.Views
                 textBox.Text = (textBox.Name == "txtVogelart") ? "Vogelart eintragen" : "Ort eintragen"; //unterschiedlicher Text je nach Box
                 textBox.Foreground = Brushes.Gray; 
             }
+        }
+
+        private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+            //wenn Zeit: beim rüber hovern wird kreuz rot
+        }
+
+        private void datePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            //zeigt an, dass Eregniss bereits vollständig behandelt wurde --> Benutzer kann das Datum nicht mehr manuell verändern
         }
     }
 }
