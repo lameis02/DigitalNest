@@ -106,7 +106,7 @@ namespace Database
                     command.Parameters.AddWithValue("@Ort", bird.Location);
                     byte[] bytes = File.ReadAllBytes(bird.ImagePath);
                     command.Parameters.AddWithValue("@Bild", bytes);
-                    command.Parameters.AddWithValue("@Favorit", bird.Location);
+                    command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
                     command.ExecuteNonQuery();
 
                     string setIdentityInsertOff = "SET IDENTITY_INSERT Vogelsammlung OFF";
