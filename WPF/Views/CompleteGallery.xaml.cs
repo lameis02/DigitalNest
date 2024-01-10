@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +17,7 @@ using System.Windows.Shapes;
 
 namespace WPF.Views
 {
-    /// <summary>
-    /// Interaktionslogik für CompleteGallery.xaml
-    /// </summary>
+    
     public partial class CompleteGallery : UserControl
     {
         public CompleteGallery()

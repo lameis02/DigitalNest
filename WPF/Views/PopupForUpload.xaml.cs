@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,16 +32,28 @@ namespace WPF.Views
         {
            
                 DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
-                bool isFavorite = favoriteCheckBox.IsChecked ?? false;
+                bool isFav = favoriteCheckBox.IsChecked ?? false;
                 string vogelart = txtVogelart.Text;
                 string ort = txtOrt.Text;
                 DateTime datum = selectedDate;
+                string selectedImagePath = selectedImagePathTextBlock.Text;
 
-                MessageBox.Show($"Bild hochgeladen am {datum}, als Favorit markiert: {isFavorite}");
-                //Objekt mit Konstruktor erstellen
-                // Add Methode von Datenbank hochladen
+                Bird neuerVogel = new Bird 
+                {
+                    
+                    Species = vogelart,
+                    Date = datum,
+                    Location = ort,
+                    ImagePath = selectedImagePath,
+                    IsFavorite = isFav
+                };
 
-                Close();
+            Database.Program.Add(neuerVogel);
+
+
+            MessageBox.Show($"Bild hochgeladen am {datum}, als Favorit markiert: {isFav}");
+
+            Close();
             
 
             

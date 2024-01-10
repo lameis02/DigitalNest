@@ -15,35 +15,37 @@
         <vm:CompleteGalleryVM />
     </UserControl.DataContext>
 
+
     <Grid>
         <Border>
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
-            </Border.Background>
-        </Border>
-
-        <ScrollViewer>
-            <StackPanel>
-                <TextBlock Text="Gallerie"
-                           Margin="10"
-                           FontSize="22"
-                           FontWeight="Medium"/>
-
-                <StackPanel Margin="20 0">
-                    <Border Width="110"
-                            Margin="10"
-                            Height="160">
-
-                        <StackPanel>
-                            <Border Width="100"
-                                    Height="100">
-                                <Image Margin="-156,59,156,-59" />
-                            </Border>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
+                <Border.Background>
+                    <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
+                </Border.Background>
+            
+            <StackPanel Margin="20">
+                <TextBlock Text="Galerie"
+                           Foreground="#DBDBDB"
+                           FontSize="30"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"/>
+                <WrapPanel Height="210">
+                    <ListView ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding ImagePath}" Width="80" Height="80" Stretch="UniformToFill"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </WrapPanel>
+                
             </StackPanel>
-        </ScrollViewer>
-
+        </Border>
     </Grid>
+
 </UserControl>

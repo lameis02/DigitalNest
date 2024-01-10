@@ -22,7 +22,6 @@ namespace Database
 
             Bird sparrow1 = new Bird //keine 10 Charaktere überschreiten. Laut Moritz
             {
-                Name = "Spatz",
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-01-01"),
                 Location = "Park",
@@ -31,7 +30,6 @@ namespace Database
             };
             Bird eagle1 = new Bird
             {
-                Name = "Adler",
                 Species = "Greifvogel",
                 Date = DateTime.Parse("2023-02-01"),
                 Location = "Berg",
@@ -41,7 +39,6 @@ namespace Database
 
             Bird owl1 = new Bird
             {
-                Name = "Eule",
                 Species = "Eulenart",
                 Date = DateTime.Parse("2023-03-01"),
                 Location = "Wald",
@@ -50,7 +47,6 @@ namespace Database
             };
             Bird sparrow2 = new Bird
             {
-                Name = "Spatz",
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-04-01"),
                 Location = "Garten",
@@ -60,7 +56,6 @@ namespace Database
 
             Bird pigeon1 = new Bird
             {
-                Name = "Taube",
                 Species = "Taube",
                 Date = DateTime.Parse("2023-05-01"),
                 Location = "Stadt",
@@ -70,7 +65,6 @@ namespace Database
 
             Bird sparrow3 = new Bird
             {
-                Name = "Spatz",
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-06-01"),
                 Location = "Wiese",
@@ -100,7 +94,6 @@ namespace Database
                     string query = QueryAddMethode();
                     SqlCommand command = new SqlCommand(query, Connection);
                     command.Parameters.AddWithValue("@Id", i);
-                    command.Parameters.AddWithValue("@Vogel", bird.Name);
                     command.Parameters.AddWithValue("@Art", bird.Species);
                     command.Parameters.AddWithValue("@Datum", bird.Date);
                     command.Parameters.AddWithValue("@Ort", bird.Location);
@@ -122,7 +115,6 @@ namespace Database
                     string query = QueryAddMethode();
                     SqlCommand command = new SqlCommand(query, Connection);
                     //command.Parameters.AddWithValue("@Id","");
-                    command.Parameters.AddWithValue("@Vogel", bird.Name);
                     command.Parameters.AddWithValue("@Art", bird.Species);
                     command.Parameters.AddWithValue("@Datum", bird.Date);
                     command.Parameters.AddWithValue("@Ort", bird.Location);
@@ -195,7 +187,6 @@ namespace Database
                 string query = "Update Vogelsammlung SET Id = @Id, Vogel=@Vogel, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
                 SqlCommand command = new SqlCommand(query, Connection);
                 command.Parameters.AddWithValue("@Id", bird.ID);
-                command.Parameters.AddWithValue("@Vogel", bird.Name);
                 command.Parameters.AddWithValue("@Art", bird.Species);
                 command.Parameters.AddWithValue("@Datum", bird.Date);
                 command.Parameters.AddWithValue("@Ort", bird.Location);

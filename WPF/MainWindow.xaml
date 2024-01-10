@@ -54,11 +54,10 @@
                            RenderTransformOrigin="0.572,0.584"/>
                     <!--TextBlock Text="DigitalNest" FontSize="20" FontFamily="Fonts #Britannic Bold" Height="30" Width="112"-->
 
-                    <MenuItem Header="Home" 
-                              Click="MenuItem_Click"
+                    <MenuItem Header="Home"
                               Template="{StaticResource Menu_Template}"
                               Command="{Binding HomeCommand}"
-                              IsChecked="True">
+                              IsChecked="True" Click="MenuItem_Click">
                         <MenuItem.Icon>
                             <Image Source="Assets/img_Haus.png"
                                Stretch="Uniform"

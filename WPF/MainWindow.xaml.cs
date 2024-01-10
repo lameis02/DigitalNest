@@ -25,7 +25,6 @@ namespace WPF
         {
             InitializeComponent();
 
-            
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -77,5 +76,7 @@ namespace WPF
         {
             Close();
         }
+
+        
     }
 }
