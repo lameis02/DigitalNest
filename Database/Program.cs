@@ -148,48 +148,43 @@ namespace Database
                 reset.ExecuteNonQuery();
                 Connection.Close();
             }
-            public static void Select()
+            public static List<string> Select()
             {
                 SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
                 SqlDataReader reader = null;
                 reader = command.ExecuteReader();
-                List<Bird> list = new List<Bird>();
+                List<string> s = new List<string>();
                 while (reader.Read())
                 {
-                Bird bird = new Bird
-                {
-                    ID = reader.GetInt32(reader.GetOrdinal("Id")),
-                    Species = reader.GetString(reader.GetOrdinal("Art")),
-                    Location = reader.GetString(reader.GetOrdinal("Ort")),
-                    Date = reader.GetDateTime(reader.GetOrdinal("Datum")),
-                    ImagePath = reader.GetString(reader.GetOrdinal("Bild")),
-                    IsFavorite = reader.GetBoolean(reader.GetOrdinal("Favorit")),
-                };
-                for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        Console.WriteLine(reader.GetValue(i));
-                    }
+
+                    string path = reader.GetString(reader.GetOrdinal("Bild"));
+                    s.Add(path);
+                //for (int i = 0; i < reader.FieldCount; i++)
+                //    {
+                //        Console.WriteLine(reader.GetValue(i));
+                //    }
                 }
                 Connection.Close();
+                return s;
             }
 
-            public static void ShowPicture()
-            {
-                SqlConnection Connection = new SqlConnection(OpenConnection());
-                Connection.Open();
-                SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
-                DataSet dSet = new DataSet();
-                dAdapter.Fill(dSet);
-                if (dSet.Tables.Count > 0)
-                { }
-                Byte[] data = new Byte[0];
-                data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
-                MemoryStream mem = new MemoryStream(data);
-                //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
-                Connection.Close();
-            }
+            //public static void ShowPicture()
+            //{
+            //    SqlConnection Connection = new SqlConnection(OpenConnection());
+            //    Connection.Open();
+            //    SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
+            //    DataSet dSet = new DataSet();
+            //    dAdapter.Fill(dSet);
+            //    if (dSet.Tables.Count > 0)
+            //    { }
+            //    Byte[] data = new Byte[0];
+            //    data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
+            //    MemoryStream mem = new MemoryStream(data);
+            //    //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
+            //    Connection.Close();
+            //}
             public static void Override(Bird bird)
             {
                 SqlConnection Connection = new SqlConnection(OpenConnection());
@@ -204,7 +199,7 @@ namespace Database
                 command.ExecuteNonQuery();
                 Connection.Close();
             }
-        public static void SelectPlace(string place)
+        public static List<string> SelectPlace(string place)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -212,16 +207,20 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Ort", place);
             reader = command.ExecuteReader();
+            List <string> s = new List <string>();
             while (reader.Read())
             {
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Console.WriteLine(reader.GetValue(i));
-                }
+                string path = reader.GetString(reader.GetOrdinal("Bild"));
+                s.Add(path);
+                //for (int i = 0; i < reader.FieldCount; i++)
+                //{
+                //    Console.WriteLine(reader.GetValue(i));
+                //}
             }
             Connection.Close();
+            return s;
         }
-        public static void SelectDate(string date)
+        public static List<string> SelectDate(string date)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -229,31 +228,39 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Ort",date);
             reader = command.ExecuteReader();
+            List<string> s = new List<string>();
             while (reader.Read())
             {
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Console.WriteLine(reader.GetValue(i));
-                }
+                string path = reader.GetString(reader.GetOrdinal("Bild"));
+                s.Add(path);
+                //for (int i = 0; i < reader.FieldCount; i++)
+                //{
+                //    Console.WriteLine(reader.GetValue(i));
+                //}
             }
             Connection.Close();
+            return s;
         }
-        public static void SelectFavorite()
+        public static List<string> SelectFavorite(bool fav)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung where Favorit=@Favorit", Connection);
             SqlDataReader reader = null;
-            command.Parameters.AddWithValue("@Favorit", true);
+            command.Parameters.AddWithValue("@Favorit", fav);
             reader = command.ExecuteReader();
+            List<string> s=new List<string>();
             while (reader.Read())
             {
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Console.WriteLine(reader.GetValue(i));
-                }
+                string path = reader.GetString(reader.GetOrdinal("Bild"));
+                s.Add(path);
+                //for (int i = 0; i < reader.FieldCount; i++)
+                //{
+                //    Console.WriteLine(reader.GetValue(i));
+                //}
             }
             Connection.Close();
+            return s;
         }
         public static string OpenConnection ()
         {
