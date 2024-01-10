@@ -10,6 +10,9 @@ namespace Vogelscheuche_Bib
 {
     public class StatisticCalculator
     {
+        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                         Die erste Methode: Vögel pro Wochentag sollen ausgegeben werden
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
         public static void PrintBirdStatistics()
         {
@@ -58,12 +61,59 @@ namespace Vogelscheuche_Bib
             }
         }
 
+        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                         Die zweite Methode: Welche Vogelart kam in der Woche am meisten vor?
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+        public static void PrintMostCommonSpecies()
+        {
+            // speciesCount werden die Anzahl der vorkommenden Vogelarten gespeichert
+            Dictionary<string, int> speciesCount = new Dictionary<string, int>();
+
+            using (SqlConnection Connection = new SqlConnection("Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"))
+            {
+                Connection.Open();
+                //SQL Abfrage um alle Vogelarten+ihre Anzahl abzurufen
+                string query = "SELECT Art FROM Vogelsammlung";//Aufruf aus der Tabelle
+                SqlCommand command = new SqlCommand(query, Connection);
+
+                using (SqlDataReader reader = command.ExecuteReader()) //reader wird ertsellt um Ergebnisse der SQL-Abfrage zu lesen.
+                {
+                    while (reader.Read()) //hier werden die Ergebnisse des Readers durchlaufen
+                    {
+                        if (!reader.IsDBNull(0))
+                        {
+                            string species = reader.GetString(0); // Der Name der Vogelart wird aus der ersten Spalte (Index 0) gelesen.
+                            if (speciesCount.ContainsKey(species)) //Hier wird überprüft, ob die Vogelart bereits im Dictionary enthalten ist
+                            {
+                                speciesCount[species]++;//Wenn die Vogelart bereits vorhanden ist, wird die Anzahl aktualisiert.
+                            }
+                            else
+                            {
+                                speciesCount.Add(species, 1);//Wenn die Vogelart nicht vorhanden ist, wird sie dem Dictionary hinzugefügt.
+                            }
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("\nWelche Vogelart in der Woche am meisten vorkommt:");
+            var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault(); //hier wird sortiert in absteigende Reihenfolge und wählt das mit den meisten. (Mit Firstdefault wird das häufigste also das an der ersten Stelle gewählt
+            if (mostCommonSpecies.Key != null)
+            {
+                Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+            }
+        }
+
         public static void Main()
         {
+           
             try
             {
                 // Methode für die Vogelstatistiken werden aufgerufen auf
                 PrintBirdStatistics();
+                PrintMostCommonSpecies();
+
 
                 //Warte auf Benutzereingabe, um das Konsolenfenster offen zu halten
                 Console.ReadKey();
@@ -72,6 +122,7 @@ namespace Vogelscheuche_Bib
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
+           
         }
     }
 }
