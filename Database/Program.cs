@@ -148,26 +148,26 @@ namespace Database
                 reset.ExecuteNonQuery();
                 Connection.Close();
             }
-            public static List<string> Select()
+            public static List<byte[]> Select()
             {
                 SqlConnection Connection = new SqlConnection(OpenConnection());
                 Connection.Open();
                 SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
                 SqlDataReader reader = null;
                 reader = command.ExecuteReader();
-                List<string> s = new List<string>();
+                List<byte[]> b = new List<byte[]>();
                 while (reader.Read())
                 {
 
-                    string path = reader.GetString(reader.GetOrdinal("Bild"));
-                    s.Add(path);
+                    byte[] path = (byte[])reader["Bild"];
+                    b.Add(path);
                 //for (int i = 0; i < reader.FieldCount; i++)
                 //    {
                 //        Console.WriteLine(reader.GetValue(i));
                 //    }
                 }
                 Connection.Close();
-                return s;
+                return b;
             }
 
             //public static void ShowPicture()
@@ -199,7 +199,7 @@ namespace Database
                 command.ExecuteNonQuery();
                 Connection.Close();
             }
-        public static List<string> SelectPlace(string place)
+        public static List<byte[]> SelectPlace(string place)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -207,20 +207,20 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Ort", place);
             reader = command.ExecuteReader();
-            List <string> s = new List <string>();
+            List<byte[]> b = new List<byte[]>();
             while (reader.Read())
             {
-                string path = reader.GetString(reader.GetOrdinal("Bild"));
-                s.Add(path);
+                byte[] path = (byte[])reader["Bild"];
+                b.Add(path);
                 //for (int i = 0; i < reader.FieldCount; i++)
                 //{
                 //    Console.WriteLine(reader.GetValue(i));
                 //}
             }
             Connection.Close();
-            return s;
+            return b;
         }
-        public static List<string> SelectDate(string date)
+        public static List<byte[]> SelectDate(string date)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -228,20 +228,20 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Ort",date);
             reader = command.ExecuteReader();
-            List<string> s = new List<string>();
+            List<byte[]> b = new List<byte[]>();
             while (reader.Read())
             {
-                string path = reader.GetString(reader.GetOrdinal("Bild"));
-                s.Add(path);
+                byte[] path = (byte[])reader["Bild"];
+                b.Add(path);
                 //for (int i = 0; i < reader.FieldCount; i++)
                 //{
                 //    Console.WriteLine(reader.GetValue(i));
                 //}
             }
             Connection.Close();
-            return s;
+            return b;
         }
-        public static List<string> SelectFavorite(bool fav)
+        public static List<byte[]> SelectFavorite(bool fav)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -249,18 +249,18 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Favorit", fav);
             reader = command.ExecuteReader();
-            List<string> s=new List<string>();
+            List<byte[]> b=new List<byte[]>();
             while (reader.Read())
             {
-                string path = reader.GetString(reader.GetOrdinal("Bild"));
-                s.Add(path);
+                byte[] path = (byte[])reader["Bild"];
+                b.Add(path);
                 //for (int i = 0; i < reader.FieldCount; i++)
                 //{
                 //    Console.WriteLine(reader.GetValue(i));
                 //}
             }
             Connection.Close();
-            return s;
+            return b;
         }
         public static string OpenConnection ()
         {
