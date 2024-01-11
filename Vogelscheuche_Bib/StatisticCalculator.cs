@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using Database;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
@@ -121,7 +122,7 @@ namespace Vogelscheuche_Bib
             try
             {
                 //Holen Sie die Daten für die letzten 7 Tage SelectWeek-Methode
-                List<List<Bird>> weekBirds = SelectWeek();
+                List<List<Bird>> weekBirds = Program.SelectWeek();
 
                 for (int i = 0; i < 7; i++)
                 {
@@ -159,7 +160,7 @@ namespace Vogelscheuche_Bib
 
             try
             {
-                List<List<Bird>> weekBirds = SelectWeek();
+                List<List<Bird>> weekBirds = Program.SelectWeek();
 
                 foreach (var dayBirds in weekBirds)
                 {
@@ -192,6 +193,7 @@ namespace Vogelscheuche_Bib
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
         }
+
 
         public static void Main()
         {

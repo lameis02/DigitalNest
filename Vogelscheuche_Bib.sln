@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogelscheuche_Bib", "Vogelscheuche_Bib\Vogelscheuche_Bib.csproj", "{D4AA38DD-8686-40CC-A80B-D5201A3F6A1C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8FEC9B12-97F1-48F2-BA93-457BA247EDB6} = {8FEC9B12-97F1-48F2-BA93-457BA247EDB6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{EF06F219-A739-4A1D-9511-6FAC948B67BF}"
 EndProject

@@ -249,35 +249,57 @@ namespace Database
         }
         public static List<List<Bird>> SelectWeek()
         {
-            SqlConnection Connection = new SqlConnection(OpenConnection());
-            Connection.Open();
-            SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
-            SqlDataReader reader = null;
-            List<List<Bird>> b = new List<List<Bird>>();
+            List<List<Bird>> weekBirds = new List<List<Bird>>();
             for (int i = 0; i < 7; i++)
             {
-                command.Parameters.AddWithValue("@Datum", GetWeek()[i]);
-                reader = command.ExecuteReader();
-                
-                while (reader.Read())
-                {
-                    Bird bird = new Bird
-                    {
-                        ID = reader.GetInt32(reader.GetOrdinal("Id")),
-                        Species = reader.GetString(reader.GetOrdinal("Art")),
-                        Date = reader.GetDateTime(reader.GetOrdinal("Datum"))
-                    };
-                    b[i].Add(bird);
-                    //for (int i = 0; i < reader.FieldCount; i++)
-                    //{
-                    //    Console.WriteLine(reader.GetValue(i));
-                    //}
-                };
+                weekBirds.Add(new List<Bird>()); // Initialize each sub-list
             }
-                Connection.Close();
-                return b;
+
+            string connectionString = OpenConnection(); // Assuming this method returns a valid connection string
+
+            string query = @"
+        SELECT *
+        FROM Vogelsammlung
+        WHERE Datum >= DATEADD(day, -7, GETDATE())";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Bird bird = new Bird
+                                {
+                                    ID = reader.GetInt32(reader.GetOrdinal("Id")),
+                                    Species = reader.GetString(reader.GetOrdinal("Art")),
+                                    Date = reader.GetDateTime(reader.GetOrdinal("Datum"))
+                                };
+
+                                int dayIndex = (int)(bird.Date.Date - DateTime.Now.Date).TotalDays;
+                                if (dayIndex >= 0 && dayIndex < 7)
+                                {
+                                    weekBirds[dayIndex].Add(bird);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                // Handle exceptions or rethrow as needed
+            }
+
+            return weekBirds;
         }
-            public static DateTime[] GetWeek()
+
+        public static DateTime[] GetWeek()
             {
                 DateTime[] days = new DateTime[7];
                 for (int i = -7; i < 0; i++)
