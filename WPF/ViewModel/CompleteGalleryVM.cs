@@ -22,17 +22,17 @@ namespace WPF.ViewModel
 
         }
 
-        public ObservableCollection<Bird> BirdGallery { get; set; } = new ObservableCollection<Bird>();
+        public ObservableCollection<byte[]> BirdGallery { get; set; } = new ObservableCollection<byte[]>();
 
         public void LoadBirdsFromDatabase()
         {
-            /*List<string> imagePathsFromDatabase = Database.Program.
+            List<byte[]> imageBytesFromDatabase = Database.Program.Select();
 
             // Observable Collection wird mit allen Bildpfaden gefüllt
-            foreach (var imagePath in imagePathsFromDatabase)
+            foreach (var imageBytes in imageBytesFromDatabase)
             {
-                BirdGallery.Add(new Bird { ImagePath = imagePath });
-            }*/
+                BirdGallery.Add(imageBytes);
+            }
 
         }
 

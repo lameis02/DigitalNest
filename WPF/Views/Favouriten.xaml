@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:WPF.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="600" 
-             d:DesignWidth="622"
+             d:DesignWidth="900"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              Style="{StaticResource Page_Style}">

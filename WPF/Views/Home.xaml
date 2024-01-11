@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600"
-             d:DesignWidth="622"
+             d:DesignWidth="900"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
     <Grid>
@@ -21,7 +21,7 @@
             <Button 
             MouseEnter="Button_MouseEnter"
             BorderBrush="#786442" 
-            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="122,148,122,148" Click="Button_Click">
+            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,110" Click="Button_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -30,7 +30,7 @@
                     </ControlTemplate>
                 </Button.Template>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Assets/blauerVogelButton.png"/>
+                    <ImageBrush ImageSource="/Assets/blueBirdButton.png"/>
                 </Button.Background>
             </Button>
     </Grid>

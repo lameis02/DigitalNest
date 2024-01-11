@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\BytesToImageSourceConverter.cs" />
     <Compile Include="Utilities\Button.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
@@ -152,12 +153,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\blauerVogelButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\WaldBild.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\mogen.png" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +182,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\CloseIconBlack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\WaldBild.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\blueBirdButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -91,40 +91,40 @@ namespace Database
                 SqlCommand commandOn = new SqlCommand(setIdentityInsertOn, Connection);
                 commandOn.ExecuteNonQuery();
 
-                    string query = QueryAddMethode();
-                    SqlCommand command = new SqlCommand(query, Connection);
-                    command.Parameters.AddWithValue("@Id", i);
-                    command.Parameters.AddWithValue("@Art", bird.Species);
-                    command.Parameters.AddWithValue("@Datum", bird.Date);
-                    command.Parameters.AddWithValue("@Ort", bird.Location);
-                    byte[] bytes = File.ReadAllBytes(bird.ImagePath);
-                    command.Parameters.AddWithValue("@Bild", bytes);
-                    command.Parameters.AddWithValue("@Favorit", bird.Location);
-                    command.ExecuteNonQuery();
+                string query = QueryAddMethode();
+                SqlCommand command = new SqlCommand(query, Connection);
+                command.Parameters.AddWithValue("@Id", i);
+                command.Parameters.AddWithValue("@Art", bird.Species);
+                command.Parameters.AddWithValue("@Datum", bird.Date);
+                command.Parameters.AddWithValue("@Ort", bird.Location);
+                byte[] bytes = File.ReadAllBytes(bird.ImagePath);
+                command.Parameters.AddWithValue("@Bild", bytes);
+                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
+                command.ExecuteNonQuery();
 
                 string setIdentityInsertOff = "SET IDENTITY_INSERT Vogelsammlung OFF";
                 SqlCommand commandOff = new SqlCommand(setIdentityInsertOff, Connection);
                 commandOff.ExecuteNonQuery();
 
-                    Connection.Close();
-                }
-                else
-                {
-                    SqlConnection Connection = new SqlConnection(OpenConnection());
-                    Connection.Open();
-                    string query = QueryAddMethode();
-                    SqlCommand command = new SqlCommand(query, Connection);
-                    //command.Parameters.AddWithValue("@Id","");
-                    command.Parameters.AddWithValue("@Art", bird.Species);
-                    command.Parameters.AddWithValue("@Datum", bird.Date);
-                    command.Parameters.AddWithValue("@Ort", bird.Location);
-                    byte[] bytes = File.ReadAllBytes(bird.ImagePath);
-                    command.Parameters.AddWithValue("@Bild", bytes);
-                    command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
-                    command.ExecuteNonQuery();
-                    Connection.Close();
-                }
+                Connection.Close();
             }
+            else
+            {
+                SqlConnection Connection = new SqlConnection(OpenConnection());
+                Connection.Open();
+                string query = QueryAddMethode();
+                SqlCommand command = new SqlCommand(query, Connection);
+                //command.Parameters.AddWithValue("@Id","");
+                command.Parameters.AddWithValue("@Art", bird.Species);
+                command.Parameters.AddWithValue("@Datum", bird.Date);
+                command.Parameters.AddWithValue("@Ort", bird.Location);
+                byte[] bytes = File.ReadAllBytes(bird.ImagePath);
+                command.Parameters.AddWithValue("@Bild", bytes);
+                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
+                command.ExecuteNonQuery();
+                Connection.Close();
+            }
+        }
 
         public static void Delete(int i)
         {
@@ -170,67 +170,36 @@ namespace Database
             return b;
         }
 
-            {
-                SqlConnection Connection = new SqlConnection(OpenConnection());
-                Connection.Open();
-                SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
-                SqlDataReader reader = null;
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        Console.WriteLine(reader.GetValue(i));
-                    }
-                }
-                Connection.Close();
-            }
-
-            //public static void ShowPicture()
-            //{
-            //    SqlConnection Connection = new SqlConnection(OpenConnection());
-            //    Connection.Open();
-            //    SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
-            //    DataSet dSet = new DataSet();
-            //    dAdapter.Fill(dSet);
-            //    if (dSet.Tables.Count > 0)
-            //    { }
-            //    Byte[] data = new Byte[0];
-            //    data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
-            //    MemoryStream mem = new MemoryStream(data);
-            //    //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
-            //    Connection.Close();
-            //}
-            public static void Override(Bird bird)
-{
-    SqlConnection Connection = new SqlConnection(OpenConnection());
-    Connection.Open();
-    string query = "Update Vogelsammlung SET Id = @Id, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
-    SqlCommand command = new SqlCommand(query, Connection);
-    command.Parameters.AddWithValue("@Id", bird.ID);
-    command.Parameters.AddWithValue("@Art", bird.Species);
-    command.Parameters.AddWithValue("@Datum", bird.Date);
-    command.Parameters.AddWithValue("@Ort", bird.Location);
-    command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
-    command.ExecuteNonQuery();
-    Connection.Close();
-}
-public static void Override(Bird bird)
-            {
-                SqlConnection Connection = new SqlConnection(OpenConnection());
-                Connection.Open();
-                string query = "Update Vogelsammlung SET Id = @Id, Vogel=@Vogel, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
-                SqlCommand command = new SqlCommand(query, Connection);
-                command.Parameters.AddWithValue("@Id", bird.ID);
-                command.Parameters.AddWithValue("@Vogel", bird.Name);
-                command.Parameters.AddWithValue("@Art", bird.Species);
-                command.Parameters.AddWithValue("@Datum", bird.Date);
-                command.Parameters.AddWithValue("@Ort", bird.Location);
-                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
-                command.ExecuteNonQuery();
-                Connection.Close();
-            }
-        public static void SelectPlace(string place)
+        //public static void ShowPicture()
+        //{
+        //    SqlConnection Connection = new SqlConnection(OpenConnection());
+        //    Connection.Open();
+        //    SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
+        //    DataSet dSet = new DataSet();
+        //    dAdapter.Fill(dSet);
+        //    if (dSet.Tables.Count > 0)
+        //    { }
+        //    Byte[] data = new Byte[0];
+        //    data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
+        //    MemoryStream mem = new MemoryStream(data);
+        //    //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
+        //    Connection.Close();
+        //}
+        public static void Override(Bird bird)
+        {
+            SqlConnection Connection = new SqlConnection(OpenConnection());
+            Connection.Open();
+            string query = "Update Vogelsammlung SET Id = @Id, Art=@Art, Datum=@Datum,Ort=@Ort, Favorit=@Favorit where Id = @Id ";
+            SqlCommand command = new SqlCommand(query, Connection);
+            command.Parameters.AddWithValue("@Id", bird.ID);
+            command.Parameters.AddWithValue("@Art", bird.Species);
+            command.Parameters.AddWithValue("@Datum", bird.Date);
+            command.Parameters.AddWithValue("@Ort", bird.Location);
+            command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
+            command.ExecuteNonQuery();
+            Connection.Close();
+        }
+        public static List<byte[]> SelectPlace(string place)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -280,7 +249,7 @@ public static void Override(Bird bird)
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Favorit", fav);
             reader = command.ExecuteReader();
-            List<byte[]> b=new List<byte[]>();
+            List<byte[]> b = new List<byte[]>();
             while (reader.Read())
             {
                 byte[] path = (byte[])reader["Bild"];

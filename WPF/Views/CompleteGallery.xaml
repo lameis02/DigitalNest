@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:WPF.ViewModel"
+             xmlns:converters="clr-namespace:WPF.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="600" 
-             d:DesignWidth="622"
+             d:DesignWidth="900"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              Style="{StaticResource Page_Style}">
@@ -14,6 +15,10 @@
     <UserControl.DataContext>
         <vm:CompleteGalleryVM />
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <converters:BytesToImageSourceConverter x:Key="BytesToImageSourceConverter"/>
+    </UserControl.Resources>
 
 
     <Grid>
@@ -28,22 +33,32 @@
                            FontSize="30"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"/>
-                <WrapPanel Height="210">
-                    <ListView ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding ImagePath}" Width="80" Height="80" Stretch="UniformToFill"/>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </WrapPanel>
-                
+
+                <ItemsControl ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <!-- Hier wird das Aussehen der einzelnen Listenelemente festgelegt -->
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#786442" BorderThickness="1" Margin="5">
+                                <Image Source="{Binding Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <!-- Hier wird das Aussehen der gesamten Liste festgelegt -->
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+
             </StackPanel>
         </Border>
     </Grid>
