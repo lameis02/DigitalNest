@@ -5,16 +5,20 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using System.Data;
+
+
 
 namespace Vogelscheuche_Bib
 {
+  
     public class StatisticCalculator
     {
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                          Die erste Methode: Vögel pro Wochentag sollen ausgegeben werden
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static void PrintBirdStatistics()
+        public static void PrintBirdStatisticsAllTime()
         {
             //im string wird der Wochentag und im int die Anzahlder Vögel gespeichert
             Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
@@ -65,7 +69,7 @@ namespace Vogelscheuche_Bib
                          Die zweite Methode: Welche Vogelart kam in der Woche am meisten vor?
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static void PrintMostCommonSpecies()
+        public static void PrintMostCommonSpeciesAllTime()
         {
             // speciesCount werden die Anzahl der vorkommenden Vogelarten gespeichert
             Dictionary<string, int> speciesCount = new Dictionary<string, int>();
@@ -105,17 +109,100 @@ namespace Vogelscheuche_Bib
             }
         }
 
-        public static void Main()
+
+        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                         Die dritte Methode: Welche Vögel kamen an welchem Wochentag wie oft vor? Nur aktuelle Woche
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+        public static void PrintBirdStatisticsLast7Days()
         {
-           
+            Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
+
             try
             {
-                // Methode für die Vogelstatistiken werden aufgerufen auf
-                PrintBirdStatistics();
-                PrintMostCommonSpecies();
+                //Holen Sie die Daten für die letzten 7 Tage SelectWeek-Methode
+                List<List<Bird>> weekBirds = SelectWeek();
+
+                for (int i = 0; i < 7; i++)
+                {
+                    foreach (var bird in weekBirds[i])
+                    {
+                        string dayOfWeek = bird.Date.ToString("dddd");
+                        if (birdCountPerDay.ContainsKey(dayOfWeek))
+                        {
+                            birdCountPerDay[dayOfWeek]++;
+                        }
+                        else
+                        {
+                            birdCountPerDay.Add(dayOfWeek, 1);
+                        }
+                    }
+                }
+
+                Console.WriteLine("Statistik der Vögel pro Wochentag (Letzte 7 Tage):");
+                foreach (var entry in birdCountPerDay)
+                {
+                    Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+        /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                         Die vierte Methode:  Welche Vogelart kam in der Woche am meisten vor? Nur aktuelle Woche
+        >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+        public static void PrintMostCommonSpeciesLast7Days()
+        {
+            Dictionary<string, int> speciesCount = new Dictionary<string, int>();
+
+            try
+            {
+                List<List<Bird>> weekBirds = SelectWeek();
+
+                foreach (var dayBirds in weekBirds)
+                {
+                    foreach (var bird in dayBirds)
+                    {
+                        if (!string.IsNullOrEmpty(bird.Species))
+                        {
+                            string species = bird.Species;
+                            if (speciesCount.ContainsKey(species))
+                            {
+                                speciesCount[species]++;
+                            }
+                            else
+                            {
+                                speciesCount.Add(species, 1);
+                            }
+                        }
+                    }
+                }
+
+                Console.WriteLine("\nWelche Vogelart am häufigsten vorkommt (Letzte 7 Tage):");
+                var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault();
+                if (mostCommonSpecies.Key != null)
+                {
+                    Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+
+        public static void Main()
+        {
+            try
+            {
+                // Methode für die Vogelstatistiken werden aufgerufen 
+                PrintBirdStatisticsAllTime();
+                PrintMostCommonSpeciesAllTime();
 
 
-                //Warte auf Benutzereingabe, um das Konsolenfenster offen zu halten
+          
                 Console.ReadKey();
             }
             catch (Exception ex)
