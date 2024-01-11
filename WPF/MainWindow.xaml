@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="600" 
-        Width="1028"
+        Width="1130"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"

@@ -33,8 +33,7 @@
                            FontSize="30"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"/>
-
-                <ItemsControl ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="859">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
@@ -44,7 +43,7 @@
                     <!-- Hier wird das Aussehen der einzelnen Listenelemente festgelegt -->
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#786442" BorderThickness="1" Margin="5">
+                            <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
                                 <Image Source="{Binding Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"/>
                             </Border>
                         </DataTemplate>
@@ -52,7 +51,7 @@
 
                     <!-- Hier wird das Aussehen der gesamten Liste festgelegt -->
                     <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
+                        <Style TargetType="{x:Type ContentPresenter}">
                             <Setter Property="HorizontalAlignment" Value="Left"/>
                             <Setter Property="VerticalAlignment" Value="Top"/>
                         </Style>

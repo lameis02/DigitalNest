@@ -1,6 +1,8 @@
 ﻿using Database;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,43 +17,52 @@ using System.Windows.Shapes;
 
 namespace WPF.Views
 {
-    /// <summary>
-    /// Interaktionslogik für PopupForUpload.xaml
-    /// </summary>
+    
     public partial class PopupForUpload : Window
     {
         public PopupForUpload(string selectedImagePath)
         {
-            //Anzeige des Bildpfades in der oberen Textbox
             InitializeComponent();
+
+            //Anzeige des Bildpfades in der oberen Textbox
             selectedImagePathTextBlock.Text = selectedImagePath;
+            
         }
        
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
-           
-                DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
-                bool isFav = favoriteCheckBox.IsChecked ?? false;
-                string vogelart = txtVogelart.Text;
-                string ort = txtOrt.Text;
-                DateTime datum = selectedDate;
-                string selectedImagePath = selectedImagePathTextBlock.Text;
+            //noch mit Fionas KI verbinden, wenn sie fertig ist
+            string location;
+            string species;
 
-                Bird neuerVogel = new Bird 
+            DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
+            bool isFav = favoriteCheckBox.IsChecked ?? false;
+            DateTime date = selectedDate;
+            string selectedImagePath = selectedImagePathTextBlock.Text;
+            if (txtOrt.Text == "Ort eintragen")
+                location = "unbekannt";
+            else
+                location = txtOrt.Text;
+            if (txtVogelart.Text == "Vogelart eintragen")
+                species = "unbekannt";
+            else
+                species = txtVogelart.Text;
+
+
+            Bird newBird = new Bird 
                 {
-                    
-                    Species = vogelart,
-                    Date = datum,
-                    Location = ort,
+                    Species = species,
+                    Date = date,
+                    Location = location,
                     ImagePath = selectedImagePath,
                     IsFavorite = isFav
                 };
 
-            Database.Program.Add(neuerVogel);
+            Database.Program.Add(newBird);
 
 
-            MessageBox.Show($"Bild hochgeladen am {datum}, als Favorit markiert: {isFav}");
+            MessageBox.Show($"Das Bild wurde erfolgreich hochgeladen!");
 
             Close();
             
