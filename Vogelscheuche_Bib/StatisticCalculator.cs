@@ -202,6 +202,8 @@ namespace Vogelscheuche_Bib
                 // Methode für die Vogelstatistiken werden aufgerufen 
                 PrintBirdStatisticsAllTime();
                 PrintMostCommonSpeciesAllTime();
+                PrintBirdStatisticsLast7Days();
+                PrintMostCommonSpeciesLast7Days();
 
 
           
