@@ -74,7 +74,7 @@ namespace Vogelscheuche_Bib
             {
                 Connection.Open();
                 //SQL Abfrage um alle Vogelarten+ihre Anzahl abzurufen
-                string query = "SELECT Art FROM Vogelsammlung";//Aufruf aus der Tabelle
+                string query = "SELECT Art FROM Vogelsammlung";//Aufruf aus der Tabelle der Datenbank
                 SqlCommand command = new SqlCommand(query, Connection);
 
                 using (SqlDataReader reader = command.ExecuteReader()) //reader wird ertsellt um Ergebnisse der SQL-Abfrage zu lesen.

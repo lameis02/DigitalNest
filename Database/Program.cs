@@ -57,7 +57,7 @@ namespace Database
             Bird pigeon1 = new Bird
             {
                 Species = "Taube",
-                Date = DateTime.Parse("2023-05-01"),
+                Date = DateTime.Parse("2023-06-01"),
                 Location = "Stadt",
                 ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
@@ -76,6 +76,12 @@ namespace Database
             Add(sparrow2);
             Select();
             Console.ReadLine();
+            DeleteAll();
+            Add(sparrow1);
+            Add(pigeon1);
+            Add(sparrow2);
+            Add(owl1);
+
 
         }
 
