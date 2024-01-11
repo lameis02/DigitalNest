@@ -10,12 +10,6 @@ namespace Database
         public string ImagePath { get; set; }
         public bool IsFavorite { get; set; }
 
-        public Bird(string Location="Berlin", bool IsFavorite=false)
-        {
-            this.Date = GetTodayDate();
-            this.Location=Location;
-            this.IsFavorite=IsFavorite;
-        }
         public static DateTime GetTodayDate()
         {
             DateTime dateTime = DateTime.Today;
