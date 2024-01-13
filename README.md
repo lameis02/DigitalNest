@@ -17,15 +17,13 @@ Dieses Foto wird dann an das Programm weitergeleitet. Der Lautsprecher soll bei 
 - [ ] After cloning our repository, open the SQL SERVER folder
 - [ ] Open a new Terminal in that folder
 
-- [ ] ` docker build -t mymssql . `
+- [ ] ` docker build -t vogelsammlung . `
 
-- [ ] ` docker run -d --name mymssql -p 1433:1433 mymssql `
+- [ ] ` docker run -d --name vogelsammlung -p 1433:1433 vogelsammlung `
 
 # How to access the Bird Recognition AI
-#### (Not available yet in full program but can be found in branch 7)
 
-- [ ] After cloning our repository, open the Bird_Recognition folder
-- [ ] Open a new Terminal in that folder
+- [ ] Open the Terminal
 
 - [ ] `docker run --name bird-recognition -p 5000:5000 aaronzi/bird-recognition `
 
