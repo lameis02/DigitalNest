@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
 using System.Data;
@@ -23,9 +23,9 @@ namespace Database
             Bird sparrow1 = new Bird //keine 10 Charaktere überschreiten. Laut Moritz
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-01-01"),
+                Date = DateTime.Parse("2023-01-12"),
                 Location = "Park",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = false
             };
             Bird eagle1 = new Bird
@@ -33,48 +33,52 @@ namespace Database
                 Species = "Greifvogel",
                 Date = DateTime.Parse("2023-02-01"),
                 Location = "Berg",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = true
             };
 
             Bird owl1 = new Bird
             {
                 Species = "Eulenart",
-                Date = DateTime.Parse("2023-03-01"),
+                Date = DateTime.Parse("2023-01-10"),
                 Location = "Wald",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = false
             };
             Bird sparrow2 = new Bird
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-04-01"),
+                Date = DateTime.Parse("2023-01-11"),
                 Location = "Garten",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = true
             };
 
             Bird pigeon1 = new Bird
             {
                 Species = "Taube",
-                Date = DateTime.Parse("2023-05-01"),
+                Date = DateTime.Parse("2023-01-13"),
                 Location = "Stadt",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = false
             };
 
             Bird sparrow3 = new Bird
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-06-01"),
+                Date = DateTime.Parse("2023-01-10"),
                 Location = "Wiese",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
+                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
                 IsFavorite = false
             };
 
             DeleteAll();
             Add(sparrow2);
-            Select();
+            Add(sparrow3);
+            Add(sparrow1);
+            Add(owl1);
+            Add(pigeon1);
+            // Select();
             Console.ReadLine();
 
         }
@@ -264,7 +268,7 @@ namespace Database
         }
         public static string OpenConnection()
         {
-            string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;";
+            string x = "Server=localhost,1433;Database=Vogeldatenbank;User ID=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
             return x;
         }
         public static string QueryAddMethode()
