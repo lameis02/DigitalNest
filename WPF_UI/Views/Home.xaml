@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="WPF.Views.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600"
+             d:DesignWidth="900"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+    <Grid>
+        
+        <Border>
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
+            </Border.Background>
+        </Border>
+
+        <!--Bild hochladen Button-->
+            <Button 
+            MouseEnter="Button_MouseEnter"
+            BorderBrush="#786442" 
+            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,110" Click="Button_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/blueBirdButton.png"/>
+                </Button.Background>
+            </Button>
+    </Grid>
+</UserControl>
