@@ -23,9 +23,9 @@ namespace Database
             Bird sparrow1 = new Bird //keine 10 Charaktere überschreiten. Laut Moritz
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-01-12"),
+                Date = DateTime.Parse("2023-01-01"),
                 Location = "Park",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
             Bird eagle1 = new Bird
@@ -33,53 +33,55 @@ namespace Database
                 Species = "Greifvogel",
                 Date = DateTime.Parse("2023-02-01"),
                 Location = "Berg",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = true
             };
 
             Bird owl1 = new Bird
             {
                 Species = "Eulenart",
-                Date = DateTime.Parse("2023-01-10"),
+                Date = DateTime.Parse("2023-03-01"),
                 Location = "Wald",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
             Bird sparrow2 = new Bird
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-01-11"),
+                Date = DateTime.Parse("2023-04-01"),
                 Location = "Garten",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = true
             };
 
             Bird pigeon1 = new Bird
             {
                 Species = "Taube",
-                Date = DateTime.Parse("2023-01-13"),
+                Date = DateTime.Parse("2023-06-01"),
                 Location = "Stadt",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
 
             Bird sparrow3 = new Bird
             {
                 Species = "Sperling",
-                Date = DateTime.Parse("2023-01-10"),
+                Date = DateTime.Parse("2023-06-01"),
                 Location = "Wiese",
-                ImagePath = @"C:\Users\o364b\OneDrive - Dr. Daniel Büttner\WiSe_23_24\Dall-E\Icon.png",
+                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
 
             DeleteAll();
             Add(sparrow2);
-            Add(sparrow3);
-            Add(sparrow1);
-            Add(owl1);
-            Add(pigeon1);
             // Select();
-            Console.ReadLine();
+            // Console.ReadLine();
+            // DeleteAll();
+            Add(sparrow1);
+            Add(pigeon1);
+            Add(sparrow2);
+            Add(owl1);
+
 
         }
 
@@ -230,7 +232,7 @@ namespace Database
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
             SqlDataReader reader = null;
-            command.Parameters.AddWithValue("@Ort", date);
+            command.Parameters.AddWithValue("@Datum", date);
             reader = command.ExecuteReader();
             List<byte[]> b = new List<byte[]>();
             while (reader.Read())
@@ -244,6 +246,47 @@ namespace Database
             }
             Connection.Close();
             return b;
+        }
+        public static List<List<Bird>> SelectWeek()
+        {
+            SqlConnection Connection = new SqlConnection(OpenConnection());
+            Connection.Open();
+            SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
+            SqlDataReader reader = null;
+            List<List<Bird>> b = new List<List<Bird>>();
+            for (int i = 0; i < 7; i++)
+            {
+                command.Parameters.AddWithValue("@Datum", GetWeek()[i]);
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Bird bird = new Bird
+                    {
+                        ID = reader.GetInt32(reader.GetOrdinal("Id")),
+                        Species = reader.GetString(reader.GetOrdinal("Art")),
+                        Date = reader.GetDateTime(reader.GetOrdinal("Datum"))
+                    };
+                    b[i].Add(bird);
+                    //for (int i = 0; i < reader.FieldCount; i++)
+                    //{
+                    //    Console.WriteLine(reader.GetValue(i));
+                    //}
+                };
+            }
+            Connection.Close();
+            return b;
+
+        }
+
+        public static DateTime[] GetWeek()
+        {
+            DateTime[] days = new DateTime[7];
+            for (int i = -7; i < 0; i++)
+            {
+                days[i + 7] = DateTime.Today.AddDays(i);
+            }
+            return days;
         }
         public static List<byte[]> SelectFavorite(bool fav)
         {
@@ -268,7 +311,7 @@ namespace Database
         }
         public static string OpenConnection()
         {
-            string x = "Server=localhost,1433;Database=Vogeldatenbank;User ID=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
+            string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
             return x;
         }
         public static string QueryAddMethode()
@@ -276,6 +319,6 @@ namespace Database
             string x = "Insert Into Vogelsammlung (Art,Datum,Ort,Bild,Favorit) values (@Art,@Datum,@Ort,@Bild,@Favorit)";
             return x;
         }
-    }
 
+    }
 }
