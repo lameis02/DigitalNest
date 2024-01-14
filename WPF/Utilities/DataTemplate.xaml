@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:WPF.ViewModel"
+                    xmlns:view="clr-namespace:WPF.Views">
+
+    <DataTemplate DataType="{x:Type vm:HomeVM}">
+        <view:Home />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CompleteGalleryVM}">
+        <view:CompleteGallery />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:FavouritesVM}">
+        <view:Favoriten />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:StatisticsVM}">
+        <view:Statistics />
+    </DataTemplate>
+
+</ResourceDictionary>
