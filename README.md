@@ -17,7 +17,7 @@ Dieses Foto wird dann an das Programm weitergeleitet. Der Lautsprecher soll bei 
 - [ ] After cloning our repository, open the SQL SERVER folder
 - [ ] Open a new Terminal in that folder
 
-- [ ] ` docker build -t mymssql . `
+- [ ] ` docker build -t vogelsammlung . `
 
 - [ ] ` docker run -d --name vogelsammlung -p 1433:1433 vogelsammlung `
 
