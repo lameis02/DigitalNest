@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\blueBirdButton.png" />
+    <None Remove="Assets\CloseIconBlack.png" />
+    <None Remove="Assets\CloseIconRed.png" />
+    <None Remove="Assets\img_Bib.png" />
+    <None Remove="Assets\img_Haus.png" />
+    <None Remove="Assets\img_Statistik.png" />
+    <None Remove="Assets\Logo.png" />
+    <None Remove="Assets\max_def.png" />
+    <None Remove="Assets\max_mo.png" />
+    <None Remove="Assets\mogen.png" />
+    <None Remove="Assets\WaldBild.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\blueBirdButton.png" />
+    <Resource Include="Assets\CloseIconBlack.png" />
+    <Resource Include="Assets\CloseIconRed.png" />
+    <Resource Include="Assets\img_Bib.png" />
+    <Resource Include="Assets\img_Haus.png" />
+    <Resource Include="Assets\img_Statistik.png" />
+    <Resource Include="Assets\Logo.png" />
+    <Resource Include="Assets\max_def.png" />
+    <Resource Include="Assets\max_mo.png" />
+    <Resource Include="Assets\mogen.png" />
+    <Resource Include="Assets\WaldBild.jpg" />
+  </ItemGroup>
+
+</Project>

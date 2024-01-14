@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vogelscheuche_Bib", "Vogels
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{8FEC9B12-97F1-48F2-BA93-457BA247EDB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{993607C5-855F-4365-B12B-6B275B8FDBAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_UI", "WPF_UI\WPF_UI.csproj", "{47152BF0-388E-40EF-A7ED-DAD2D81C0768}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{8FEC9B12-97F1-48F2-BA93-457BA247EDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FEC9B12-97F1-48F2-BA93-457BA247EDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FEC9B12-97F1-48F2-BA93-457BA247EDB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{993607C5-855F-4365-B12B-6B275B8FDBAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{993607C5-855F-4365-B12B-6B275B8FDBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{993607C5-855F-4365-B12B-6B275B8FDBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{993607C5-855F-4365-B12B-6B275B8FDBAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47152BF0-388E-40EF-A7ED-DAD2D81C0768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47152BF0-388E-40EF-A7ED-DAD2D81C0768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47152BF0-388E-40EF-A7ED-DAD2D81C0768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47152BF0-388E-40EF-A7ED-DAD2D81C0768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
