@@ -251,33 +251,37 @@ namespace Database
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
-            SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
-            SqlDataReader reader = null;
-            List<List<Bird>> b = new List<List<Bird>>();
+
+            List<List<Bird>> weekBirds = new List<List<Bird>>();
+            DateTime[] week = GetWeek();
+
             for (int i = 0; i < 7; i++)
             {
-                command.Parameters.AddWithValue("@Datum", GetWeek()[i]);
-                reader = command.ExecuteReader();
-
-                while (reader.Read())
+                List<Bird> dayBirds = new List<Bird>();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Vogelsammlung WHERE Datum=@Datum", Connection))
                 {
-                    Bird bird = new Bird
+                    command.Parameters.AddWithValue("@Datum", week[i]);
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        ID = reader.GetInt32(reader.GetOrdinal("Id")),
-                        Species = reader.GetString(reader.GetOrdinal("Art")),
-                        Date = reader.GetDateTime(reader.GetOrdinal("Datum"))
-                    };
-                    b[i].Add(bird);
-                    //for (int i = 0; i < reader.FieldCount; i++)
-                    //{
-                    //    Console.WriteLine(reader.GetValue(i));
-                    //}
-                };
+                        while (reader.Read())
+                        {
+                            Bird bird = new Bird
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Species = reader.GetString(reader.GetOrdinal("Art")),
+                                Date = DateTime.Parse(reader.GetString(reader.GetOrdinal("Datum")))
+                            };
+                            dayBirds.Add(bird);
+                        }
+                    }
+                }
+                weekBirds.Add(dayBirds);
             }
-            Connection.Close();
-            return b;
 
+            Connection.Close();
+            return weekBirds;
         }
+
 
         public static DateTime[] GetWeek()
         {

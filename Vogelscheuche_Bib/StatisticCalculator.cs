@@ -148,7 +148,7 @@ namespace Vogelscheuche_Bib
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
             }
         }
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -190,7 +190,7 @@ namespace Vogelscheuche_Bib
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
             }
         }
 
@@ -211,7 +211,7 @@ namespace Vogelscheuche_Bib
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
             }
            
         }
