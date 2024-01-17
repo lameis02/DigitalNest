@@ -102,7 +102,7 @@ namespace Vogelscheuche_Bib
                 }
             }
 
-            Console.WriteLine("\nWelche Vogelart in der Woche am meisten vorkommt:");
+            Console.WriteLine("\nWelche Vogelart kam in der Woche am meisten vor?:");
             var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault(); //hier wird sortiert in absteigende Reihenfolge und wählt das mit den meisten. (Mit Firstdefault wird das häufigste also das an der ersten Stelle gewählt
             if (mostCommonSpecies.Key != null)
             {
@@ -181,7 +181,7 @@ namespace Vogelscheuche_Bib
                     }
                 }
 
-                Console.WriteLine("\nWelche Vogelart am häufigsten vorkommt (Letzte 7 Tage):");
+                Console.WriteLine("\nWelche Vogelart kam am häufigsten vor? (Letzte 7 Tage):");
                 var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault();
                 if (mostCommonSpecies.Key != null)
                 {
