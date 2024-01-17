@@ -12,7 +12,6 @@ namespace WPF.ViewModel
     class CompleteGalleryVM: Utilities.ViewModelBase
     {
 
-
         private readonly PageModel _pageModel;
         
         public CompleteGalleryVM()
@@ -28,7 +27,7 @@ namespace WPF.ViewModel
         {
             List<byte[]> imageBytesFromDatabase = Database.Program.Select();
 
-            // Observable Collection wird mit allen Bildpfaden gefüllt
+            // Observable Collection wird mit allen Bildern in byte[] gefüllt
             foreach (var imageBytes in imageBytesFromDatabase)
             {
                 BirdGallery.Add(imageBytes);

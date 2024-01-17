@@ -104,5 +104,15 @@ namespace WPF.Views
             e.Handled = true;
             //zeigt an, dass Eregniss bereits vollständig behandelt wurde --> Benutzer kann das Datum nicht mehr manuell verändern
         }
+
+        private void IdentifyMoreButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IdentifyOneButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

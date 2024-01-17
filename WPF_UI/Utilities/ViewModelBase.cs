@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 namespace WPF.Utilities
 {
     //implementiert INotifyPropertyChanged-Interface um Änderungen an Eigenschaften der ViewModel-Klasse zu melden
-    class ViewModelBase: INotifyPropertyChanged
+    public class ViewModelBase: INotifyPropertyChanged
     {
         //Ereignis wird aus INotifyPropertyChanged-Interface implementiert
         public event PropertyChangedEventHandler PropertyChanged;
