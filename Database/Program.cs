@@ -1,9 +1,9 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
 using System.Data;
@@ -251,78 +251,78 @@ namespace Database
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
-
-            List<List<Bird>> weekBirds = new List<List<Bird>>();
-            DateTime[] week = GetWeek();
-
+            SqlCommand command = new SqlCommand("select * from Vogelsammlung where Datum=@Datum", Connection);
+            SqlDataReader reader = null;
+            List<List<Bird>> b = new List<List<Bird>>();
             for (int i = 0; i < 7; i++)
             {
-                List<Bird> dayBirds = new List<Bird>();
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Vogelsammlung WHERE Datum=@Datum", Connection))
+                command.Parameters.AddWithValue("@Datum", GetWeek()[i]);
+                reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    command.Parameters.AddWithValue("@Datum", week[i]);
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    Bird bird = new Bird
                     {
-                        while (reader.Read())
-                        {
-                            Bird bird = new Bird
-                            {
-                                ID = reader.GetInt32(reader.GetOrdinal("Id")),
-                                Species = reader.GetString(reader.GetOrdinal("Art")),
-                                Date = DateTime.Parse(reader.GetString(reader.GetOrdinal("Datum")))
-                            };
-                            dayBirds.Add(bird);
-                        }
-                    }
-                }
-                weekBirds.Add(dayBirds);
-            }
-
-            Connection.Close();
-            return weekBirds;
-        }
-
-
-        public static DateTime[] GetWeek()
-        {
-            DateTime[] days = new DateTime[7];
-            for (int i = -7; i < 0; i++)
-            {
-                days[i + 7] = DateTime.Today.AddDays(i);
-            }
-            return days;
-        }
-        public static List<byte[]> SelectFavorite(bool fav)
-        {
-            SqlConnection Connection = new SqlConnection(OpenConnection());
-            Connection.Open();
-            SqlCommand command = new SqlCommand("select * from Vogelsammlung where Favorit=@Favorit", Connection);
-            SqlDataReader reader = null;
-            command.Parameters.AddWithValue("@Favorit", fav);
-            reader = command.ExecuteReader();
-            List<byte[]> b = new List<byte[]>();
-            while (reader.Read())
-            {
-                byte[] path = (byte[])reader["Bild"];
-                b.Add(path);
-                //for (int i = 0; i < reader.FieldCount; i++)
-                //{
-                //    Console.WriteLine(reader.GetValue(i));
-                //}
+                        ID = reader.GetInt32(reader.GetOrdinal("Id")),
+                        Species = reader.GetString(reader.GetOrdinal("Art")),
+                        Date = reader.GetDateTime(reader.GetOrdinal("Datum"))
+                    };
+                    b[i].Add(bird);
+                    //for (int i = 0; i < reader.FieldCount; i++)
+                    //{
+                    //    Console.WriteLine(reader.GetValue(i));
+                    //}
+                };
             }
             Connection.Close();
             return b;
+
         }
-        public static string OpenConnection()
-        {
-            string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
-            return x;
-        }
-        public static string QueryAddMethode()
-        {
-            string x = "Insert Into Vogelsammlung (Art,Datum,Ort,Bild,Favorit) values (@Art,@Datum,@Ort,@Bild,@Favorit)";
-            return x;
-        }
+
+    
+
+    
+
+            public static DateTime[] GetWeek()
+            {
+                DateTime[] days = new DateTime[7];
+                for (int i = -7; i < 0; i++)
+                {
+                    days[i + 7] = DateTime.Today.AddDays(i);
+                }
+                return days;
+            }
+            public static List<byte[]> SelectFavorite(bool fav)
+            {
+                SqlConnection Connection = new SqlConnection(OpenConnection());
+                Connection.Open();
+                SqlCommand command = new SqlCommand("select * from Vogelsammlung where Favorit=@Favorit", Connection);
+                SqlDataReader reader = null;
+                command.Parameters.AddWithValue("@Favorit", fav);
+                reader = command.ExecuteReader();
+                List<byte[]> b = new List<byte[]>();
+                while (reader.Read())
+                {
+                    byte[] path = (byte[])reader["Bild"];
+                    b.Add(path);
+                    //for (int i = 0; i < reader.FieldCount; i++)
+                    //{
+                    //    Console.WriteLine(reader.GetValue(i));
+                    //}
+                }
+                Connection.Close();
+                return b;
+            }
+            public static string OpenConnection()
+            {
+                string x = "Server=localhost,1433;Database=Vogeldatenbank;User Id=SA;Password=YourStrong!Passw0rd;";
+                return x;
+            }
+            public static string QueryAddMethode()
+            {
+                string x = "Insert Into Vogelsammlung (Art,Datum,Ort,Bild,Favorit) values (@Art,@Datum,@Ort,@Bild,@Favorit)";
+                return x;
+            }
 
     }
 }
