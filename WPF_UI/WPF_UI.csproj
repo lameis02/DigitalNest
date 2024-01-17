@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DB_Administration\DB_Administration.csproj" />
+    <ProjectReference Include="..\Vogelscheuche_Bib\Vogelscheuche_Bib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

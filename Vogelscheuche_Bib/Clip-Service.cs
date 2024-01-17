@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Vogelscheuche_Bib
 {
-    class AI_Service
+    public class AI_Service
     {
         static async Task Main(string[] args)
         {
             var client = new HttpClient();
-            string baseUrl = "http://localhost:5000/BOPS/";
+            string baseUrl = "http://localhost:5000/birds/";
 
             try
             {
@@ -47,7 +47,7 @@ namespace Vogelscheuche_Bib
             }
         }
 
-        static async Task<dynamic> MultiResponse(HttpClient client, string baseUrl, string imagePath)
+        public static async Task<dynamic> MultiResponse(HttpClient client, string baseUrl, string imagePath)
         {
             
             // Identify multiple birds
@@ -71,7 +71,7 @@ namespace Vogelscheuche_Bib
             }
             
         }
-        static async Task<dynamic> SingleResponse(HttpClient client, string baseUrl, string imagePath)
+        public static async Task<dynamic> SingleResponse(HttpClient client, string baseUrl, string imagePath)
         {
 
             // Identify single bird

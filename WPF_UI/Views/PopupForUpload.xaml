@@ -27,20 +27,20 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,0,68,-30" IsReadOnly="True"/>
+                <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,14,68,-4" IsReadOnly="True"/>
                 <DatePicker x:Name="datePicker" 
                             SelectedDate="{x:Static sys:DateTime.Now}" 
                             DisplayDateEnd="{x:Static sys:DateTime.Now}"
                             PreviewKeyDown="datePicker_PreviewKeyDown"
-                            Grid.Row="4" Margin="68,60,68,-64" SelectedDateFormat="Short"></DatePicker>
-                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,189,68,-191" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
-                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,94,68,-124" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
-                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,262,132,-282" Click="UploadButton_Click"/>
+                            Grid.Row="4" Margin="68,47,68,-51" SelectedDateFormat="Short"></DatePicker>
+                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,167,68,-163" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
+                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
+                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,247,132,-267" Click="UploadButton_Click"/>
 
-                <Button x:Name="IdentifyOneButton" Content="einen Vogel erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="286,154,68,-154"/>
-                <Button x:Name="IdentifyMoreButton" Content="mehrere Vögel erkennen" Grid.Row="4" Click="IdentifyMoreButton_Click" Margin="68,154,286,-154"/>
+                <Button x:Name="IdentifyOneButton" Content="einen Vogel erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,286,-122"/>
+                <Button x:Name="IdentifyMoreButton" Content="mehrere Vögel erkennen" Grid.Row="4" Click="IdentifyMoreButton_Click" Margin="286,122,68,-122"/>
 
-                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,229,68,-242" Grid.Row="4" Foreground="White"/>
+                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,216,68,-229" Grid.Row="4" Foreground="White"/>
 
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" Margin="564,-32,-32,32"/>
 
