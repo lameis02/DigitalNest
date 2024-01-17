@@ -62,6 +62,11 @@ namespace Vogelscheuche_Bib
             Console.WriteLine("Statistik der Vögel pro Wochentag:");
             foreach (var entry in birdCountPerDay)
             {
+                if ( entry.Value ==1)
+                {
+                    Console.WriteLine($"{entry.Key}: {entry.Value} Vogel");
+                }
+                else
                 Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
             }
         }
@@ -104,10 +109,14 @@ namespace Vogelscheuche_Bib
 
             Console.WriteLine("\nWelche Vogelart kam in der Woche am meisten vor?:");
             var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault(); //hier wird sortiert in absteigende Reihenfolge und wählt das mit den meisten. (Mit Firstdefault wird das häufigste also das an der ersten Stelle gewählt
-            if (mostCommonSpecies.Key != null)
+            if (mostCommonSpecies.Key != null && mostCommonSpecies.Value == 1)
             {
-                Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+                Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vogel");
             }
+            else 
+
+                Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+            
         }
 
 
@@ -143,6 +152,11 @@ namespace Vogelscheuche_Bib
                 Console.WriteLine("Statistik der Vögel pro Wochentag (Letzte 7 Tage):");
                 foreach (var entry in birdCountPerDay)
                 {
+                    if (entry.Value == 1)
+                    {
+                        Console.WriteLine($"{entry.Key}: {entry.Value} Vogel");
+                    }
+                    else 
                     Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
                 }
             }
@@ -183,10 +197,13 @@ namespace Vogelscheuche_Bib
 
                 Console.WriteLine("\nWelche Vogelart kam am häufigsten vor? (Letzte 7 Tage):");
                 var mostCommonSpecies = speciesCount.OrderByDescending(x => x.Value).FirstOrDefault();
-                if (mostCommonSpecies.Key != null)
+                if (mostCommonSpecies.Key != null && mostCommonSpecies.Value == 1)
                 {
-                    Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+                    Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vogel");
                 }
+                else
+                    Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
+                
             }
             catch (Exception ex)
             {
