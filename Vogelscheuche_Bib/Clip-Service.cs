@@ -16,10 +16,11 @@ namespace Vogelscheuche_Bib
 
             try
             {
-                string imagePath = "C:\\Users\\o364b\\source\\repos\\Bird-Recognition\\Bird-Recognition-AI\\test-data\\housesparrow-1.jpg"; // Replace with the path to your image file
+                string imagePath = "C:\\Users\\FionaBüttner\\source\\repos\\Bird-Recognition\\Bird-Recognition-AI\\test-data\\puffin.jpeg"; // Replace with the path to your image file
 
-                var result = await MultiResponse(client, baseUrl, imagePath); // übernehmen für wpf
-                var result2 = await SingleResponse(client, baseUrl, imagePath); // übernehmen für wpf
+                // string result = await MultiResponse(client, baseUrl, imagePath); // übernehmen für wpf
+                string result2 = await SingleResponse(client, baseUrl, imagePath); // übernehmen für wpf
+                Console.WriteLine(result2);
             }
             catch (Exception e)
             {
@@ -51,7 +52,7 @@ namespace Vogelscheuche_Bib
             
             // Identify multiple birds
             var multiResponse = await PostImageAsync(client, baseUrl + "identify-multi", imagePath);
-            Console.WriteLine("Multi Bird Identification Response: " + multiResponse);
+            // Console.WriteLine("Multi Bird Identification Response: " + multiResponse);
             var birdResponseMulti = JsonConvert.DeserializeObject<dynamic>(multiResponse);
             var detectedBirds = new List<dynamic>();
             if (birdResponseMulti?.detected_birds != null)
@@ -75,7 +76,7 @@ namespace Vogelscheuche_Bib
 
             // Identify single bird
             var singleResponse = await PostImageAsync(client, baseUrl + "identify-single", imagePath);
-            Console.WriteLine("Single Bird Identification Response: " + singleResponse);
+            // Console.WriteLine("Single Bird Identification Response: " + singleResponse);
             var birdResponseSingle = JsonConvert.DeserializeObject<dynamic>(singleResponse);
             if (birdResponseSingle?.detected_bird != null)
             {
