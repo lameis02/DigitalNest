@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Vogelscheuche_Bib
 {
-    class Program
+    class AI_Service
     {
         static async Task Main(string[] args)
         {
