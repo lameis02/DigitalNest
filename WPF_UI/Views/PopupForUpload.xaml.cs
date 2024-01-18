@@ -24,12 +24,12 @@ namespace WPF.Views
         public PopupForUpload(string selectedImagePath)
         {
             InitializeComponent();
-
             //Anzeige des Bildpfades in der oberen Textbox
             selectedImagePathTextBlock.Text = selectedImagePath;
             
         }
-       
+
+        private string lastIdentificationResult;
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
@@ -116,9 +116,32 @@ namespace WPF.Views
 
         private async void IdentifyOneButton_Click(object sender, RoutedEventArgs e)
         {
-            string result = await Vogelscheuche_Bib.AI_Service.SingleResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
-            txtVogelart.Foreground = Brushes.Black;
-            txtVogelart.Text = result;
+            try
+            {
+                // Anzeigen des Ladebalkens
+                loadingProgressBar.Visibility = Visibility.Visible;
+
+                if (!string.IsNullOrEmpty(lastIdentificationResult))
+                {
+                    txtVogelart.Foreground = Brushes.Black;
+                    txtVogelart.Text = lastIdentificationResult;
+                }
+                else
+                {
+
+                    string result = await Vogelscheuche_Bib.AI_Service.SingleResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
+                    txtVogelart.Foreground = Brushes.Black;
+                    txtVogelart.Text = result;
+
+                    // Zwischenspeichern des Ergebnisses für mehreres Klicken auf Button
+                    lastIdentificationResult = result;
+                }
+            }
+            finally
+            {
+                // Verstecken des Ladebalkens
+                loadingProgressBar.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
