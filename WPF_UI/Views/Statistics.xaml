@@ -9,6 +9,7 @@
              d:DesignWidth="900"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              Style="{StaticResource Page_Style}">
 
     <UserControl.DataContext>
@@ -28,6 +29,25 @@
                    FontSize="60"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"/>
+
+        <lvc:PieChart LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" Margin="244,118,244,80" Loaded="PieChart_Loaded" Background="#786442">
+            <lvc:PieChart.Series>
+                <lvc:PieSeries Title="Montag " Values="3" DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Dienstag" Values="4" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Mittwoch" Values="6" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Donnerstag" Values="2" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Freitag" Values="2" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Samstag" Values="2" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Sonntag" Values="2" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+            </lvc:PieChart.Series>
+        </lvc:PieChart>
 
     </Grid>
 </UserControl>
