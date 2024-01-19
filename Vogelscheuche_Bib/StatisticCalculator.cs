@@ -19,7 +19,7 @@ namespace Vogelscheuche_Bib
                          Die erste Methode: Vögel pro Wochentag sollen ausgegeben werden
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static Dictionary<string,int>  PrintBirdStatisticsAllTime()
+        public static Dictionary<string,int>  PrintBirdStatisticsAllTime() //Laura aus dieser Methode kriegst du ein Dictionary welches dir die Vögel pro Wochentag ausgibt
         {
             //im string wird der Wochentag und im int die Anzahlder Vögel gespeichert
             Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
@@ -130,7 +130,7 @@ namespace Vogelscheuche_Bib
                          Die dritte Methode: Wieviele Vögel kamen an welchem Wochentag wie oft vor? Nur aktuelle Woche
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static Dictionary<string,int>PrintBirdStatisticsLast7Days()
+        public static Dictionary<string,int>PrintBirdStatisticsLast7Days() //Laura aus dieser Methode kriegst du ein Dictionary welches dir die Vögel pro Wochentag ausgibt (letzten7Tage)
         {
             Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
 
@@ -175,7 +175,7 @@ namespace Vogelscheuche_Bib
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                          Die vierte Methode:  Welche Vogelart kam in der Woche am meisten vor? Nur aktuelle Woche
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        public static (Dictionary<string, int> speciesCount, (string species, int count) mostCommonSpecies) PrintMostCommonSpeciesLast7Days()
+        public static Dictionary<string, int> PrintMostCommonSpeciesLast7Days() //Laura aus dieser Methode kriegst du ein Dictionary welches dir die Vogelart und Häufigkeit ausgibt
         {
             Dictionary<string, int> speciesCount = new Dictionary<string, int>();
 
@@ -210,14 +210,14 @@ namespace Vogelscheuche_Bib
                 }
                 else
                     Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
-                return (speciesCount, (mostCommonSpecies.Key, mostCommonSpecies.Value));
+                return speciesCount;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
-                return (new Dictionary<string, int>(), (null, 0));
             }
-            
+            return speciesCount;
+
         }
 
 
