@@ -19,7 +19,7 @@ namespace Vogelscheuche_Bib
                          Die erste Methode: Vögel pro Wochentag sollen ausgegeben werden
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static void PrintBirdStatisticsAllTime()
+        public static Dictionary<string,int>  PrintBirdStatisticsAllTime()
         {
             //im string wird der Wochentag und im int die Anzahlder Vögel gespeichert
             Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
@@ -54,6 +54,8 @@ namespace Vogelscheuche_Bib
                             // Handle the case where the string could not be parsed as a DateTime
                             Console.WriteLine("Invalid date format for record.");
                         }
+                        
+                        
                     }
                 }
             }
@@ -69,13 +71,14 @@ namespace Vogelscheuche_Bib
                 else
                 Console.WriteLine($"{entry.Key}: {entry.Value} Vögel");
             }
+            return birdCountPerDay;
         }
 
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                         Die zweite Methode: Welche Vogelart kam in der Woche am meisten vor?
+                         Die zweite Methode: Welche Vogelart kam am meisten vor?
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static void PrintMostCommonSpeciesAllTime()
+        public static string PrintMostCommonSpeciesAllTime()
         {
             // speciesCount werden die Anzahl der vorkommenden Vogelarten gespeichert
             Dictionary<string, int> speciesCount = new Dictionary<string, int>();
@@ -116,15 +119,18 @@ namespace Vogelscheuche_Bib
             else 
 
                 Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
-            
+                string rückgabe = $"{mostCommonSpecies.Value}";
+
+            return rückgabe;
         }
+        
 
 
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                         Die dritte Methode: Welche Vögel kamen an welchem Wochentag wie oft vor? Nur aktuelle Woche
+                         Die dritte Methode: Wieviele Vögel kamen an welchem Wochentag wie oft vor? Nur aktuelle Woche
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static void PrintBirdStatisticsLast7Days()
+        public static Dictionary<string,int>PrintBirdStatisticsLast7Days()
         {
             Dictionary<string, int> birdCountPerDay = new Dictionary<string, int>();
 
@@ -164,11 +170,12 @@ namespace Vogelscheuche_Bib
             {
                 Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
             }
+            return birdCountPerDay;
         }
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                          Die vierte Methode:  Welche Vogelart kam in der Woche am meisten vor? Nur aktuelle Woche
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        public static void PrintMostCommonSpeciesLast7Days()
+        public static (Dictionary<string, int> speciesCount, (string species, int count) mostCommonSpecies) PrintMostCommonSpeciesLast7Days()
         {
             Dictionary<string, int> speciesCount = new Dictionary<string, int>();
 
@@ -203,12 +210,14 @@ namespace Vogelscheuche_Bib
                 }
                 else
                     Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
-                
+                return (speciesCount, (mostCommonSpecies.Key, mostCommonSpecies.Value));
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
+                return (new Dictionary<string, int>(), (null, 0));
             }
+            
         }
 
 
@@ -229,8 +238,10 @@ namespace Vogelscheuche_Bib
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message + " " + ex.Source);
+
             }
-           
+            
+
         }
     }
 }
