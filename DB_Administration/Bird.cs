@@ -3,18 +3,19 @@ namespace Database
 {
     public class Bird
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string Species { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
         public string ImagePath { get; set; }
+        public byte[] birdbytes { get; set; }
         public bool IsFavorite { get; set; }
 
-        public static DateTime GetTodayDate()
+        public Bird()
         {
-            DateTime dateTime = DateTime.Today;
-            return dateTime;
+            this.ID = Guid.NewGuid().ToString();
         }
+       
     }
 
 }
