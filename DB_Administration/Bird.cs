@@ -11,7 +11,6 @@ namespace Database
         public byte[] birdbytes { get; set; }
         public bool IsFavorite { get; set; }
 
-        
        
     }
 

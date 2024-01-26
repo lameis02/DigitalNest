@@ -73,14 +73,14 @@ namespace Database
                 IsFavorite = false
             };
 
-            
-            Console.WriteLine(sparrow3.ID);
-            Add(sparrow3);
-            Add(sparrow2);
-            foreach (Bird v in Select())
+            DeleteAll();
+            Add(sparrow3 );
+            foreach(Bird v in Select())
             {
-                Console.WriteLine(v.ID +""+ v.birdbytes);
+                Console.WriteLine(v.birdbytes+"  "+ v.ID );
             }
+
+           
             
 
 
@@ -146,7 +146,7 @@ namespace Database
                 Bird newbird = new Bird()
                 {
                     ID = UID,
-                    birdbytes = path
+                    birdbytes = path,
                 };
                 b.Add(newbird);
             }
