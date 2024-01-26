@@ -98,7 +98,7 @@ namespace Database
             command.Parameters.AddWithValue("@Art", bird.Species);
             command.Parameters.AddWithValue("@Datum", bird.Date);
             command.Parameters.AddWithValue("@Ort", bird.Location);
-            byte[] bytes = File.ReadAllBytes(@"C:\Users\morit\OneDrive\Bilder\Screenshots\Screenshot 2024-01-09 143130.png");
+            byte[] bytes = File.ReadAllBytes(bird.ImagePath);
             command.Parameters.AddWithValue("@Bild", bytes);
             command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
             command.ExecuteNonQuery();
