@@ -8,13 +8,10 @@ namespace Database
         public DateTime Date { get; set; }
         public string Location { get; set; }
         public string ImagePath { get; set; }
+        public byte[] birdbytes { get; set; }
         public bool IsFavorite { get; set; }
 
-        public static DateTime GetTodayDate()
-        {
-            DateTime dateTime = DateTime.Today;
-            return dateTime;
-        }
+       
     }
 
 }

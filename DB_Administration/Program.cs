@@ -9,6 +9,7 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
+using System.Xml;
 
 namespace Database
 {
@@ -20,7 +21,7 @@ namespace Database
         {
 
 
-            Bird sparrow1 = new Bird //keine 10 Charaktere überschreiten. Laut Moritz
+            Bird sparrow1 = new Bird()
             {
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-01-01"),
@@ -28,7 +29,7 @@ namespace Database
                 ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
-            Bird eagle1 = new Bird
+            Bird eagle1 = new Bird()
             {
                 Species = "Greifvogel",
                 Date = DateTime.Parse("2023-02-01"),
@@ -37,7 +38,7 @@ namespace Database
                 IsFavorite = true
             };
 
-            Bird owl1 = new Bird
+            Bird owl1 = new Bird()
             {
                 Species = "Eulenart",
                 Date = DateTime.Parse("2023-03-01"),
@@ -45,8 +46,8 @@ namespace Database
                 ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
                 IsFavorite = false
             };
-            Bird sparrow2 = new Bird
-            {
+            Bird sparrow2 = new Bird()
+            { 
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-04-01"),
                 Location = "Garten",
@@ -54,7 +55,7 @@ namespace Database
                 IsFavorite = true
             };
 
-            Bird pigeon1 = new Bird
+            Bird pigeon1 = new Bird()
             {
                 Species = "Taube",
                 Date = DateTime.Parse("2023-06-01"),
@@ -63,7 +64,7 @@ namespace Database
                 IsFavorite = false
             };
 
-            Bird sparrow3 = new Bird
+            Bird sparrow3 = new Bird()
             {
                 Species = "Sperling",
                 Date = DateTime.Parse("2023-06-01"),
@@ -73,64 +74,39 @@ namespace Database
             };
 
             DeleteAll();
-            Add(sparrow2);
-            // Select();
-            // Console.ReadLine();
-            // DeleteAll();
-            Add(sparrow1);
-            Add(pigeon1);
-            Add(sparrow2);
-            Add(owl1);
+            Add(sparrow3 );
+            foreach(Bird v in Select())
+            {
+                Console.WriteLine(v.birdbytes+"  "+ v.ID );
+            }
+
+           
+            
 
 
         }
 
-        public static void Add(Bird bird, int i = -1) // If a row was deleted the next 'insert' is being inserted into the previous deleted row with the remembered Id
+        public static void Add(Bird bird)
+
         {
+            SqlConnection Connection = new SqlConnection(OpenConnection());
+            Connection.Open();
 
-            if (i >= 0)
-            {
-                SqlConnection Connection = new SqlConnection(OpenConnection());
-                Connection.Open();
+            string query = QueryAddMethode();
+            SqlCommand command = new SqlCommand(query, Connection);
+            //command.Parameters.AddWithValue("@Id", bird.ID);
+            command.Parameters.AddWithValue("@Art", bird.Species);
+            command.Parameters.AddWithValue("@Datum", bird.Date);
+            command.Parameters.AddWithValue("@Ort", bird.Location);
+            byte[] bytes = File.ReadAllBytes(bird.ImagePath);
+            command.Parameters.AddWithValue("@Bild", bytes);
+            command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
+            command.ExecuteNonQuery();
 
-                string setIdentityInsertOn = "SET IDENTITY_INSERT Vogelsammlung ON";
-                SqlCommand commandOn = new SqlCommand(setIdentityInsertOn, Connection);
-                commandOn.ExecuteNonQuery();
+            Connection.Close();
 
-                string query = QueryAddMethode();
-                SqlCommand command = new SqlCommand(query, Connection);
-                command.Parameters.AddWithValue("@Id", i);
-                command.Parameters.AddWithValue("@Art", bird.Species);
-                command.Parameters.AddWithValue("@Datum", bird.Date);
-                command.Parameters.AddWithValue("@Ort", bird.Location);
-                byte[] bytes = File.ReadAllBytes(bird.ImagePath);
-                command.Parameters.AddWithValue("@Bild", bytes);
-                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
-                command.ExecuteNonQuery();
-
-                string setIdentityInsertOff = "SET IDENTITY_INSERT Vogelsammlung OFF";
-                SqlCommand commandOff = new SqlCommand(setIdentityInsertOff, Connection);
-                commandOff.ExecuteNonQuery();
-
-                Connection.Close();
-            }
-            else
-            {
-                SqlConnection Connection = new SqlConnection(OpenConnection());
-                Connection.Open();
-                string query = QueryAddMethode();
-                SqlCommand command = new SqlCommand(query, Connection);
-                //command.Parameters.AddWithValue("@Id","");
-                command.Parameters.AddWithValue("@Art", bird.Species);
-                command.Parameters.AddWithValue("@Datum", bird.Date);
-                command.Parameters.AddWithValue("@Ort", bird.Location);
-                byte[] bytes = File.ReadAllBytes(bird.ImagePath);
-                command.Parameters.AddWithValue("@Bild", bytes);
-                command.Parameters.AddWithValue("@Favorit", bird.IsFavorite);
-                command.ExecuteNonQuery();
-                Connection.Close();
-            }
         }
+        
 
         public static void Delete(int i)
         {
@@ -138,7 +114,7 @@ namespace Database
             Connection.Open();
             string query = "Delete Vogelsammlung where Id=@Id";
             SqlCommand command = new SqlCommand(query, Connection);
-            command.Parameters.AddWithValue("@Id", i);
+            command.Parameters.AddWithValue("@Id",i);
             command.ExecuteNonQuery();
             Connection.Close();
         }
@@ -154,43 +130,31 @@ namespace Database
             reset.ExecuteNonQuery();
             Connection.Close();
         }
-        public static List<byte[]> Select()
+
+        public static List<Bird> Select()
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
             SqlCommand command = new SqlCommand("select * from Vogelsammlung", Connection);
             SqlDataReader reader = null;
             reader = command.ExecuteReader();
-            List<byte[]> b = new List<byte[]>();
+            List<Bird> b = new List<Bird>();
             while (reader.Read())
             {
-
+                int UID = reader.GetInt32(reader.GetOrdinal("Id"));
                 byte[] path = (byte[])reader["Bild"];
-                b.Add(path);
-                //for (int i = 0; i < reader.FieldCount; i++)
-                //    {
-                //        Console.WriteLine(reader.GetValue(i));
-                //    }
+                Bird newbird = new Bird()
+                {
+                    ID = UID,
+                    birdbytes = path,
+                };
+                b.Add(newbird);
             }
             Connection.Close();
             return b;
         }
 
-        //public static void ShowPicture()
-        //{
-        //    SqlConnection Connection = new SqlConnection(OpenConnection());
-        //    Connection.Open();
-        //    SqlDataAdapter dAdapter = new SqlDataAdapter(new SqlCommand("SELECT Photo FROM Image", Connection));
-        //    DataSet dSet = new DataSet();
-        //    dAdapter.Fill(dSet);
-        //    if (dSet.Tables.Count > 0)
-        //    { }
-        //    Byte[] data = new Byte[0];
-        //    data = (Byte[])(dSet.Tables[0].Rows[0]["pic"]);
-        //    MemoryStream mem = new MemoryStream(data);
-        //    //yourPictureBox.Image = Image.FromStream(mem);  // yourpicture box ist in forms dann ein feld
-        //    Connection.Close();
-        //}
+       
         public static void Override(Bird bird)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
@@ -205,7 +169,7 @@ namespace Database
             command.ExecuteNonQuery();
             Connection.Close();
         }
-        public static List<byte[]> SelectPlace(string place)
+        public static List<Bird> SelectPlace(string place)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -213,20 +177,22 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Ort", place);
             reader = command.ExecuteReader();
-            List<byte[]> b = new List<byte[]>();
+            List<Bird> b = new List<Bird>();
             while (reader.Read())
             {
+                int UID = reader.GetInt32(reader.GetOrdinal("Id"));
                 byte[] path = (byte[])reader["Bild"];
-                b.Add(path);
-                //for (int i = 0; i < reader.FieldCount; i++)
-                //{
-                //    Console.WriteLine(reader.GetValue(i));
-                //}
+                Bird newbird = new Bird()
+                {
+                    ID = UID,
+                    birdbytes = path,
+                };
+                b.Add(newbird);
             }
             Connection.Close();
             return b;
         }
-        public static List<byte[]> SelectDate(string date)
+        public static List<Bird> SelectDate(string date)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -234,15 +200,17 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Datum", date);
             reader = command.ExecuteReader();
-            List<byte[]> b = new List<byte[]>();
+            List<Bird> b = new List<Bird>();
             while (reader.Read())
             {
+                int UID = reader.GetInt32(reader.GetOrdinal("Id"));
                 byte[] path = (byte[])reader["Bild"];
-                b.Add(path);
-                //for (int i = 0; i < reader.FieldCount; i++)
-                //{
-                //    Console.WriteLine(reader.GetValue(i));
-                //}
+                Bird newBird = new Bird()
+                {
+                    ID = UID,
+                    birdbytes = path
+                };
+                b.Add(newBird);
             }
             Connection.Close();
             return b;
@@ -292,7 +260,7 @@ namespace Database
             }
             return days;
         }
-        public static List<byte[]> SelectFavorite(bool fav)
+        public static List<Bird> SelectFavorite(bool fav)
         {
             SqlConnection Connection = new SqlConnection(OpenConnection());
             Connection.Open();
@@ -300,15 +268,17 @@ namespace Database
             SqlDataReader reader = null;
             command.Parameters.AddWithValue("@Favorit", fav);
             reader = command.ExecuteReader();
-            List<byte[]> b = new List<byte[]>();
+            List<Bird> b = new List<Bird>();
             while (reader.Read())
             {
+                int UID = reader.GetInt32(reader.GetOrdinal("Id"));
                 byte[] path = (byte[])reader["Bild"];
-                b.Add(path);
-                //for (int i = 0; i < reader.FieldCount; i++)
-                //{
-                //    Console.WriteLine(reader.GetValue(i));
-                //}
+                Bird newbird = new Bird()
+                {
+                    ID = UID,
+                    birdbytes = path
+                };
+                b.Add(newbird);
             }
             Connection.Close();
             return b;
