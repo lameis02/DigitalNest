@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPF.Views.Statistics"
+﻿<UserControl x:Class="WPF.Views.WeeklyStatistics"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,7 +13,7 @@
              Style="{StaticResource Page_Style}">
 
     <UserControl.DataContext>
-        <vm:StatisticsVM/>
+        <vm:WeeklyStatisticsVM/>
     </UserControl.DataContext>
 
     <Grid>
@@ -24,7 +24,13 @@
             </Border.Background>
         </Border>
 
-        <lvc:PieChart LegendLocation="Bottom" Series="{Binding BirdPieSeries}" Margin="0,102,450,102"/>
+        <TextBlock Text="Wochenübersicht"
+                   Foreground="#DBDBDB"
+                   FontSize="60"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
+
+        <lvc:PieChart LegendLocation="Bottom" Series="{Binding BirdPieSeriesWeekly}" Margin="0,133,450,71" />
 
     </Grid>
 </UserControl>

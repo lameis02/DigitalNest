@@ -1,7 +1,8 @@
-﻿using System;
+﻿using LiveCharts.Wpf;
+using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Wpf;
 using WPF.ViewModel;
 
 namespace WPF.Views
@@ -22,13 +21,12 @@ namespace WPF.Views
     /// <summary>
     /// Interaktionslogik für Statistics.xaml
     /// </summary>
-    public partial class Statistics : UserControl
+    public partial class WeeklyStatistics : UserControl
     {
-        public Statistics()
+        public WeeklyStatistics()
         {
             InitializeComponent();
-            DataContext = new StatisticsVM();
+            DataContext = new WeeklyStatisticsVM();
         }
-
     }
 }

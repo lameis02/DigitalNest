@@ -14,7 +14,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
-    
+
     <Window.DataContext>
         <vm:NavigationVM/>
     </Window.DataContext>
@@ -34,7 +34,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="228"/>
+                <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="900"/>
             </Grid.ColumnDefinitions>
 
@@ -44,7 +44,7 @@
 
 
                 <Border Background="#786442"
-                    CornerRadius="20,0,0,20"/>
+                    CornerRadius="20,0,0,20" Margin="0,0,-23,0"/>
 
                 <StackPanel
                         Width="228" Margin="0,0,0,100">
@@ -65,31 +65,7 @@
                            VerticalAlignment="Top" Height="32" Margin="-4,-3,-21,0"/>
                         </MenuItem.Icon>
                     </MenuItem>
-
-                    <MenuItem Header="Favoriten" 
-                          Click="MenuItem_Click" 
-                          Template="{StaticResource Menu_Template}"
-                          Command="{Binding FavoritesCommand}">
-                        <MenuItem.Icon>
-                            <Image Source="Assets/mogen.png"
-                        Stretch="Uniform"
-                        VerticalAlignment="Top"
-                        Height="32" Margin="-7,-1,-24,0"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-
-                    <MenuItem Header="Statistiken" 
-                          Click="MenuItem_Click" 
-                          Template="{StaticResource Menu_Template}"
-                          Command="{Binding StatisticsCommand}">
-                        <MenuItem.Icon>
-                            <Image Source="Assets/img_Statistik.png"
-                               Stretch="Uniform"
-                               VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-
-                    <MenuItem Header="Gallerie" 
+                    <MenuItem Header="Galerie" 
                           Template="{StaticResource Menu_Template}"
                           Click="MenuItem_Click" 
                           Command="{Binding CompleteGalleryCommand}">
@@ -97,6 +73,39 @@
                             <Image Source="Assets/img_Bib.png"
                                Stretch="Uniform"
                                VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="Favoriten" 
+                              Click="MenuItem_Click" 
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding FavoritesCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/mogen.png"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Top"
+                                   Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="Gesamtübersicht" 
+                              Click="MenuItem_Click" 
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding StatisticsCommand}" Width="229">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/img_Statistik.png"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Wochenübersicht" 
+                              Click="MenuItem_Click" 
+                              Template="{StaticResource Menu_Template}"
+                              Command="{Binding WeeklyStatisticsCommand}" Width="225">
+                        <MenuItem.Icon>
+                            <Image Source="Assets/img_Statistik.png"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
                         </MenuItem.Icon>
                     </MenuItem>
 
@@ -112,7 +121,7 @@
 
         </Grid>
 
-        <!--Fenster erweitern hinzufügen, wen Zeit ist-->
+        <!--Fenster erweitern hinzufügen, wenn  Zeit ist-->
 
         <!--Close Button-->
         <Button x:Name="CloseBtn"

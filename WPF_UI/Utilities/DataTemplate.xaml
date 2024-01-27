@@ -19,4 +19,8 @@
         <view:Statistics />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:WeeklyStatisticsVM}">
+        <view:WeeklyStatistics/>
+    </DataTemplate>
+
 </ResourceDictionary>
