@@ -78,7 +78,7 @@ namespace Vogelscheuche_Bib
                          Die zweite Methode: Welche Vogelart kam am meisten vor?
         >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-        public static string PrintMostCommonSpeciesAllTime()
+        public static Dictionary<string, int> PrintMostCommonSpeciesAllTime()
         {
             // speciesCount werden die Anzahl der vorkommenden Vogelarten gespeichert
             Dictionary<string, int> speciesCount = new Dictionary<string, int>();
@@ -121,7 +121,7 @@ namespace Vogelscheuche_Bib
                 Console.WriteLine($"{mostCommonSpecies.Key}: {mostCommonSpecies.Value} Vögel");
                 string rückgabe = $"{mostCommonSpecies.Value}";
 
-            return rückgabe;
+            return speciesCount;
         }
         
 

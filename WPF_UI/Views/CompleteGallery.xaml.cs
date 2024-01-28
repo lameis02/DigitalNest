@@ -1,24 +1,13 @@
 ﻿using Database;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF.ViewModel;
+using WPF.Views;
 
 namespace WPF.Views
 {
-    
     public partial class CompleteGallery : UserControl
     {
         public event EventHandler GoToHomeRequested;
@@ -69,6 +58,22 @@ namespace WPF.Views
             {
                 button.BorderThickness = new Thickness(1);
                 button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
+            }
+        }
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            // Holen Sie das ausgewählte Bird-Objekt aus dem DataContext des Bildes
+            var selectedBird = ((Image)sender).DataContext as Bird;
+
+            // Überprüfen Sie, ob ein Vogel ausgewählt wurde
+            if (selectedBird != null)
+            {
+                // Erstellen Sie das PopUp-Fenster
+                var popUpWindow = new PopupForSingleImage(selectedBird);
+
+                // Öffnen Sie das Fenster
+                popUpWindow.ShowDialog();
             }
         }
     }

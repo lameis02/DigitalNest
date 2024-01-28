@@ -21,15 +21,14 @@
     </UserControl.Resources>
 
     <Grid>
+
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
 
             <StackPanel Margin="20,20,20,13">
-
                 <TextBlock Text="Galerie" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10"/>
-
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
                     <ItemsControl ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -39,16 +38,15 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
-                        <!-- Hier wird das Aussehen der einzelnen Listenelemente festgelegt -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
-                                    <Image Source="{Binding Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"/>
+                                    <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"
+                                           MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
 
-                        <!-- Hier wird das Aussehen der gesamten Liste festgelegt -->
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="{x:Type ContentPresenter}">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -69,7 +67,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <!--<Button Content="Alle Bilder löschen" Click="DeleteAllImages_Click" Height="34" Width="845" FontSize="19" Background="#786442" Foreground="White"-->
                 </StackPanel>
 
                 <Popup Name="deleteConfirmationPopup" IsOpen="False" StaysOpen="False" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -81,12 +78,8 @@
                         </StackPanel>
                     </Border>
                 </Popup>
-
             </StackPanel>
+
         </Border>
     </Grid>
-
-
-
-
 </UserControl>

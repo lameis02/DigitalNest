@@ -1,0 +1,32 @@
+﻿<Window x:Class="WPF.Views.PopupForSingleImage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WPF.Views"
+        xmlns:converters="clr-namespace:WPF.Converter"
+        mc:Ignorable="d"
+        Title="PopupForSingleImage" Height="400" Width="622"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True">
+
+    <Window.Resources>
+        <converters:BytesToImageSourceConverter x:Key="BytesToImageSourceConverter"/>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="#786442">
+            <StackPanel>
+                <!-- Hier können Sie die gewünschten UI-Elemente hinzufügen, um das Bild anzuzeigen -->
+                <Image Source="{Binding SelectedBirdBytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="600" MaxHeight="300" Margin="10" Height="278"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Button 1" Width="100" Height="30" Margin="5"/>
+                    <Button Content="Button 2" Width="100" Height="30" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

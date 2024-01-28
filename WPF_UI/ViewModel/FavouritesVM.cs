@@ -16,20 +16,20 @@ namespace WPF.ViewModel
         public FavouritesVM()
         {
             _pageModel = new PageModel();
-            LoadFavsFromDatabase();
+            //LoadFavsFromDatabase();
         }
 
         public ObservableCollection<byte[]> FavGallery { get; set; } = new ObservableCollection<byte[]>();
 
         public void LoadFavsFromDatabase()
         {
-            List<byte[]> imageBytesFromDatabase = Database.Program.SelectFavorite(true);
+            /*List<byte[]> imageBytesFromDatabase = Database.Program.SelectFavorite(true);
 
             // Observable Collection wird mit allen Bildern in byte[] gefüllt
             foreach (var imageBytes in imageBytesFromDatabase)
             {
                 FavGallery.Add(imageBytes);
-            }
+            }*/
 
         }
     }
