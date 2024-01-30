@@ -1,4 +1,5 @@
 ﻿using Database;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -63,16 +64,18 @@ namespace WPF.Views
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            // Holen Sie das ausgewählte Bird-Objekt aus dem DataContext des Bildes
+            // ausgewählte Bird-Objekt aus dem DataContext des Bildes holen
             var selectedBird = ((Image)sender).DataContext as Bird;
 
             // Überprüfen Sie, ob ein Vogel ausgewählt wurde
             if (selectedBird != null)
             {
-                // Erstellen Sie das PopUp-Fenster
+                Debug.WriteLine($"Selected bird: {selectedBird}");
+
+                // Erstellung des Popup-Fensters
                 var popUpWindow = new PopupForSingleImage(selectedBird);
 
-                // Öffnen Sie das Fenster
+                // Öffnen des Fensters
                 popUpWindow.ShowDialog();
             }
         }

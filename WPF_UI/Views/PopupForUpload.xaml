@@ -45,8 +45,7 @@
                 <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
                 <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click"/>
 
-                <Button x:Name="IdentifyOneButton" Content="einen Vogel erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,286,-122"/>
-                <Button x:Name="IdentifyMoreButton" Content="mehrere Vögel erkennen" Grid.Row="4" Click="IdentifyMoreButton_Click" Margin="286,122,68,-122"/>
+                <Button x:Name="IdentifyOneButton" Content="Vogelart erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,68,-122"/>
 
                 <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,238,68,-221" Grid.Row="4" Foreground="White"/>
 

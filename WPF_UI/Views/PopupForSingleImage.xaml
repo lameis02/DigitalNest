@@ -19,12 +19,15 @@
     <Grid>
         <Border Background="#786442">
             <StackPanel>
-                <!-- Hier können Sie die gewünschten UI-Elemente hinzufügen, um das Bild anzuzeigen -->
-                <Image Source="{Binding SelectedBirdBytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="600" MaxHeight="300" Margin="10" Height="278"/>
+
+                <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" HorizontalAlignment="Right"/>
+
+                <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="600" MaxHeight="300" Margin="10" Height="278"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Content="Button 1" Width="100" Height="30" Margin="5"/>
-                    <Button Content="Button 2" Width="100" Height="30" Margin="5"/>
+                    <Button Content="Bearbeiten" Width="100" Height="30" Margin="5"/>
+                    <Button Content="Löschen" Width="100" Height="30" Margin="5"/>
                 </StackPanel>
+
             </StackPanel>
         </Border>
 

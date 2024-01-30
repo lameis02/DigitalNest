@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,8 @@ namespace WPF.ViewModel
                     OnPropertyChanged(nameof(SelectedBird));
                     OnPropertyChanged(nameof(SelectedBirdBytes));
                 }
+
+                Debug.WriteLine($"SelectedBird changed to: {_selectedBird}");
             }
         }
 

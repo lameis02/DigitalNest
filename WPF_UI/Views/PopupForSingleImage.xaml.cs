@@ -28,8 +28,14 @@ namespace WPF.Views
             InitializeComponent();
             _selectedBird = selectedBird;
 
-            // Setzen Sie die DataContext auf sich selbst, um direkt auf das _selectedBird zuzugreifen
-            DataContext = this;
+            Debug.WriteLine($"DataContext set to: {_selectedBird}");
+
+            DataContext = _selectedBird;
+        }
+
+        private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }
