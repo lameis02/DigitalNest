@@ -21,15 +21,16 @@
     </UserControl.Resources>
 
     <Grid>
+
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
 
-            <StackPanel Margin="20">
-                
+            <StackPanel Margin="20,20,20,13">
+                <TextBlock Text="Galerie" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10"/>
 
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="859">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
                     <ItemsControl ItemsSource="{Binding BirdGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -37,16 +38,15 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
-                        <!-- Hier wird das Aussehen der einzelnen Listenelemente festgelegt -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
-                                    <Image Source="{Binding Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"/>
+                                    <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"
+                                           MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
 
-                        <!-- Hier wird das Aussehen der gesamten Liste festgelegt -->
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="{x:Type ContentPresenter}">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -55,11 +55,31 @@
                         </ItemsControl.ItemContainerStyle>
                     </ItemsControl>
                 </ScrollViewer>
+
+                <StackPanel Margin="10" Width="765">
+                    <Button MouseLeave="Button_MouseLeave" MouseEnter="Button_MouseEnter" BorderBrush="Black" BorderThickness="1" 
+                            Click="DeleteAllImages_Click" Height="34" Width="761" FontSize="19" Background="#786442" Foreground="White">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="Alle Bilder löschen"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <Popup Name="deleteConfirmationPopup" IsOpen="False" StaysOpen="False" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="5" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Sind Sie sicher, dass Sie alle Bilder unwiederruflich löschen möchten?" FontSize="16"/>
+                            <Button Content="Ja" Click="DeleteAllConfirmed_Click"/>
+                            <Button Content="Nein" Click="DeleteAllCancelled_Click"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
             </StackPanel>
+
         </Border>
     </Grid>
-
-
-
-
 </UserControl>

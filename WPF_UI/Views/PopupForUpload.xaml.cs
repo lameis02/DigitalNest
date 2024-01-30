@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,12 +24,12 @@ namespace WPF.Views
         public PopupForUpload(string selectedImagePath)
         {
             InitializeComponent();
-
             //Anzeige des Bildpfades in der oberen Textbox
             selectedImagePathTextBlock.Text = selectedImagePath;
             
         }
-       
+
+        private string lastIdentificationResult;
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
@@ -103,6 +104,44 @@ namespace WPF.Views
         {
             e.Handled = true;
             //zeigt an, dass Eregniss bereits vollständig behandelt wurde --> Benutzer kann das Datum nicht mehr manuell verändern
+        }
+
+        private async void IdentifyMoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            /*string result = await Vogelscheuche_Bib.AI_Service.MultiResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
+            txtVogelart.Foreground = Brushes.Black;
+            txtVogelart.Text = result;
+            //merhfaches Speichern, wenn verschiedene Vogelarten auf dem Bild sind*/
+        }
+
+        private async void IdentifyOneButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Anzeigen des Ladebalkens
+                loadingProgressBar.Visibility = Visibility.Visible;
+
+                if (!string.IsNullOrEmpty(lastIdentificationResult))
+                {
+                    txtVogelart.Foreground = Brushes.Black;
+                    txtVogelart.Text = lastIdentificationResult;
+                }
+                else
+                {
+
+                    string result = await Vogelscheuche_Bib.AI_Service.SingleResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
+                    txtVogelart.Foreground = Brushes.Black;
+                    txtVogelart.Text = result;
+
+                    // Zwischenspeichern des Ergebnisses für mehreres Klicken auf Button
+                    lastIdentificationResult = result;
+                }
+            }
+            finally
+            {
+                // Verstecken des Ladebalkens
+                loadingProgressBar.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -23,7 +23,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DB_Administration\DB_Administration.csproj" />
+    <ProjectReference Include="..\Vogelscheuche_Bib\Vogelscheuche_Bib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

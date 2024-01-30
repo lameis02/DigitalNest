@@ -17,7 +17,7 @@
                 BorderBrush="#CD853F"
                 BorderThickness="0"
                 Height="50"
-                Width="250">
+                Width="265">
 
             <Grid>
 
@@ -143,7 +143,7 @@
                 BorderBrush="#CD853F"
                 BorderThickness="0"
                 Height="50"
-                Width="230"
+                Width="265"
                 >
 
             <Grid>
@@ -224,7 +224,7 @@
                 BorderBrush="#786442"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Height="50"
-                Width="230"
+                Width="265"
                >
 
             <Grid>

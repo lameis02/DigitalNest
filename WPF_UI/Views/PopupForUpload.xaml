@@ -17,7 +17,6 @@
         <!--Input Section-->
         <Border Padding="20" Background="#786442">
 
-
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -27,21 +26,32 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,48,68,-78" IsReadOnly="True"/>
+                <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,14,68,-4" IsReadOnly="True"/>
                 <DatePicker x:Name="datePicker" 
                             SelectedDate="{x:Static sys:DateTime.Now}" 
                             DisplayDateEnd="{x:Static sys:DateTime.Now}"
                             PreviewKeyDown="datePicker_PreviewKeyDown"
-                            Grid.Row="4" Margin="68,106,68,-128" SelectedDateFormat="Short"></DatePicker>
-                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,207,68,-238" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
-                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,154,68,-184" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
-                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,294,132,-314" Click="UploadButton_Click"/>
+                            Grid.Row="4" Margin="68,47,68,-42" SelectedDateFormat="Short" RenderTransformOrigin="0.5,0.5">
+                    <DatePicker.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-1.618"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-0.451"/>
+                        </TransformGroup>
+                    </DatePicker.RenderTransform>
+                </DatePicker>
+                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,167,68,-163" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
+                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
+                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click"/>
 
+                <Button x:Name="IdentifyOneButton" Content="Vogelart erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,68,-122"/>
 
-                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,256,68,-269" Grid.Row="4" />
+                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,238,68,-221" Grid.Row="4" Foreground="White"/>
 
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" Margin="564,-32,-32,32"/>
 
+                <ProgressBar x:Name="loadingProgressBar" Grid.Row="4" Height="5" VerticalAlignment="Bottom" Margin="77,0,84,-173" Visibility="Hidden" Value="0" IsIndeterminate="True"/>
 
             </Grid>
 

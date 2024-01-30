@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:WPF.ViewModel"
+             xmlns:converters="clr-namespace:WPF.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="600" 
              d:DesignWidth="900"
@@ -15,21 +16,49 @@
         <vm:FavouritesVM/>
     </UserControl.DataContext>
 
-    <Grid>
+    <UserControl.Resources>
+        <converters:BytesToImageSourceConverter x:Key="BytesToImageSourceConverter"/>
+    </UserControl.Resources>
 
+    <Grid>
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
+
+            <StackPanel Margin="20,20,20,13">
+                <TextBlock Text="Favoriten" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
+                    <ItemsControl ItemsSource="{Binding FavsGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="472">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
+                                    <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"
+                                   MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Top"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <StackPanel Margin="10" Width="765"/>
+            </StackPanel>
+
         </Border>
-
-        <Grid>
-            <TextBlock Text="Favoriten"
-                       Foreground="#DBDBDB"
-                       FontSize="60"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top"/>
-        </Grid>
-
     </Grid>
+    
 </UserControl>
