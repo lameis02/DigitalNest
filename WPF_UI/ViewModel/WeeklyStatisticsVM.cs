@@ -14,6 +14,13 @@ namespace WPF.ViewModel
     {
         private readonly PageModel _pageModel;
 
+        public WeeklyStatisticsVM()
+        {
+            _pageModel = new PageModel();
+            LoadBirdData();
+            LoadBarStatisticData();
+        }
+
         private SeriesCollection _birdPieSeriesWeekly;
         public SeriesCollection BirdPieSeriesWeekly
         {
@@ -36,13 +43,6 @@ namespace WPF.ViewModel
             }
         }
 
-        public WeeklyStatisticsVM()
-        {
-            _pageModel = new PageModel();
-            LoadBirdData();
-            LoadMostCommonSpeciesLast7Days();
-        }
-
         private void LoadBirdData()
         {
             Dictionary<string, int> birdStatistics = StatisticCalculator.PrintBirdStatisticsLast7Days();
@@ -62,21 +62,41 @@ namespace WPF.ViewModel
             }
         }
 
-        private void LoadMostCommonSpeciesLast7Days()
+        //Balkendiagram
+
+        private SeriesCollection _weeklyBirdBarSeries;
+        public SeriesCollection WeeklyBirdBarSeries
         {
-            Dictionary<string, int> speciesCount = StatisticCalculator.PrintMostCommonSpeciesLast7Days();
-
-            // Kreiere die Serie für das Balkendiagramm
-            MostCommonSpeciesBarSeries = new SeriesCollection();
-
-            foreach (var species in speciesCount.Keys)
+            get { return _weeklyBirdBarSeries; }
+            set
             {
-                MostCommonSpeciesBarSeries.Add(new ColumnSeries
-                {
-                    Title = species,
-                    Values = new ChartValues<int> { speciesCount[species] }
-                });
+                _weeklyBirdBarSeries = value;
+                OnPropertyChanged(nameof(WeeklyBirdBarSeries));
             }
         }
+
+        public void LoadBarStatisticData()
+        {
+            Dictionary<string, int> weeklyBirdBarStatistic = StatisticCalculator.PrintMostCommonSpeciesAllTime();
+            WeeklyBirdBarSeries = new SeriesCollection();
+
+            foreach (string species in weeklyBirdBarStatistic.Keys)
+            {
+                var series = new ColumnSeries
+                {
+                    Title = species,
+                    Values = new ChartValues<int> { weeklyBirdBarStatistic[species] }
+                };
+
+                WeeklyBirdBarSeries.Add(series);
+            }
+
+            // Aktualisieren Sie die Labels auf der X-Achse entsprechend den Vogelarten
+            Labels = weeklyBirdBarStatistic.Keys.ToArray();
+
+        }
+
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
     }
 }

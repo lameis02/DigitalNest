@@ -30,7 +30,17 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"/>
 
-        <lvc:PieChart LegendLocation="Bottom" Series="{Binding BirdPieSeriesWeekly}" Margin="0,133,450,71" />
+        <lvc:PieChart LegendLocation="Left" Series="{Binding BirdPieSeriesWeekly}" Margin="35,133,450,265" />
+
+        <lvc:CartesianChart Series="{Binding WeeklyBirdBarSeries}" LegendLocation="Left" Margin="35,340,36,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Vogelart" Labels="">
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Anzahl Vögel"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
 
     </Grid>
 </UserControl>
