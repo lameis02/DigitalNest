@@ -17,8 +17,8 @@ namespace WPF.ViewModel
         public WeeklyStatisticsVM()
         {
             _pageModel = new PageModel();
-            LoadBirdData();
-            LoadBarStatisticData();
+            LoadWeeklyBirdData();
+            LoadWeeklyBarStatisticData();
         }
 
         private SeriesCollection _birdPieSeriesWeekly;
@@ -43,7 +43,7 @@ namespace WPF.ViewModel
             }
         }
 
-        private void LoadBirdData()
+        private void LoadWeeklyBirdData()
         {
             Dictionary<string, int> birdStatistics = StatisticCalculator.PrintBirdStatisticsLast7Days();
 
@@ -75,9 +75,9 @@ namespace WPF.ViewModel
             }
         }
 
-        public void LoadBarStatisticData()
+        public void LoadWeeklyBarStatisticData()
         {
-            Dictionary<string, int> weeklyBirdBarStatistic = StatisticCalculator.PrintMostCommonSpeciesAllTime();
+            Dictionary<string, int> weeklyBirdBarStatistic = StatisticCalculator.PrintMostCommonSpeciesLast7Days();
             WeeklyBirdBarSeries = new SeriesCollection();
 
             foreach (string species in weeklyBirdBarStatistic.Keys)

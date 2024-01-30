@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace WPF.Views
 {
-    
+
     public partial class PopupForSingleImage : Window
     {
         private Bird _selectedBird;
@@ -36,6 +36,25 @@ namespace WPF.Views
         private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            var editPopup = new PopupForEdit(_selectedBird);
+            editPopup.ShowDialog();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Möchten Sie diesen Vogel wirklich löschen?", "Löschen bestätigen", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                // Löschen in der Datenbank
+                Database.Program.Delete(_selectedBird.ID);
+
+                // Schließen Sie das Popup-Fenster
+                Close();
+            }
         }
     }
 }

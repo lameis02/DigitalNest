@@ -48,8 +48,6 @@ namespace WPF.ViewModel
                     OnPropertyChanged(nameof(SelectedBird));
                     OnPropertyChanged(nameof(SelectedBirdBytes));
                 }
-
-                Debug.WriteLine($"SelectedBird changed to: {_selectedBird}");
             }
         }
 
