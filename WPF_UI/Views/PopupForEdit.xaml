@@ -10,6 +10,8 @@
         WindowStyle="None" 
         WindowStartupLocation="CenterScreen" 
         AllowsTransparency="True">
+    
+    <!--Zeitlich nicht fertig geworden :(-->
 
     <Grid>
         <Border Padding="20" Background="#786442">
@@ -26,17 +28,22 @@
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" HorizontalAlignment="Right"/>
 
                 <DatePicker x:Name="datePicker" 
-                            DisplayDateEnd="{x:Static sys:DateTime.Now}"
-                            Grid.Row="4" Margin="68,105,68,-100" SelectedDateFormat="Short" RenderTransformOrigin="0.5,0.5">
-                </DatePicker>
+            DisplayDateEnd="{x:Static sys:DateTime.Now}"
+            Grid.Row="4" Margin="68,105,68,-100" SelectedDateFormat="Short" RenderTransformOrigin="0.5,0.5"
+            SelectedDate="{Binding Date, Mode=OneWay}"/>
+                <!-- OneWay-Bindung, da die Aktualisierung nicht automatisch erfolgt -->
 
-                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,209,68,-205" Foreground="Black"/>
+                <TextBox x:Name="txtSpecies" Grid.Row="4" Margin="68,209,68,-205" Foreground="Black" Text="{Binding Species}"/>
+                <!-- OneWay-Bindung -->
 
-                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,159,68,-152" Foreground="Black"/>
+                <TextBox x:Name="txtLocation" Grid.Row="4" Margin="68,159,68,-152" Foreground="Black" Text="{Binding Location}"/>
+                <!-- OneWay-Bindung -->
 
-                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,259,68,-242" Grid.Row="4" Foreground="White"/>
+                <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,259,68,-242" Grid.Row="4" Foreground="White" IsChecked="{Binding IsFavorite, Mode=OneWay}"/>
+                <!-- OneWay-Bindung -->
 
-                <Button x:Name="SaveButton" Content="Änderungen speichern" Grid.Row="4" Margin="132,299,132,-298" Click="SaveButton_Click"/>
+                <Button x:Name="SaveChangesButton" Content="Änderungen speichern" Margin="188,310,188,-308" Grid.Row="4" Click="SaveButton_Click"/>
+
 
             </Grid>
         </Border>

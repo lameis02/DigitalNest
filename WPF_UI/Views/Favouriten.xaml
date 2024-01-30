@@ -26,29 +26,26 @@
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
 
-            <StackPanel Margin="20">
-
+            <StackPanel Margin="20,20,20,13">
                 <TextBlock Text="Favoriten" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10"/>
 
-
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="509">
-                    <ItemsControl ItemsSource="{Binding FavGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
+                    <ItemsControl ItemsSource="{Binding FavsGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="472">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
-                        <!-- Hier wird das Aussehen der einzelnen Listenelemente festgelegt -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
-                                    <Image Source="{Binding Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"/>
+                                    <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"
+                                   MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
 
-                        <!-- Hier wird das Aussehen der gesamten Liste festgelegt -->
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="{x:Type ContentPresenter}">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -57,7 +54,10 @@
                         </ItemsControl.ItemContainerStyle>
                     </ItemsControl>
                 </ScrollViewer>
+
+                <StackPanel Margin="10" Width="765"/>
             </StackPanel>
+
         </Border>
     </Grid>
     

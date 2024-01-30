@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,21 +17,43 @@ namespace WPF.ViewModel
         public FavouritesVM()
         {
             _pageModel = new PageModel();
-            //LoadFavsFromDatabase();
+            LoadFavsFromDatabase();
         }
 
-        public ObservableCollection<byte[]> FavGallery { get; set; } = new ObservableCollection<byte[]>();
+        public ObservableCollection<Bird> FavsGallery { get; set; } = new ObservableCollection<Bird>();
 
         public void LoadFavsFromDatabase()
         {
-            /*List<byte[]> imageBytesFromDatabase = Database.Program.SelectFavorite(true);
+            List<Bird> favsFromDatabase = Database.Program.SelectFavorite(true);
 
-            // Observable Collection wird mit allen Bildern in byte[] gefüllt
-            foreach (var imageBytes in imageBytesFromDatabase)
+            // Observable Collection wird mit allen Vögeln aus der Datenbank gefüllt
+            foreach (var bird in favsFromDatabase)
             {
-                FavGallery.Add(imageBytes);
-            }*/
+                FavsGallery.Add(bird);
+            }
+        }
 
+        private Bird _selectedBird;
+
+        public Bird SelectedBird
+        {
+            get { return _selectedBird; }
+            set
+            {
+                if (_selectedBird != value)
+                {
+                    _selectedBird = value;
+                    OnPropertyChanged(nameof(SelectedBird));
+                    OnPropertyChanged(nameof(SelectedBirdBytes));
+                }
+            }
+        }
+
+        public byte[] SelectedBirdBytes => SelectedBird?.birdbytes;
+
+        public void SetSelectedBird(Bird bird)
+        {
+            SelectedBird = bird;
         }
     }
 }

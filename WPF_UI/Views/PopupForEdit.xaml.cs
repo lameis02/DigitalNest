@@ -1,6 +1,7 @@
 ﻿using Database;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,16 @@ namespace WPF.Views
     /// </summary>
     public partial class PopupForEdit : Window
     {
+        //Zeitlich nicht fertig geworden :(, deshalb ist es im UI erstmal versteckt 
+
         private Bird _selectedBird;
 
         public PopupForEdit(Bird selectedBird)
         {
             InitializeComponent();
-            DataContext = selectedBird;
+            _selectedBird = selectedBird;
+            DataContext = _selectedBird;
+
 
             
         }
@@ -44,5 +49,6 @@ namespace WPF.Views
         {
             Close();
         }
+
     }
 }
