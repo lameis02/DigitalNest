@@ -23,8 +23,22 @@
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
         </Border>
+        
+        <!-- Kreisdiagram-->
+        <lvc:PieChart Series="{Binding BirdPieSeries}" Margin="10,118,519,260" LegendLocation="Left"/>
 
-        <lvc:PieChart LegendLocation="Bottom" Series="{Binding BirdPieSeries}" Margin="0,102,450,102"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <lvc:CartesianChart Series="{Binding BirdBarSeries}" LegendLocation="Left" Margin="182,340,36,0">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Vogelart" Labels="">
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Anzahl Vögel"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
+        </ScrollViewer>
+
 
     </Grid>
 </UserControl>
