@@ -15,7 +15,7 @@
     <Grid>
 
         <!--Input Section-->
-        <Border Padding="20" Background="#786442">
+        <Border Padding="20" Background="#2A5188 ">
 
             <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -43,15 +43,16 @@
                 </DatePicker>
                 <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,167,68,-163" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
                 <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
-                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click"/>
+                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click" Background="#3E4D3C " Foreground="White"/>
 
-                <Button x:Name="IdentifyOneButton" Content="Vogelart erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,68,-122"/>
+                <Button x:Name="IdentifyOneButton" Content="Vogelart erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,68,-122" Background="#3E4D3C" Foreground="White"/>
 
                 <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,238,68,-221" Grid.Row="4" Foreground="White"/>
 
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" Margin="564,-32,-32,32"/>
 
-                <ProgressBar x:Name="loadingProgressBar" Grid.Row="4" Height="5" VerticalAlignment="Bottom" Margin="77,0,84,-173" Visibility="Hidden" Value="0" IsIndeterminate="True"/>
+                <ProgressBar x:Name="loadingProgressBar" Grid.Row="4" Height="5" VerticalAlignment="Bottom" Background="#3E4D3C" Foreground="White"
+                             Margin="77,0,84,-173" Visibility="Hidden" Value="0" IsIndeterminate="True"/>
 
             </Grid>
 

@@ -33,7 +33,7 @@ namespace WPF.Views
             if (button != null)
             {
                 button.BorderThickness = new Thickness(5);
-                button.BorderBrush = Brushes.Black;
+                button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x2A, 0x51, 0x88)); ;
             }
         }
 
@@ -43,7 +43,7 @@ namespace WPF.Views
             if (button != null)
             {
                 button.BorderThickness = new Thickness(1);
-                button.BorderBrush = new SolidColorBrush(Color.FromRgb(120, 100, 66));
+                button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x2A, 0x51, 0x88)); ;
             }
         }
 

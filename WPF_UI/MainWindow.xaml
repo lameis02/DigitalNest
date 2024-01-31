@@ -30,7 +30,7 @@
     <Grid>
 
 
-        <Border Background="#786442"/>
+        <Border Background="#3E4D3C"/>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -43,17 +43,18 @@
 
 
 
-                <Border Background="#786442"
+                <Border Background="#3E4D3C"
                     CornerRadius="20,0,0,20" Margin="0,0,-23,0"/>
 
                 <StackPanel
                         Width="228" Margin="0,0,0,100">
 
-                    <Image Source="Assets/Logo.png" Width="54" Height="56"
+                    <TextBlock Text="DigitalNest" FontSize="20" FontFamily="Fonts #Britannic Bold" Height="30" Width="112" Foreground="White" Margin="10,20,0,0"/>
+
+                    <Image Source="Assets/Logo.png" Width="60" Height="62"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       RenderTransformOrigin="0.572,0.584"/>
-                    <!--TextBlock Text="DigitalNest" FontSize="20" FontFamily="Fonts #Britannic Bold" Height="30" Width="112"-->
+                       RenderTransformOrigin="0.572,0.584"
+                          Margin="10,-52,0,0"/>
 
                     <MenuItem Header="Home"
                           Template="{StaticResource Menu_Template}"

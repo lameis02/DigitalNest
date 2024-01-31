@@ -17,7 +17,7 @@
     </Window.Resources>
 
     <Grid>
-        <Border Background="#786442">
+        <Border Background="#2A5188 ">
             <StackPanel>
 
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" HorizontalAlignment="Right"/>
@@ -25,7 +25,7 @@
                 <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="600" MaxHeight="300" Margin="10" Height="278"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,100,0">
                     <Button Content="Bearbeiten" Width="100" Height="30" Margin="5" Click="EditButton_Click" Visibility="Hidden"/>
-                    <Button Content="Löschen" Width="100" Height="30" Click="DeleteButton_Click"/>
+                    <Button Content="Löschen" Width="100" Height="30" Click="DeleteButton_Click" Background="#3E4D3C " Foreground="White"/>
                 </StackPanel>
 
             </StackPanel>

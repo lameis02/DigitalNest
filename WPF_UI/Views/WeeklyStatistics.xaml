@@ -24,15 +24,14 @@
             </Border.Background>
         </Border>
 
-        <TextBlock Text="Wochenübersicht"
-                   Foreground="#DBDBDB"
-                   FontSize="60"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"/>
+        <TextBlock Text="Wochenübersicht" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " 
+               TextAlignment="Center" Foreground="White" Height="42" Margin="0,40,0,518"/>
 
-        <lvc:PieChart LegendLocation="Left" Series="{Binding BirdPieSeriesWeekly}" Margin="35,133,450,265" />
+        <lvc:PieChart LegendLocation="Left" Series="{Binding BirdPieSeriesWeekly}" Margin="232,112,232,258" Background="#3E4D3C" Foreground="White" 
+                      BorderThickness="3"  BorderBrush="#2A5188"/>
 
-        <lvc:CartesianChart Series="{Binding WeeklyBirdBarSeries}" LegendLocation="Left" Margin="35,340,36,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
+        <lvc:CartesianChart Series="{Binding WeeklyBirdBarSeries}" LegendLocation="Left" Margin="59,363,38,33" Background="#3E4D3C" Foreground="White" BorderThickness="3"  BorderBrush="#2A5188"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Vogelart" Labels="">
                 </lvc:Axis>

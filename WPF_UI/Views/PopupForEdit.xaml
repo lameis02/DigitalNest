@@ -14,7 +14,7 @@
     <!--Zeitlich nicht fertig geworden :(-->
 
     <Grid>
-        <Border Padding="20" Background="#786442">
+        <Border Padding="20" Background="#2A5188 ">
 
             <Grid Margin="-20,-20,-20,-20">
                 <Grid.RowDefinitions>
@@ -42,7 +42,9 @@
                 <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,259,68,-242" Grid.Row="4" Foreground="White" IsChecked="{Binding IsFavorite, Mode=OneWay}"/>
                 <!-- OneWay-Bindung -->
 
-                <Button x:Name="SaveChangesButton" Content="Änderungen speichern" Margin="188,310,188,-308" Grid.Row="4" Click="SaveButton_Click"/>
+                <Button x:Name="SaveChangesButton" Content="Änderungen speichern" Margin="188,310,188,-308" Grid.Row="4" Click="SaveButton_Click" Background="#3E4D3C"
+                        Foreground="White"
+/>
 
 
             </Grid>

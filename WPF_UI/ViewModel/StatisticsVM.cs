@@ -46,8 +46,9 @@ namespace WPF.ViewModel
                     Title = day,
                     Values = new ChartValues<int> { birdPieStatistics[day] },
                     DataLabels = true,
-                    LabelPoint = chartPoint => $"{chartPoint.Y} Vögel"
-                };
+                    LabelPoint = chartPoint => $"{chartPoint.Y} {(chartPoint.Y == 1 ? "Vogel" : "Vögel")}"
+
+            };
 
                 BirdPieSeries.Add(series);
             }

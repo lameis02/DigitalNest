@@ -20,8 +20,8 @@
         <!--Bild hochladen Button-->
             <Button 
             MouseEnter="Button_MouseEnter"
-            BorderBrush="#786442" 
-            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,110" Click="Button_Click">
+            BorderBrush="#3E4D3C " 
+            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,98" Click="Button_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">

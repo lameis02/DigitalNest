@@ -27,7 +27,8 @@
             </Border.Background>
 
             <StackPanel Margin="20,20,20,13">
-                <TextBlock Text="Favoriten" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock Text="Favoriten" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " Width="864" 
+                           TextAlignment="Center" Foreground="White" Height="42" Margin="0,20,0,0"/>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
                     <ItemsControl ItemsSource="{Binding FavsGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="472">
@@ -39,7 +40,7 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#786442" BorderThickness="1.5" Margin="5">
+                                <Border BorderBrush="#2A5188" BorderThickness="1.5" Margin="5">
                                     <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="100" MaxHeight="100"
                                    MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
                                 </Border>
