@@ -20,69 +20,7 @@ namespace Database
         static void Main(string[] args)
         {
 
-
-            Bird sparrow1 = new Bird()
-            {
-                Species = "Sperling",
-                Date = DateTime.Parse("2023-01-01"),
-                Location = "Park",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = false
-            };
-            Bird eagle1 = new Bird()
-            {
-                Species = "Greifvogel",
-                Date = DateTime.Parse("2023-02-01"),
-                Location = "Berg",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = true
-            };
-
-            Bird owl1 = new Bird()
-            {
-                Species = "Eulenart",
-                Date = DateTime.Parse("2023-03-01"),
-                Location = "Wald",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = false
-            };
-            Bird sparrow2 = new Bird()
-            { 
-                Species = "Sperling",
-                Date = DateTime.Parse("2023-04-01"),
-                Location = "Garten",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = true
-            };
-
-            Bird pigeon1 = new Bird()
-            {
-                Species = "Taube",
-                Date = DateTime.Parse("2023-06-01"),
-                Location = "Stadt",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = false
-            };
-
-            Bird sparrow3 = new Bird()
-            {
-                Species = "Sperling",
-                Date = DateTime.Parse("2023-06-01"),
-                Location = "Wiese",
-                ImagePath = @"C:\Users\morit\Pictures\Bilder\Checkii chan.png",
-                IsFavorite = false
-            };
-
-            DeleteAll();
-            Add(sparrow3 );
-            foreach(Bird v in Select())
-            {
-                Console.WriteLine(v.birdbytes+"  "+ v.ID );
-            }
-
-           
-            
-
+                Console.WriteLine("Hello Word");
 
         }
 
@@ -94,7 +32,6 @@ namespace Database
 
             string query = QueryAddMethode();
             SqlCommand command = new SqlCommand(query, Connection);
-            //command.Parameters.AddWithValue("@Id", bird.ID);
             command.Parameters.AddWithValue("@Art", bird.Species);
             command.Parameters.AddWithValue("@Datum", bird.Date);
             command.Parameters.AddWithValue("@Ort", bird.Location);
