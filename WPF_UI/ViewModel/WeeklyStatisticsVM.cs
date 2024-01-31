@@ -55,8 +55,9 @@ namespace WPF.ViewModel
                     Title = day,
                     Values = new ChartValues<int> { birdStatistics[day] },
                     DataLabels = true,
-                    LabelPoint = chartPoint => $"{chartPoint.Y} Vögel"
-                };
+                    LabelPoint = chartPoint => $"{chartPoint.Y} {(chartPoint.Y == 1 ? "Vogel" : "Vögel")}"
+
+            };
 
                 BirdPieSeriesWeekly.Add(series);
             }

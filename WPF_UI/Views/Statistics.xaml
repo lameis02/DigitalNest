@@ -24,10 +24,16 @@
             </Border.Background>
         </Border>
 
-        <!-- Kreisdiagram-->
-        <lvc:PieChart Series="{Binding BirdPieSeries}" Margin="10,118,519,260" LegendLocation="Left"/>
 
-        <lvc:CartesianChart Series="{Binding BirdBarSeries}" LegendLocation="Left" Margin="182,340,36,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
+        <TextBlock Text="Gesamtübersicht" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " 
+                       TextAlignment="Center" Foreground="White" Height="42" Margin="0,40,0,518"/>
+
+        <!-- Kreisdiagram-->
+        <lvc:PieChart Series="{Binding BirdPieSeries}" Margin="232,112,232,258" LegendLocation="Left" Background="#3E4D3C" Foreground="White" 
+                      BorderThickness="3"  BorderBrush="#2A5188"/>
+
+        <lvc:CartesianChart Series="{Binding BirdBarSeries}" LegendLocation="Left" Margin="59,363,38,33" Background="#3E4D3C" Foreground="White" BorderThickness="3"  BorderBrush="#2A5188"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Vogelart" Labels="">
                 </lvc:Axis>
