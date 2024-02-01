@@ -9,29 +9,31 @@
              d:DesignHeight="600" 
              d:DesignWidth="900"
              HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch"
-             Style="{StaticResource Page_Style}">
+             VerticalAlignment="Stretch">
 
+    <!--Verbindung mit dem ViewModel-->
     <UserControl.DataContext>
         <vm:StatisticsVM/>
     </UserControl.DataContext>
 
     <Grid>
-
+        
+        <!--Hintergrundbild-->
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
         </Border>
 
-
+        <!--Überschrift-->
         <TextBlock Text="Gesamtübersicht" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " 
                        TextAlignment="Center" Foreground="White" Height="42" Margin="0,40,0,518"/>
 
         <!-- Kreisdiagram-->
-        <lvc:PieChart Series="{Binding BirdPieSeries}" Margin="232,112,232,258" LegendLocation="Left" Background="#3E4D3C" Foreground="White" 
+        <lvc:PieChart Series="{Binding BirdPieSeries}" Margin="226,111,226,259" LegendLocation="Left" Background="#3E4D3C" Foreground="White" 
                       BorderThickness="3"  BorderBrush="#2A5188"/>
 
+        <!--Balkendiagramm-->
         <lvc:CartesianChart Series="{Binding BirdBarSeries}" LegendLocation="Left" Margin="59,363,38,33" Background="#3E4D3C" Foreground="White" BorderThickness="3"  BorderBrush="#2A5188"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
             <lvc:CartesianChart.AxisX>

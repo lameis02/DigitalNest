@@ -1,59 +1,56 @@
 ﻿using Database;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WPF.Model;
 
 namespace WPF.ViewModel
 {
     class FavouritesVM: Utilities.ViewModelBase
     {
-        private readonly PageModel _pageModel;
-
-
+        // Konstruktor
         public FavouritesVM()
         {
-            _pageModel = new PageModel();
-            LoadFavsFromDatabase();
+            LoadFavsFromDatabase(); // Beim Initialisieren des ViewModels werden die Favoriten aus der Datenbank geladen
         }
 
+        // ObservableCollection für die Anzeige der Favoriten in der Favoriten-Galerie
         public ObservableCollection<Bird> FavsGallery { get; set; } = new ObservableCollection<Bird>();
 
+        // Methode zum Laden der Favoriten aus der Datenbank und Hinzufügen zu FavsGallery
         public void LoadFavsFromDatabase()
         {
-            List<Bird> favsFromDatabase = Database.Program.SelectFavorite(true);
+            List<Bird> favsFromDatabase = Database.Program.SelectFavorite(true); // Holt alle Favoriten aus der Datenabnk mit dem Methdodenaufruf aus der Datenbank
 
-            // Observable Collection wird mit allen Vögeln aus der Datenbank gefüllt
+            // Füllt die ObservableCollection mit den Favoriten aus der Datenbank
             foreach (var bird in favsFromDatabase)
             {
                 FavsGallery.Add(bird);
             }
         }
 
-        private Bird _selectedBird;
+        // Eigenschaft für den ausgewählten Vogel in der Galerie
+        private Bird _selectedFav;
 
-        public Bird SelectedBird
+        public Bird SelectedFav
         {
-            get { return _selectedBird; }
+            get { return _selectedFav; }
             set
             {
-                if (_selectedBird != value)
+                if (_selectedFav != value) // Überprüft, ob der ausgewählte Vogel sich ändert
                 {
-                    _selectedBird = value;
-                    OnPropertyChanged(nameof(SelectedBird));
-                    OnPropertyChanged(nameof(SelectedBirdBytes));
+                    _selectedFav = value;
+                    OnPropertyChanged(nameof(SelectedFav)); // Benachrichtigt die UI über die Änderung der ausgewählten Eigenschaft
+                    OnPropertyChanged(nameof(SelectedFavBytes)); // Benachrichtigt die UI über die Änderung der Bytes des ausgewählten Vogels
+
                 }
             }
         }
 
-        public byte[] SelectedBirdBytes => SelectedBird?.birdbytes;
+        // Eigenschaft für die Bytes des ausgewählten Vogels
+        public byte[] SelectedFavBytes => SelectedFav?.birdbytes;
 
-        public void SetSelectedBird(Bird bird)
+        // Methode zum Setzen des ausgewählten Vogels
+        public void SetSelectedFav(Bird bird)
         {
-            SelectedBird = bird;
+            SelectedFav = bird;
         }
     }
 }

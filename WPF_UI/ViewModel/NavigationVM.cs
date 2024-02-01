@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WPF.Utilities;
 using System.Windows.Input;
 
@@ -24,7 +20,7 @@ namespace WPF.ViewModel
         public ICommand StatisticsCommand { get; set; }
         public ICommand WeeklyStatisticsCommand { get; set; }
 
-        // Methoden zum switchen der Bildschirme in der Menüleiste
+        // Methoden zum Wechseln der Bildschirme in der Menüleiste
         private void Home(object obj) => CurrentView = new HomeVM();
         private void CompleteGallery(object obj) => CurrentView = new CompleteGalleryVM();
         private void Favorites(object obj) => CurrentView = new FavouritesVM();

@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:local="clr-namespace:WPF.Views"
         xmlns:converters="clr-namespace:WPF.Converter"
         mc:Ignorable="d"
         Title="PopupForSingleImage" Height="400" Width="622"
@@ -12,19 +10,26 @@
         WindowStartupLocation="CenterScreen" 
         AllowsTransparency="True">
 
+    <!--Verbindung mit dem Converter-->
     <Window.Resources>
         <converters:BytesToImageSourceConverter x:Key="BytesToImageSourceConverter"/>
     </Window.Resources>
 
     <Grid>
+
+        <!-- Hintergrund für das Popup -->
         <Border Background="#2A5188 ">
             <StackPanel>
 
+                <!-- Schließen-Button im rechten oberen Eck -->
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" HorizontalAlignment="Right"/>
-
+                <!-- Anzeige des Bildes mit Datenbindung an das Byte-Array im ViewModel -->
                 <Image Source="{Binding birdbytes, Converter={StaticResource BytesToImageSourceConverter}}" MaxWidth="600" MaxHeight="300" Margin="10" Height="278"/>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,100,0">
+                    <!-- Button zum Bearbeiten des Bildes (derzeit unsichtbar, weil es nicht fertig ist) -->
                     <Button Content="Bearbeiten" Width="100" Height="30" Margin="5" Click="EditButton_Click" Visibility="Hidden"/>
+                    <!-- Button zum Löschen des Bildes -->
                     <Button Content="Löschen" Width="100" Height="30" Click="DeleteButton_Click" Background="#3E4D3C " Foreground="White"/>
                 </StackPanel>
 

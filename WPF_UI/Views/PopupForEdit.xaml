@@ -17,6 +17,8 @@
         <Border Padding="20" Background="#2A5188 ">
 
             <Grid Margin="-20,-20,-20,-20">
+
+                <!-- Inneres Grid mit mehreren Zeilen für die Anordnung der UI-Elemente -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -25,28 +27,30 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
+                <!-- Schließen-Button im rechten oberen Eck -->
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" HorizontalAlignment="Right"/>
 
-                <DatePicker x:Name="datePicker" 
-            DisplayDateEnd="{x:Static sys:DateTime.Now}"
-            Grid.Row="4" Margin="68,105,68,-100" SelectedDateFormat="Short" RenderTransformOrigin="0.5,0.5"
-            SelectedDate="{Binding Date, Mode=OneWay}"/>
+                <!-- DatePicker für die Auswahl des Datums -->
+                <DatePicker x:Name="datePicker" DisplayDateEnd="{x:Static sys:DateTime.Now}" Grid.Row="4" Margin="68,105,68,-100" SelectedDateFormat="Short" RenderTransformOrigin="0.5,0.5"
+                            SelectedDate="{Binding Date, Mode=OneWay}"/>
                 <!-- OneWay-Bindung, da die Aktualisierung nicht automatisch erfolgt -->
 
+                <!-- TextBox für die Eingabe der Vogelart -->
                 <TextBox x:Name="txtSpecies" Grid.Row="4" Margin="68,209,68,-205" Foreground="Black" Text="{Binding Species}"/>
                 <!-- OneWay-Bindung -->
 
+                <!-- TextBox für die Eingabe des Ortes -->
                 <TextBox x:Name="txtLocation" Grid.Row="4" Margin="68,159,68,-152" Foreground="Black" Text="{Binding Location}"/>
                 <!-- OneWay-Bindung -->
 
+                <!-- CheckBox für das Markieren als Favorit -->
                 <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,259,68,-242" Grid.Row="4" Foreground="White" IsChecked="{Binding IsFavorite, Mode=OneWay}"/>
                 <!-- OneWay-Bindung -->
 
+                <!-- Button zum Speichern der Änderungen -->
                 <Button x:Name="SaveChangesButton" Content="Änderungen speichern" Margin="188,310,188,-308" Grid.Row="4" Click="SaveButton_Click" Background="#3E4D3C"
-                        Foreground="White"
-/>
-
-
+                        Foreground="White"/>
+                
             </Grid>
         </Border>
     </Grid>

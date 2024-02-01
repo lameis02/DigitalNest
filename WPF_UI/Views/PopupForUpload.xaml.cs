@@ -1,20 +1,9 @@
 ﻿using Database;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WPF.Views
 {
@@ -33,10 +22,10 @@ namespace WPF.Views
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
-            //noch mit Fionas KI verbinden, wenn sie fertig ist
             string location;
             string species;
 
+            // Überprüfung und Zuweisung von Standardwerten für Ort und Vogelart
             DateTime selectedDate = (DateTime)datePicker.SelectedDate; 
             bool isFav = favoriteCheckBox.IsChecked ?? false;
             DateTime date = selectedDate;
@@ -66,9 +55,6 @@ namespace WPF.Views
             MessageBox.Show($"Das Bild wurde erfolgreich hochgeladen!");
 
             Close();
-            
-
-            
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -106,13 +92,13 @@ namespace WPF.Views
             //zeigt an, dass Eregniss bereits vollständig behandelt wurde --> Benutzer kann das Datum nicht mehr manuell verändern
         }
 
-        private async void IdentifyMoreButton_Click(object sender, RoutedEventArgs e)
+        /*private async void IdentifyMoreButton_Click(object sender, RoutedEventArgs e)
         {
-            /*string result = await Vogelscheuche_Bib.AI_Service.MultiResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
+            string result = await Vogelscheuche_Bib.AI_Service.MultiResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
             txtVogelart.Foreground = Brushes.Black;
             txtVogelart.Text = result;
-            //merhfaches Speichern, wenn verschiedene Vogelarten auf dem Bild sind*/
-        }
+            //merhfaches Speichern, wenn verschiedene Vogelarten auf dem Bild sind
+        }*/
 
         private async void IdentifyOneButton_Click(object sender, RoutedEventArgs e)
         {

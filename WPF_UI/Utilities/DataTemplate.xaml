@@ -3,22 +3,27 @@
                     xmlns:vm="clr-namespace:WPF.ViewModel"
                     xmlns:view="clr-namespace:WPF.Views">
 
+    <!-- DataTemplate für die HomeVM -->
     <DataTemplate DataType="{x:Type vm:HomeVM}">
         <view:Home />
     </DataTemplate>
 
+    <!-- DataTemplate für die CompleteGalleryVM -->
     <DataTemplate DataType="{x:Type vm:CompleteGalleryVM}">
         <view:CompleteGallery />
     </DataTemplate>
 
+    <!-- DataTemplate für die FavouritesVM -->
     <DataTemplate DataType="{x:Type vm:FavouritesVM}">
         <view:Favoriten />
     </DataTemplate>
 
+    <!-- DataTemplate für die StatisticsVM -->
     <DataTemplate DataType="{x:Type vm:StatisticsVM}">
         <view:Statistics />
     </DataTemplate>
 
+    <!-- DataTemplate für die WeeklyStatisticsVM -->
     <DataTemplate DataType="{x:Type vm:WeeklyStatisticsVM}">
         <view:WeeklyStatistics/>
     </DataTemplate>

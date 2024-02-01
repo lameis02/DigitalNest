@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WPF.ViewModel"
-        xmlns:Menu="clr-namespace:WPF.Utilities"
-        xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="600" 
@@ -15,10 +13,12 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
 
+    <!-- Setzen des DataContext auf NavigationVM für Datenbindung -->
     <Window.DataContext>
         <vm:NavigationVM/>
     </Window.DataContext>
 
+    <!-- Verwendung des Templates als Vorlage -->
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,37 +29,38 @@
 
     <Grid>
 
-
         <Border Background="#3E4D3C"/>
 
+        <!-- Linke Spalte für das Menü -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="900"/>
             </Grid.ColumnDefinitions>
 
+            <!-- Menübereich -->
             <Grid HorizontalAlignment="Left"
               Width="228">
 
-
-
+                <!-- Hintergrund für das Menü -->
                 <Border Background="#3E4D3C"
                     CornerRadius="20,0,0,20" Margin="0,0,-23,0"/>
 
                 <StackPanel
                         Width="228" Margin="0,0,0,100">
 
+                    <!-- Logo und Titel -->
                     <TextBlock Text="DigitalNest" FontSize="20" FontFamily="Fonts #Britannic Bold" Height="30" Width="112" Foreground="White" Margin="10,20,0,0"/>
-
                     <Image Source="Assets/Logo.png" Width="60" Height="62"
                        HorizontalAlignment="Left"
                        RenderTransformOrigin="0.572,0.584"
                           Margin="10,-52,0,0"/>
 
+                    <!-- Menüpunkte mit Icons -->
                     <MenuItem Header="Home"
                           Template="{StaticResource Menu_Template}"
                           Command="{Binding HomeCommand}"
-                          IsChecked="True" Click="MenuItem_Click">
+                          IsChecked="True">
                         <MenuItem.Icon>
                             <Image Source="Assets/img_Haus.png"
                            Stretch="Uniform"
@@ -67,8 +68,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Galerie" 
-                          Template="{StaticResource Menu_Template}"
-                          Click="MenuItem_Click" 
+                          Template="{StaticResource Menu_Template}" 
                           Command="{Binding CompleteGalleryCommand}">
                         <MenuItem.Icon>
                             <Image Source="Assets/img_Bib.png"
@@ -76,9 +76,7 @@
                                VerticalAlignment="Top" Height="32" Margin="-7,-1,-24,0"/>
                         </MenuItem.Icon>
                     </MenuItem>
-
                     <MenuItem Header="Favoriten" 
-                              Click="MenuItem_Click" 
                               Template="{StaticResource Menu_Template}"
                               Command="{Binding FavoritesCommand}">
                         <MenuItem.Icon>
@@ -88,9 +86,7 @@
                                    Height="32" Margin="-7,-1,-24,0"/>
                         </MenuItem.Icon>
                     </MenuItem>
-
                     <MenuItem Header="Gesamtübersicht" 
-                              Click="MenuItem_Click" 
                               Template="{StaticResource Menu_Template}"
                               Command="{Binding StatisticsCommand}" Width="229">
                         <MenuItem.Icon>
@@ -100,7 +96,6 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Wochenübersicht" 
-                              Click="MenuItem_Click" 
                               Template="{StaticResource Menu_Template}"
                               Command="{Binding WeeklyStatisticsCommand}" Width="225">
                         <MenuItem.Icon>
@@ -116,6 +111,7 @@
 
             <Grid Grid.Column="1">
 
+                <!-- Rechte Spalte für die Inhaltsanzeige -->
                 <ContentControl x:Name="Pages"
                             Content="{Binding CurrentView}" Margin="54,0,0,0"/>
             </Grid>

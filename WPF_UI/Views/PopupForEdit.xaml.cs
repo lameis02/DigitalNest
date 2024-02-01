@@ -1,18 +1,8 @@
 ﻿using Database;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WPF.Views
 {
@@ -23,30 +13,30 @@ namespace WPF.Views
     {
         //Zeitlich nicht fertig geworden :(, deshalb ist es im UI erstmal versteckt 
 
-        private Bird _selectedBird;
-
         public PopupForEdit(Bird selectedBird)
         {
             InitializeComponent();
             _selectedBird = selectedBird;
+            // Setzen des DataContexts für die Datenbindung an das ausgewählte Bird - Objekt
             DataContext = _selectedBird;
-
-
-            
         }
+
+        // Das ausgewählte Bird-Objekt
+        private Bird _selectedBird;
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
-            // Führen Sie die Aktualisierung in der Datenbank durch
+            // Führt die Aktualisierung in der Datenbank durch
             Database.Program.Override(_selectedBird);
 
-            // Schließen Sie das Popup oder führen Sie andere Aktionen nach dem Speichern durch
+            // Schließt das Popup
             this.Close();
         }
 
         private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // Schließt das Popup-Fenster
             Close();
         }
 

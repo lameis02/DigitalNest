@@ -9,13 +9,16 @@
              d:DesignHeight="600" 
              d:DesignWidth="900"
              HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch"
-             Style="{StaticResource Page_Style}">
+             VerticalAlignment="Stretch">
 
+    <!--Ähnlicher Code wie CompleteGallery, ohne DeleteAllButton-->
+
+    <!-- Verbindung mit dem ViewModel -->
     <UserControl.DataContext>
         <vm:FavouritesVM/>
     </UserControl.DataContext>
 
+    <!-- Verbindung mit dem Converter -->
     <UserControl.Resources>
         <converters:BytesToImageSourceConverter x:Key="BytesToImageSourceConverter"/>
     </UserControl.Resources>
@@ -27,17 +30,22 @@
             </Border.Background>
 
             <StackPanel Margin="20,20,20,13">
+
+                <!-- Überschrift für Favoriten -->
                 <TextBlock Text="Favoriten" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " Width="864" 
                            TextAlignment="Center" Foreground="White" Height="42" Margin="0,20,0,0"/>
 
+                <!-- ScrollViewer für die Anzeige der Favoriten -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Width="860" Height="472">
-                    <ItemsControl ItemsSource="{Binding FavsGallery}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="472">
+                    <!-- ItemsControl für die Anzeige der Favoriten-Bilder -->
+                    <ItemsControl ItemsSource="{Binding FavsGallery}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="Auto">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
+                        <!-- DataTemplate für die Anzeige der einzelnen Favoriten-Bilder -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="#2A5188" BorderThickness="1.5" Margin="5">
@@ -47,6 +55,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
 
+                        <!-- Stil für die Container-Elemente im ItemsControl -->
                         <ItemsControl.ItemContainerStyle>
                             <Style TargetType="{x:Type ContentPresenter}">
                                 <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -56,7 +65,6 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-                <StackPanel Margin="10" Width="765"/>
             </StackPanel>
 
         </Border>
