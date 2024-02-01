@@ -14,7 +14,7 @@ Dieses Foto wird dann an das Programm weitergeleitet. Der Lautsprecher soll bei 
 
 # Das Ergebnis
 
-Die Anwendung lässt den User ein Bild eines Vogels hochladen. Dann kann die Vogelart durch eine KI bestimmt werden, sowie Datum und Ort gesetzt werden. Außerdem kann das Bild als Favorit markiert werden. Nach dem Hochladen des Bildes in die Datenbank können alle Bilder in der Datenbank angezeigt werden. In dieser Ansicht können einzelne Bilder angezeigt und gelöscht werden und auch der gesamte Inhalt der Galerie kann gelöscht werden. Weiterhin können auch nur die Favoriten angezeigt werden. Ebenfalls gibt es Statistiken, welche eine Gesamtübersicht der Daten der Datenbank geben oder nur eine Übersicht über die Daten der letzen Woche geben. 
+Die Anwendung lässt den User ein Bild eines Vogels hochladen. Dann kann die Vogelart durch eine KI bestimmt werden und der Nutzer kann Datum und Ort setzen. Außerdem kann das Bild als Favorit markiert werden. Nach dem Hochladen des Bildes in die Datenbank können alle Bilder in der Galerie angezeigt werden. In dieser Ansicht können einzelne Bilder angezeigt und gelöscht werden und auch der gesamte Inhalt der Galerie kann gelöscht werden. Die Favoriten können über eine zusätzliche Ansicht angezeigt werden. Ebenfalls gibt es Statistiken, welche eine Gesamtübersicht der Daten  geben oder nur eine Übersicht über die Daten der letzen sieben Tage geben. 
 
 # How to connect to the Database
 
@@ -37,3 +37,9 @@ docker run -d --name bird-recognition -p 5000:5000 fiob9220/bird_ai:v1.0
 ```
 
 > **Accessing the given [Localhost](http://localhost:5000/) a small API can be used as a standalone**
+
+## Code for Bird Recognition AI
+
+The code of the AI can be found [here](https://github.com/fyo21103/Bird-Recognition-AI/tree/master).
+
+> As of 01/02/2024 the most recent changes are in [this](https://github.com/fyo21103/Bird-Recognition-AI/tree/api-update) branch.
