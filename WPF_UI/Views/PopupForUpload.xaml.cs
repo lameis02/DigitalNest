@@ -115,7 +115,7 @@ namespace WPF.Views
                 else
                 {
 
-                    string result = await Vogelscheuche_Bib.AI_Service.SingleResponse(new HttpClient(), "http://localhost:5000/birds/", selectedImagePathTextBlock.Text);
+                    string result = await Vogelscheuche_Bib.AI_Service.SingleResponse(new HttpClient(), "http://localhost:5000/BOPS/", selectedImagePathTextBlock.Text);
                     txtVogelart.Foreground = Brushes.Black;
                     txtVogelart.Text = result;
 

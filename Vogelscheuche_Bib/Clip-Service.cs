@@ -12,7 +12,7 @@ namespace Vogelscheuche_Bib
         static async Task Main(string[] args)
         {
             var client = new HttpClient();
-            string baseUrl = "http://localhost:5000/birds/";
+            string baseUrl = "http://localhost:5000/BOPS/";
 
             try
             {
