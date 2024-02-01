@@ -1,18 +1,8 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF.Views
 {
@@ -21,50 +11,42 @@ namespace WPF.Views
     /// </summary>
     public partial class Home : UserControl
     {
+        // Konstruktor
         public Home()
-
         {
             InitializeComponent();
         }
 
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        private void UploadButton_MouseEnter(object sender, MouseEventArgs e) //Hervorheben, wenn Mauszeiger üben dem UploadButton ist
         {
             Button button = sender as Button;
-            if (button != null)
-            {
-                button.BorderThickness = new Thickness(5);
-                button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x2A, 0x51, 0x88)); ;
-            }
+            button.BorderThickness = new Thickness(5);         
         }
 
-        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        private void UploadButton_MouseLeave(object sender, MouseEventArgs e) //Zurücksetzen des DeleteAllButtons, wenn Mauszeiger nicht mehr auf dem Button ist
         {
             Button button = sender as Button;
-            if (button != null)
-            {
-                button.BorderThickness = new Thickness(1);
-                button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x2A, 0x51, 0x88)); ;
-            }
+            button.BorderThickness = new Thickness(1);
         }
 
+        // Pfad für das ausgewählte Bild
         private string selectedImagePath;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog // Öffnet einen Dialog zum Auswählen einer Bilddatei
             {
                 Filter = "Image files|*.jpg;*.jpeg;*.png;*.gif;*.bmp",
                 Title = "Bild auswählen"
             };
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Der ausgewählte Bildpfad
-                string selectedImagePath = openFileDialog.FileName;
 
-                // Zeige das Popup-Fenster mit dem ausgewählten Bildpfad
-                PopupForUpload imageView = new PopupForUpload(selectedImagePath);
-                imageView.ShowDialog();
+            if (openFileDialog.ShowDialog() == true) // Wenn der Benutzer eine Datei ausgewählt hat
+            {
+                string selectedImagePath = openFileDialog.FileName; // Setzt den Pfad der ausgewählten Bilddatei
+
+                PopupForUpload popupForUploadView = new PopupForUpload(selectedImagePath); // Öffnet ein Popup-Fenster mit dem ausgewählten Bildpfad
+                popupForUploadView.ShowDialog();
             }
 
         }

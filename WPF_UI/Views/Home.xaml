@@ -2,15 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:WPF.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:WPF.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="600"
              d:DesignWidth="900"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
+
+    <!--Verbindung mit dem ViewModel-->
+    <UserControl.DataContext>
+        <vm:HomeVM/>
+    </UserControl.DataContext>
+
     <Grid>
-        
+
+        <!-- Hintergrundbild für das Grid -->
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
@@ -19,9 +26,9 @@
 
         <!--Bild hochladen Button-->
             <Button 
-            MouseEnter="Button_MouseEnter"
+            MouseEnter="UploadButton_MouseEnter"
             BorderBrush="#3E4D3C " 
-            MouseLeave="Button_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,98" Click="Button_Click">
+            MouseLeave="UploadButton_MouseLeave" RenderTransformOrigin="0.505,0.492" Margin="207,110,207,98" Click="UploadButton_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -29,7 +36,9 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-                <Button.Background>
+
+            <!-- Hintergrundbild des Buttons -->
+            <Button.Background>
                     <ImageBrush ImageSource="/Assets/blueBirdButton.png"/>
                 </Button.Background>
             </Button>

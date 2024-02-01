@@ -1,28 +1,20 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Vogelscheuche_Bib;
-using WPF.Model;
 
 namespace WPF.ViewModel
 {
     class StatisticsVM: Utilities.ViewModelBase
     {
-        private readonly PageModel _pageModel;
-
+        // Konstruktor
         public StatisticsVM()
         {
-            _pageModel = new PageModel();
+            // Beim Erstellen des ViewModel werden die Daten für das Kreis- und Balkendiagramm geladen
             LoadPieStatisticData();
             LoadBarStatisticData();
         }
 
-        //Kreisdiagram
-
+        // Eigenschaft für das Kreisdiagramm
         private SeriesCollection _birdPieSeries;
         public SeriesCollection BirdPieSeries
         {
@@ -36,26 +28,29 @@ namespace WPF.ViewModel
 
         private void LoadPieStatisticData()
         {
+            // Statistikdaten für das Kreisdiagramm abrufen
             Dictionary<string, int> birdPieStatistics = StatisticCalculator.PrintBirdStatisticsAllTime();
 
+            // SerieCollection für das Kreisdiagramm erstellen
             BirdPieSeries = new SeriesCollection();
             foreach (var day in birdPieStatistics.Keys)
             {
-                var series = new PieSeries
+                // Serie für jeden Tag erstellen
+                PieSeries series = new PieSeries
                 {
                     Title = day,
                     Values = new ChartValues<int> { birdPieStatistics[day] },
                     DataLabels = true,
                     LabelPoint = chartPoint => $"{chartPoint.Y} {(chartPoint.Y == 1 ? "Vogel" : "Vögel")}"
 
-            };
+                };
 
+                // Serie zur SerieCollection hinzufügen
                 BirdPieSeries.Add(series);
             }
         }
 
-        //Balkendiagram
-
+        // Eigenschaft für das Balkendiagramm
         private SeriesCollection _birdBarSeries;
         public SeriesCollection BirdBarSeries
         {
@@ -69,26 +64,31 @@ namespace WPF.ViewModel
 
         public void LoadBarStatisticData()
         {
+            // Statistikdaten für das Balkendiagramm abrufen
             Dictionary<string, int> birdBarStatistic = StatisticCalculator.PrintMostCommonSpeciesAllTime();
             BirdBarSeries = new SeriesCollection();
 
             foreach (string species in birdBarStatistic.Keys)
             {
-                var series = new ColumnSeries
+                // Serie für jede Vogelart erstellen
+                ColumnSeries series = new ColumnSeries
                 {
                     Title = species,
                     Values = new ChartValues<int> { birdBarStatistic[species] }
                 };
 
+                // Serie zur SerieCollection hinzufügen
                 BirdBarSeries.Add(series);
             }
 
-            // Aktualisieren Sie die Labels auf der X-Achse entsprechend den Vogelarten
+            // Labels auf der X-Achse aktualisieren, um den Vogelarten zu entsprechen
             Labels = birdBarStatistic.Keys.ToArray();
 
         }
 
+        // Eigenschaft für die Labels auf der X-Achse des Balkendiagramms
         public string[] Labels { get; set; }
+        // Funktion zum Formatieren der Werte auf der Y-Achse des Balkendiagramms
         public Func<double, string> Formatter { get; set; }
 
 

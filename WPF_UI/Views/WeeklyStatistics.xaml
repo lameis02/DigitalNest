@@ -9,27 +9,31 @@
              d:DesignHeight="600" 
              d:DesignWidth="900"
              HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch"
-             Style="{StaticResource Page_Style}">
+             VerticalAlignment="Stretch">
 
+    <!--Verbindung mit dem ViewModel-->
     <UserControl.DataContext>
         <vm:WeeklyStatisticsVM/>
     </UserControl.DataContext>
 
     <Grid>
 
+        <!--Hintergrundbild-->
         <Border>
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/WaldBild.jpg"/>
             </Border.Background>
         </Border>
 
+        <!--Überschrift-->
         <TextBlock Text="Wochenübersicht" FontSize="30" FontWeight="DemiBold" Background="#2A5188 " 
                TextAlignment="Center" Foreground="White" Height="42" Margin="0,40,0,518"/>
 
-        <lvc:PieChart LegendLocation="Left" Series="{Binding BirdPieSeriesWeekly}" Margin="232,112,232,258" Background="#3E4D3C" Foreground="White" 
+        <!--Kreisdiagramm-->
+        <lvc:PieChart LegendLocation="Left" Series="{Binding BirdPieSeriesWeekly}" Margin="222,108,222,262" Background="#3E4D3C" Foreground="White" 
                       BorderThickness="3"  BorderBrush="#2A5188"/>
 
+        <!--Balkendiagramm-->
         <lvc:CartesianChart Series="{Binding WeeklyBirdBarSeries}" LegendLocation="Left" Margin="59,363,38,33" Background="#3E4D3C" Foreground="White" BorderThickness="3"  BorderBrush="#2A5188"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollMode="X">
             <lvc:CartesianChart.AxisX>

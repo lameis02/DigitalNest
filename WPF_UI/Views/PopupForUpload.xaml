@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        
-        xmlns:local="clr-namespace:WPF.Views"
         mc:Ignorable="d"
         Title="PopupForUpload" Height="400" Width="622"
         WindowStyle="None" 
@@ -14,9 +12,9 @@
 
     <Grid>
 
-        <!--Input Section-->
         <Border Padding="20" Background="#2A5188 ">
 
+            <!-- Inneres Grid mit mehreren Zeilen für die Anordnung der UI-Elemente -->
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -26,7 +24,10 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
+                <!-- TextBox zur Anzeige des ausgewählten Bildpfads -->
                 <TextBox x:Name="selectedImagePathTextBlock" Grid.Row="4" Margin="68,14,68,-4" IsReadOnly="True"/>
+
+                <!-- DatePicker für die Auswahl des Datums -->
                 <DatePicker x:Name="datePicker" 
                             SelectedDate="{x:Static sys:DateTime.Now}" 
                             DisplayDateEnd="{x:Static sys:DateTime.Now}"
@@ -41,16 +42,24 @@
                         </TransformGroup>
                     </DatePicker.RenderTransform>
                 </DatePicker>
-                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,167,68,-163" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
-                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
-                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click" Background="#3E4D3C " Foreground="White"/>
 
+                <!-- TextBox für die Eingabe der Vogelart -->
+                <TextBox x:Name="txtVogelart" Grid.Row="4" Margin="68,167,68,-163" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Vogelart eintragen</TextBox>
+                <!-- TextBox für die Eingabe des Ortes -->
+                <TextBox x:Name="txtOrt" Grid.Row="4" Margin="68,85,68,-78" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Foreground="Gray">Ort eintragen</TextBox>
+
+                <!-- Button zum Hochladen des Bildes -->
+                <Button x:Name="UploadButton" Content="Hochladen" Grid.Row="4" Margin="132,258,132,-278" Click="UploadButton_Click" Background="#3E4D3C " Foreground="White"/>
+                <!-- Button zur Vogelarten-Erkennung -->
                 <Button x:Name="IdentifyOneButton" Content="Vogelart erkennen" Grid.Row="4"  Click="IdentifyOneButton_Click" Margin="68,122,68,-122" Background="#3E4D3C" Foreground="White"/>
 
+                <!-- CheckBox zum Markieren als Favorit -->
                 <CheckBox Content="Als Favorit markieren" x:Name="favoriteCheckBox" Margin="68,238,68,-221" Grid.Row="4" Foreground="White"/>
 
+                <!-- Schließen-Button im rechten oberen Eck -->
                 <Image Source="/Assets/CloseIconBlack.png" Width="30" Height="30" MouseDown="CloseButton_MouseDown" Margin="564,-32,-32,32"/>
 
+                <!-- Fortschrittsbalken für den Hochladeprozess -->
                 <ProgressBar x:Name="loadingProgressBar" Grid.Row="4" Height="5" VerticalAlignment="Bottom" Background="#3E4D3C" Foreground="White"
                              Margin="77,0,84,-173" Visibility="Hidden" Value="0" IsIndeterminate="True"/>
 

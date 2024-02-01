@@ -16,8 +16,6 @@
     <None Remove="Assets\img_Haus.png" />
     <None Remove="Assets\img_Statistik.png" />
     <None Remove="Assets\Logo.png" />
-    <None Remove="Assets\max_def.png" />
-    <None Remove="Assets\max_mo.png" />
     <None Remove="Assets\mogen.png" />
     <None Remove="Assets\WaldBild.jpg" />
   </ItemGroup>
@@ -39,8 +37,6 @@
     <Resource Include="Assets\img_Haus.png" />
     <Resource Include="Assets\img_Statistik.png" />
     <Resource Include="Assets\Logo.png" />
-    <Resource Include="Assets\max_def.png" />
-    <Resource Include="Assets\max_mo.png" />
     <Resource Include="Assets\mogen.png" />
     <Resource Include="Assets\WaldBild.jpg" />
   </ItemGroup>
