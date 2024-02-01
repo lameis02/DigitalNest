@@ -9,6 +9,12 @@ namespace Vogelscheuche_Bib
 {
     public class AI_Service
     {
+        /// <summary>
+        /// manual test if the ai is connected and works
+        /// </summary>
+        /// <param name="client">defines that a HTTPS interface is used</param>
+        /// <param name="baseUrl">URL to the flask application of the ai integration</param>
+        /// <returns>returns a string containing the identified birdname</returns>
         static async Task Main(string[] args)
         {
             var client = new HttpClient();
@@ -28,6 +34,13 @@ namespace Vogelscheuche_Bib
             }
         }
 
+        /// <summary>
+        /// asynchronously posts image file to a ai URL using HTTP POST method
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="url"></param>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
         static async Task<string> PostImageAsync(HttpClient client, string url, string imagePath)
         {
             using (var formData = new MultipartFormDataContent())
@@ -47,6 +60,14 @@ namespace Vogelscheuche_Bib
             }
         }
 
+        /// <summary>
+        /// asynchronously sends image to a ai base URL for multi-bird identification and returns the results
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="baseUrl"></param>
+        /// <param name="imagePath"></param>
+        /// <remarks>This method is currently not used based on its complexity to implement</remarks>
+        /// <returns>string of the name of the detected birds</returns>
         public static async Task<dynamic> MultiResponse(HttpClient client, string baseUrl, string imagePath)
         {
             
@@ -71,6 +92,13 @@ namespace Vogelscheuche_Bib
             }
             
         }
+        /// <summary>
+        /// asynchronously sends image to a ai base URL for single bird identification and returns the result
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="baseUrl"></param>
+        /// <param name="imagePath"></param>
+        /// <returns>string of the name of the detected bird</returns>
         public static async Task<dynamic> SingleResponse(HttpClient client, string baseUrl, string imagePath)
         {
 
