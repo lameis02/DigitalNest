@@ -12,19 +12,34 @@ gruppiert werden. Zudem soll sich der Benutzer auch eine Statistik ausgeben lass
 eine Kamera und einen Lautsprecher zu integrieren. Die Kamera soll automatisch ein Bild machen, wenn sie ein Vogel erkennt. 
 Dieses Foto wird dann an das Programm weitergeleitet. Der Lautsprecher soll bei der Sichtung von bestimmten Vogelarten ein Geräusch machen, welches die Vögel verschrecken soll.
 
+# Das Ergebnis
+
+Die Anwendung lässt den User ein Bild eines Vogels hochladen. Dann kann die Vogelart durch eine KI bestimmt werden und der Nutzer kann Datum und Ort setzen. Außerdem kann das Bild als Favorit markiert werden. Nach dem Hochladen des Bildes in die Datenbank können alle Bilder in der Galerie angezeigt werden. In dieser Ansicht können einzelne Bilder angezeigt und gelöscht werden und auch der gesamte Inhalt der Galerie kann gelöscht werden. Die Favoriten können über eine zusätzliche Ansicht angezeigt werden. Ebenfalls gibt es Statistiken, welche eine Gesamtübersicht der Daten  geben oder nur eine Übersicht über die Daten der letzen sieben Tage geben. 
+
 # How to connect to the Database
 
-- [ ] After cloning our repository, open the SQL SERVER folder
-- [ ] Open a new Terminal in that folder
+After cloning our repository, open the SQL SERVER folder and then open a new Terminal in that folder.
 
-- [ ] ` docker build -t vogelsammlung . `
+```bash 
+docker build -t vogelsammlung . 
+```
 
-- [ ] ` docker run -d --name vogelsammlung -p 1433:1433 vogelsammlung `
+``` bash
+docker run -d --name vogelsammlung -p 1433:1433 vogelsammlung 
+```
 
 # How to access the Bird Recognition AI
 
-- [ ] Open the Terminal
+Open the Terminal
 
-- [ ] `docker run --name bird-recognition -p 5000:5000 aaronzi/bird-recognition `
+```bash
+docker run -d --name bird-recognition -p 5000:5000 fiob9220/bird_ai:v1.0 
+```
 
 > **Accessing the given [Localhost](http://localhost:5000/) a small API can be used as a standalone**
+
+## Code for Bird Recognition AI
+
+The code of the AI can be found [here](https://github.com/fyo21103/Bird-Recognition-AI/tree/master).
+
+> As of 01/02/2024 the most recent changes are in [this](https://github.com/fyo21103/Bird-Recognition-AI/tree/api-update) branch.
